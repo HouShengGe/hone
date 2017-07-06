@@ -5,12 +5,12 @@ package com.mc.app.hotel.common.http;
  */
 public class ServerException extends Exception {
 
-    public static final String USER_NOT_EXIST = "100";
-    public static final String WRONG_PASSWORD = "101";
+    public static final int ERROR_FAIL = 2;
+    public static final int  ERROR_EXCEPTION = -1;
     private static String message;
 
-    public ServerException(String resultCode) {
-        super(getApiExceptionMessage(resultCode));
+    public ServerException(int flag,String msg) {
+        super(getApiExceptionMessage(flag,msg));
     }
 
     @Override
@@ -21,16 +21,17 @@ public class ServerException extends Exception {
     /**
      * 由于服务器传递过来的错误信息直接给用户看的话，用户未必能够理解
      * 需要根据错误码对错误信息进行一个转换，在显示给用户
-     * @param code
+     * @param flag
+     * @param msg
      * @return
      */
-    private static String getApiExceptionMessage(String code){
-        switch (code) {
-            case USER_NOT_EXIST:
-                message = "该用户不存在";
+    private static String getApiExceptionMessage(int flag,String msg){
+        switch (flag) {
+            case ERROR_FAIL:
+                message = msg;
                 break;
-            case WRONG_PASSWORD:
-                message = "密码错误";
+            case ERROR_EXCEPTION:
+                message = msg;
                 break;
             default:
                 message = "未知错误";

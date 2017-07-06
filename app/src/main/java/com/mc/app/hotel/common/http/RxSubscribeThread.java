@@ -1,7 +1,7 @@
 package com.mc.app.hotel.common.http;
 
 
-import com.mc.app.hotel.bean.BaseBean;
+import com.mc.app.hotel.bean.HttpResBaseBean;
 
 import rx.Observable;
 import rx.Subscriber;
@@ -13,17 +13,17 @@ import rx.android.schedulers.AndroidSchedulers;
  * Created by Administrator on 2016/10/31.
  */
 public class RxSubscribeThread {
-    public static <T> Observable.Transformer<BaseBean<T>, T> ioAndMain() {
-        return new Observable.Transformer<BaseBean<T>, T>() {
+    public static <T> Observable.Transformer<HttpResBaseBean<T>, T> ioAndMain() {
+        return new Observable.Transformer<HttpResBaseBean<T>, T>() {
             @Override
-            public Observable<T> call(Observable<BaseBean<T>> observable) {
-                return observable.flatMap(new Func1<BaseBean<T>, Observable<T>>() {
+            public Observable<T> call(Observable<HttpResBaseBean<T>> observable) {
+                return observable.flatMap(new Func1<HttpResBaseBean<T>, Observable<T>>() {
                     @Override
-                    public Observable<T> call(BaseBean<T> result) {
-                        if (result.success()) {
-                            return createData(result.result);
+                    public Observable<T> call(HttpResBaseBean<T> result) {
+                        if (result.getFlag() == 0||result.getFlag() == 1) {
+                            return createData(result.getData());
                         } else {
-                            return Observable.error(new ServerException(result.code));
+                            return Observable.error(new ServerException(result.getFlag(),result.getMsg()));
                         }
                     }
                 }).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());

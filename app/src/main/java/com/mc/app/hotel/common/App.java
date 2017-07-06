@@ -10,6 +10,7 @@ import com.mc.app.hotel.common.facealignment.util.OCRUtil;
 import com.mc.app.hotel.common.facealignment.util.PrefUtil;
 import com.mc.app.hotel.common.facealignment.util.ServiceUtil;
 import com.mc.app.hotel.common.facealignment.util.StateUtil;
+import com.mc.app.hotel.common.util.SPerfUtil;
 
 import timber.log.Timber;
 
@@ -24,9 +25,10 @@ public class App extends Application {
         super.onCreate();
         mApp = this;
         PrefUtil.init(this);
+        SPerfUtil.init(this);
         StateUtil.init(this);
         OCRUtil.init(this);
-        if(StateUtil.SupportNFC==false){
+        if (StateUtil.SupportNFC == false) {
             PrefUtil.setLinkType(ServiceUtil.OTG);
         }
 

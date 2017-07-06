@@ -42,7 +42,7 @@
             android:exported="false"
             android:process=":nfc_active_service_process" />
 
-        <activity android:name=".activity.MainActivity">
+        <activity android:name=".activity.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -50,6 +50,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".activity.RoomStatusActivity" />
+        <activity android:name=".activity.MainActivity" />
         <activity
             android:name=".common.facealignment.FaceAilgmentActivity"
             android:screenOrientation="landscape" />
