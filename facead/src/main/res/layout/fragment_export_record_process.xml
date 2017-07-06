@@ -1,0 +1,63 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.miaolian.facead.view.ExportRecordProcessFragment">
+
+    <pl.droidsonroids.gif.GifImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"
+        android:src="@drawable/processing" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_margin="10dp"
+            style="@style/TextViewStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="导出中请稍后"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="35sp" />
+
+        <FrameLayout
+            android:layout_margin="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ProgressBar
+                android:id="@+id/exportRecordPB"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="400dp"
+                android:layout_height="20dp"
+                android:layout_margin="10dp"
+                android:max="100"
+                android:progress="10" />
+            <TextView
+                android:id="@+id/exportRecordTv"
+                android:textColor="@android:color/white"
+                android:textSize="25sp"
+                android:text="10%"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </FrameLayout>
+
+        <Button
+            android:layout_margin="10dp"
+            android:text="@string/CANCEL"
+            android:id="@+id/actionBtn"
+            style="@style/RecordManagementButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+</FrameLayout>

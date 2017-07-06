@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="volume_popupwindow_width">70dp</dimen>
+    <dimen name="volume_popupwindow_height">250dp</dimen>
+    <dimen name="volume_seekbar_width">150dp</dimen>
+</resources>

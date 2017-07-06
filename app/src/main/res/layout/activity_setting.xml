@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_setting"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.miaolian.facead.SettingActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolBar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <ScrollView
+            android:layout_width="150dp"
+            android:layout_height="match_parent"
+            android:background="@android:color/black">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <RadioGroup
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:checkedButton="@+id/faceAlignmentSettingRb">
+
+                    <RadioButton
+                        android:id="@+id/faceAlignmentSettingRb"
+                        style="@style/MyRadioButtonStyle"
+                        android:layout_width="match_parent"
+                        android:text="@string/FACE_ALIGNMENT_SETTING" />
+
+                    <RadioButton
+                        android:id="@+id/idCardSettingRb"
+                        style="@style/MyRadioButtonStyle"
+                        android:layout_width="match_parent"
+                        android:text="@string/ID_CARD_SETTING" />
+
+                    <RadioButton
+                        android:id="@+id/nfcActiveRb"
+                        style="@style/MyRadioButtonStyle"
+                        android:layout_width="match_parent"
+                        android:text="@string/NFC_ACTIVE" />
+
+                    <RadioButton
+                        android:id="@+id/cameraSettingRb"
+                        style="@style/MyRadioButtonStyle"
+                        android:layout_width="match_parent"
+                        android:text="@string/CAMERA_SETTING" />
+                    <RadioButton
+                        android:id="@+id/debugSettingRb"
+                        style="@style/MyRadioButtonStyle"
+                        android:layout_width="match_parent"
+                        android:text="@string/DEBUG_SETTING" />
+                    <RadioButton
+                        android:id="@+id/resetRb"
+                        style="@style/MyRadioButtonStyle"
+                        android:layout_width="match_parent"
+                        android:text="@string/RESET" />
+                    <RadioButton
+                        android:id="@+id/aboutRb"
+                        style="@style/MyRadioButtonStyle"
+                        android:layout_width="match_parent"
+                        android:text="@string/ABOUT" />
+                </RadioGroup>
+            </LinearLayout>
+        </ScrollView>
+
+        <FrameLayout
+            android:id="@+id/fragContainer"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@android:color/white" />
+    </LinearLayout>
+</LinearLayout>

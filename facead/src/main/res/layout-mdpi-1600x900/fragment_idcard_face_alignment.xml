@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    tools:context="com.miaolian.facead.MainActivity">
+
+    <FrameLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="@drawable/leftpanel_bg">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal|top"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/TitleTextViewStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="@string/PEOPLE_CARD_ALIGNMENT" />
+
+
+            <FrameLayout
+                android:layout_width="800dp"
+                android:layout_height="600dp"
+                android:layout_marginTop="10dp">
+
+                <TextureView
+                    android:id="@+id/cameraTextureView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+
+            </FrameLayout>
+
+
+            <TextView
+                android:id="@+id/actionHintTv"
+                style="@style/TextViewStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="@string/put_the_face_into_the_box" />
+
+            <Button
+                android:id="@+id/recordManagementBtn"
+                style="@style/RecordManagementButtonStyle"
+                android:layout_width="150dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="10dp"
+                android:text="@string/recode_management" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top|right"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/volumeIBtn"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="10dp"
+                android:background="@android:color/transparent"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_volume" />
+
+            <ImageButton
+                android:id="@+id/settingIBtn"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="10dp"
+                android:background="@android:color/transparent"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_setting" />
+
+        </LinearLayout>
+
+        <SurfaceView
+            android:id="@+id/invisibleSurfaceView"
+            android:layout_width="1px"
+            android:layout_height="1px"
+            android:layout_gravity="top|left" />
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="400dp"
+        android:layout_height="match_parent"
+        android:background="@drawable/rightpanel_bg"
+        android:gravity="center_horizontal|top"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_jinghui" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/HeadLineStyle"
+                android:text="@string/IDCARD_INFO" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bodybg"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:id="@+id/photoIv"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_gravity="center_horizontal"
+                    android:src="@drawable/ic_face" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/entry_height"
+                    android:layout_margin="1dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/LabelStyle"
+                        android:text="姓名:" />
+
+                    <TextView
+                        android:id="@+id/nameTv"
+                        style="@style/ContentStyle" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/entry_height"
+                    android:layout_margin="1dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/LabelStyle"
+                        android:text="性别:" />
+
+                    <TextView
+                        android:id="@+id/sexTv"
+                        style="@style/ContentStyle" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/entry_height"
+                    android:layout_margin="1dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/LabelStyle"
+                        android:text="身份证号:" />
+
+                    <TextView
+                        android:id="@+id/idNumTv"
+                        style="@style/ContentStyle" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/entry_height"
+                    android:layout_margin="1dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/LabelStyle"
+                        android:text="有效期:" />
+
+                    <TextView
+                        android:id="@+id/termTv"
+                        style="@style/ContentStyle" />
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/entry_height"
+                    android:layout_margin="1dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/LabelStyle"
+                        android:layout_height="match_parent"
+                        android:text="生日:" />
+
+                    <TextView
+                        android:id="@+id/birthdayTv"
+                        style="@style/ContentStyle" />
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="60dp"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/HeadLineStyle"
+                android:text="@string/ALIGNMENT_INFO" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bodybg"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <FrameLayout
+                    android:layout_width="300dp"
+                    android:layout_height="300dp"
+                    android:layout_margin="5dp">
+
+                    <TextureView
+                        android:id="@+id/captureTextureView"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@android:color/transparent" />
+
+                    <ImageView
+                        android:id="@+id/faceAlignmentResultIv"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_gravity="bottom|right"
+                        android:layout_margin="10dp"
+                        android:src="@drawable/ic_success_small"
+                        android:visibility="invisible" />
+                </FrameLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="200dp"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal|top"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <Button
+            android:id="@+id/startFaceDetectBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="抓人脸" />
+
+        <Button
+            android:id="@+id/stopFaceDetectBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="停止抓人脸" />
+
+        <Button
+            android:id="@+id/doFaceAlignmentBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="比对人脸" />
+
+        <Button
+            android:id="@+id/resetBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="重置" />
+
+    </LinearLayout>
+
+</LinearLayout>

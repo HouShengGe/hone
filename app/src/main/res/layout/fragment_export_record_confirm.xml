@@ -1,0 +1,49 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context="com.mc.app.hotel.common.facealignment.view.ExportRecordConfirmFragment">
+
+    <TextView
+        android:id="@+id/titleTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_margin="20dp"
+        android:text="@string/CONFIRM"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/messageTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/titleTv"
+        android:layout_below="@id/titleTv"
+        android:text="@string/CONFIRM_EXPORT_RECORD"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <Button
+        android:layout_marginTop="10dp"
+        android:id="@+id/positiveBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/messageTv"
+        android:background="@android:color/transparent"
+        android:text="@string/YES"
+        android:textColor="@color/colorAccent" />
+
+    <Button
+        android:id="@+id/negativeBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/positiveBtn"
+        android:layout_alignTop="@id/positiveBtn"
+        android:layout_toLeftOf="@id/positiveBtn"
+        android:background="@android:color/transparent"
+        android:text="@string/NO"
+        android:textColor="@color/colorAccent" />
+
+
+</RelativeLayout>

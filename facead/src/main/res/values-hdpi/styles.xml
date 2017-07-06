@@ -1,0 +1,120 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="SettingActivityTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+
+    <style name="RecordManagementButtonStyle">
+        <item name="android:background">@drawable/button_bg1</item>
+        <item name="android:textSize">10sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="TextViewStyle">
+        <item name="android:paddingLeft">15dp</item>
+        <item name="android:paddingRight">15dp</item>
+        <item name="android:background">@drawable/textview_bg1</item>
+        <item name="android:textSize">10sp</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="TitleTextViewStyle">
+        <item name="android:background">@drawable/textview_bg1</item>
+        <item name="android:padding">5dp</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="MyRadioButtonStyle">
+        <item name="android:textColor">@color/toggle_button_text_color</item>
+        <item name="android:background">@drawable/toggle_button_bg</item>
+        <item name="android:button">@null</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:padding">10dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="PrefTitleTextViewStyle">
+        <item name="android:textColor">@android:color/black</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:layout_margin">5dp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="PrefTextViewStyle">
+        <item name="android:textColor">@android:color/black</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:layout_margin">5dp</item>
+    </style>
+    <style name="LabelStyle">
+        <item name="android:textSize">8sp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_width">@dimen/label_width</item>
+        <item name="android:background">@drawable/labelbg</item>
+        <item name="android:gravity">center</item>
+    </style>
+    <style name="ContentStyle">
+        <item name="android:paddingLeft">2dp</item>
+        <item name="android:textSize">8sp</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:background">@drawable/contentbg</item>
+        <item name="android:gravity">center_vertical|left</item>
+        <item name="android:text">""</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+    <style name="HeadLineStyle">
+        <item name="android:paddingRight">5dp</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@drawable/headlinebg</item>
+        <item name="android:textSize">10sp</item>
+    </style>
+    <style name="MyButtonStyle">
+        <item name="android:background">@drawable/mybuttonbackground</item>
+        <item name="android:textColor">#EBFFF9</item>
+        <item name="android:textSize">10sp</item>
+        <item name="android:shadowColor">#000000</item>
+        <item name="android:shadowDx">4</item>
+        <item name="android:shadowDy">0</item>
+        <item name="android:shadowRadius">10</item>
+        <item name="android:layout_marginLeft">10dp</item>
+        <item name="android:layout_marginRight">10dp</item>
+        <item name="android:layout_marginTop">5dp</item>
+        <item name="android:layout_marginBottom">5dp</item>
+    </style>
+    <style name="TableHeadTextViewStyle">
+        <item name="android:layout_width">90dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+    <style name="TableRowTextViewStyle">
+        <item name="android:layout_width">90dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">@android:color/black</item>
+    </style>
+</resources>
