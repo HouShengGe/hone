@@ -22,7 +22,7 @@ public class Params {
         paramMap.put("appId", baseBean.getAppId());
         paramMap.put("key", baseBean.getKey());
         paramMap.put("token", baseBean.getToken());
-        paramMap.put("userId", baseBean.getUserId()+"");
+        paramMap.put("userId", baseBean.getUserId() + "");
         return paramMap;
     }
 
@@ -31,6 +31,12 @@ public class Params {
         Map<String, String> map = new HashMap<>();
         map.put("strMobile", mobile);
         map.put("strCode", vCode);
+        return getParams(map);
+    }
+
+    public static Map<String, String> getVCodeParams(String mobile) {
+        Map<String, String> map = new HashMap<>();
+        map.put("strMobile", mobile);
         return getParams(map);
     }
 }

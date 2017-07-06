@@ -8,8 +8,10 @@ import com.mc.app.hotel.bean.UrlBean;
 import java.util.List;
 import java.util.Map;
 
+import retrofit2.http.FieldMap;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
-import retrofit2.http.QueryMap;
+import retrofit2.http.POST;
 import rx.Observable;
 
 /**
@@ -20,8 +22,13 @@ public interface ApiService {
     @GET(HttpConstant.GET_URL)
     Observable<HttpResBaseBean<List<UrlBean>>> getURL();
 
-    @GET(HttpConstant.USER_LOGIN)
-    Observable<HttpResBaseBean<LoginResBean>> userLogin(@QueryMap Map<String,String> a);
+    @FormUrlEncoded
+    @POST(HttpConstant.USER_LOGIN)
+    Observable<HttpResBaseBean<LoginResBean>> userLogin(@FieldMap Map<String,String> a);
+
+    @FormUrlEncoded
+    @POST(HttpConstant.GET_CODE)
+    Observable<HttpResBaseBean<String>> getVCode(@FieldMap Map<String,String> a);
 
 
 }

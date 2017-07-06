@@ -5,7 +5,7 @@ package com.mc.app.hotel.bean;
  */
 
 public class UserInfo {
-    int userid;
+    int userid = -1;
     String userNo;
     String username;
     String strMobile;

@@ -6,4 +6,10 @@
     <color name="colorAccent">#FF4081</color>
     <color name="colorTableRowOdd">#FFFFFF</color>
     <color name="colorTableRowEven">#C2DAFF</color>
+    <color name="text_color">#191e30</color>
+    <color name="main_text_color">#0e56a8</color>
+    <color name="colorGrey">#666666</color>
+    <color name="mainBG">#67C7FA</color>
+
+
 </resources>

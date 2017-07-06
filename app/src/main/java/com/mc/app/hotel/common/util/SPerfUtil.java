@@ -17,7 +17,7 @@ public class SPerfUtil {
 
 
     public static final String DEFAULT_STRING = "";
-    public static final int DEFAULT_INT = 0;
+    public static final int DEFAULT_INT = -1;
     public static final String PREF_KEY_TOKEN = "PREF_KEY_TOKEN";
     public static final String PREF_KEY_KEY = "PREF_KEY_KEY";
     public static final String PREF_KEY_USER_ID = "PREF_KEY_USER_ID";
@@ -72,6 +72,11 @@ public class SPerfUtil {
         userInfo.setUserNo(prefs.getString(PREF_KEY_USER_NO, DEFAULT_STRING));
         userInfo.setUserType(prefs.getInt(PREF_KEY_USER_TYPE, DEFAULT_INT));
         return userInfo;
+    }
+
+    public static boolean isLogin() {
+        UserInfo user = getUserInfo();
+        return (user.getUserid() != -1);
     }
 
 

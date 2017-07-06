@@ -42,7 +42,9 @@
             android:exported="false"
             android:process=":nfc_active_service_process" />
 
-        <activity android:name=".activity.LoginActivity">
+        <activity
+            android:name=".activity.SplashActivity"
+            android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -51,6 +53,7 @@
         </activity>
         <activity android:name=".activity.RoomStatusActivity" />
         <activity android:name=".activity.MainActivity" />
+        <activity android:name=".activity.LoginActivity" />
         <activity
             android:name=".common.facealignment.FaceAilgmentActivity"
             android:screenOrientation="landscape" />
