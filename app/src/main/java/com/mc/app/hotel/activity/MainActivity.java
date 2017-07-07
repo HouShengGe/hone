@@ -1,20 +1,36 @@
 package com.mc.app.hotel.activity;
 
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
+import android.widget.LinearLayout;
 
+import com.jakewharton.rxbinding.view.RxView;
 import com.mc.app.hotel.R;
 import com.mc.app.hotel.common.facealignment.FaceAilgmentActivity;
 
+import java.util.concurrent.TimeUnit;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import rx.functions.Action1;
 
-public class MainActivity extends BaseActivity implements View.OnClickListener {
-    @BindView(R.id.btn)
-    Button btn;
-    @BindView(R.id.faceailgnment)
-    Button btnFaceailgnment;
+public class MainActivity extends BaseActivity {
+    @BindView(R.id.ll_room_status)
+    LinearLayout llRoomStatus;
+
+    @BindView(R.id.ll_declare_in)
+    LinearLayout llDeclareIn;
+
+    @BindView(R.id.ll_customer_history)
+    LinearLayout llCustomerHistory;
+
+    @BindView(R.id.ll_living_list)
+    LinearLayout llLivingList;
+
+    @BindView(R.id.ll_declare_out)
+    LinearLayout llDeclareOut;
+
+    @BindView(R.id.ll_setting)
+    LinearLayout llSetting;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,24 +41,82 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     }
 
     private void initView() {
-        setTitle("民宿");
-        buckButton(true);
-        rightTitle(R.drawable.friend_info_icon);
-        btn.setOnClickListener(this);
-        btnFaceailgnment.setOnClickListener(this);
+        buckButton(false);
+        leftTitle("民宿APP");
+        rightTitle(R.drawable.user);
+        roomStatus();
+        declareIn();
+        customerHistory();
+        livingList();
+        declareOut();
+        setting();
+
     }
 
-    @Override
-    public void onClick(View v) {
-        super.onClick(v);
-        switch (v.getId()) {
-            case R.id.btn:
-                toNextActivity(RoomStatusActivity.class);
-                break;
-            case R.id.faceailgnment:
-                toNextActivity(FaceAilgmentActivity.class);
-                break;
-
-        }
+    private void roomStatus() {
+        RxView.clicks(llRoomStatus)
+                .throttleFirst(2, TimeUnit.SECONDS)
+                .subscribe(new Action1<Void>() {
+                    @Override
+                    public void call(Void aVoid) {
+                        toNextActivity(RoomStatusActivity.class);
+                    }
+                });
     }
+
+    private void declareIn() {
+        RxView.clicks(llDeclareIn)
+                .throttleFirst(2, TimeUnit.SECONDS)
+                .subscribe(new Action1<Void>() {
+                    @Override
+                    public void call(Void aVoid) {
+                        toNextActivity(FaceAilgmentActivity.class);
+                    }
+                });
+    }
+
+    private void customerHistory() {
+        RxView.clicks(llCustomerHistory)
+                .throttleFirst(2, TimeUnit.SECONDS)
+                .subscribe(new Action1<Void>() {
+                    @Override
+                    public void call(Void aVoid) {
+
+                    }
+                });
+    }
+
+    private void livingList() {
+        RxView.clicks(llLivingList)
+                .throttleFirst(2, TimeUnit.SECONDS)
+                .subscribe(new Action1<Void>() {
+                    @Override
+                    public void call(Void aVoid) {
+
+                    }
+                });
+    }
+
+    private void declareOut() {
+        RxView.clicks(llDeclareOut)
+                .throttleFirst(2, TimeUnit.SECONDS)
+                .subscribe(new Action1<Void>() {
+                    @Override
+                    public void call(Void aVoid) {
+
+                    }
+                });
+    }
+
+    private void setting() {
+        RxView.clicks(llSetting)
+                .throttleFirst(2, TimeUnit.SECONDS)
+                .subscribe(new Action1<Void>() {
+                    @Override
+                    public void call(Void aVoid) {
+
+                    }
+                });
+    }
+
 }

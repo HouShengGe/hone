@@ -14,4 +14,5 @@ public class HttpConstant {
     public static final String GET_URL = "GetServiceList";//获取URL
     public static final String USER_LOGIN = "UserLogin";//登陆
     public static final String GET_CODE = "GetCode";//获取验证码
+    public static final String GET_ROOM_PIC = "GetRoomPic";//获取房态图
 }

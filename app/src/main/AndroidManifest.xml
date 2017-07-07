@@ -53,7 +53,9 @@
         </activity>
         <activity android:name=".activity.RoomStatusActivity" />
         <activity android:name=".activity.MainActivity" />
-        <activity android:name=".activity.LoginActivity" />
+        <activity
+            android:name=".activity.LoginActivity"
+            android:launchMode="singleTask" />
         <activity
             android:name=".common.facealignment.FaceAilgmentActivity"
             android:screenOrientation="landscape" />

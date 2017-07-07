@@ -3,6 +3,7 @@ package com.mc.app.hotel.common.http;
 
 import com.mc.app.hotel.bean.HttpResBaseBean;
 import com.mc.app.hotel.bean.LoginResBean;
+import com.mc.app.hotel.bean.RoomStatusBean;
 import com.mc.app.hotel.bean.UrlBean;
 
 import java.util.List;
@@ -24,11 +25,15 @@ public interface ApiService {
 
     @FormUrlEncoded
     @POST(HttpConstant.USER_LOGIN)
-    Observable<HttpResBaseBean<LoginResBean>> userLogin(@FieldMap Map<String,String> a);
+    Observable<HttpResBaseBean<LoginResBean>> userLogin(@FieldMap Map<String, String> a);
 
     @FormUrlEncoded
     @POST(HttpConstant.GET_CODE)
-    Observable<HttpResBaseBean<String>> getVCode(@FieldMap Map<String,String> a);
+    Observable<HttpResBaseBean<String>> getVCode(@FieldMap Map<String, String> a);
+
+    @FormUrlEncoded
+    @POST(HttpConstant.GET_ROOM_PIC)
+    Observable<HttpResBaseBean<RoomStatusBean>> getRoomStatus(@FieldMap Map<String, String> a);
 
 
 }

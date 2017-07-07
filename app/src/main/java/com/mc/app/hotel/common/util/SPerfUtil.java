@@ -22,11 +22,11 @@ public class SPerfUtil {
     public static final String PREF_KEY_KEY = "PREF_KEY_KEY";
     public static final String PREF_KEY_USER_ID = "PREF_KEY_USER_ID";
 
-    public static final String PREF_KEY_USER_NO = "PREF_KEY_USER_ID";
-    public static final String PREF_KEY_USER_NAME = "PREF_KEY_USER_ID";
-    public static final String PREF_KEY_USER_MOBILE = "PREF_KEY_USER_ID";
-    public static final String PREF_KEY_USER_STORE_ID = "PREF_KEY_USER_ID";
-    public static final String PREF_KEY_USER_TYPE = "PREF_KEY_USER_ID";
+    public static final String PREF_KEY_USER_NO = "PREF_KEY_USER_NO";
+    public static final String PREF_KEY_USER_NAME = "PREF_KEY_USER_NAME";
+    public static final String PREF_KEY_USER_MOBILE = "PREF_KEY_USER_MOBILE";
+    public static final String PREF_KEY_USER_STORE_ID = "PREF_KEY_USER_STORE_ID";
+    public static final String PREF_KEY_USER_TYPE = "PREF_KEY_USER_TYPE";
 
 
     public static void init(Context context) {
@@ -76,7 +76,8 @@ public class SPerfUtil {
 
     public static boolean isLogin() {
         UserInfo user = getUserInfo();
-        return (user.getUserid() != -1);
+        ReqBaseBean bean = getReqBaseInfo();
+        return (user.getUserid() != -1&&!bean.getToken().equals(""));
     }
 
 

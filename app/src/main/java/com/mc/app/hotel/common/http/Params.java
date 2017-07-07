@@ -12,18 +12,24 @@ import java.util.Map;
  */
 
 public class Params {
-    public static ReqBaseBean baseBean = SPerfUtil.getReqBaseInfo();
 
     public static Map<String, String> getParams(Map<String, String> map) {
+        ReqBaseBean baseBean = SPerfUtil.getReqBaseInfo();
         Map<String, String> paramMap = new HashMap<>();
         Gson gson = new Gson();
-        String reqData = gson.toJson(map);
-        paramMap.put("reqData", reqData);
+        if (map != null) {
+            String reqData = gson.toJson(map);
+            paramMap.put("reqData", reqData);
+        }
         paramMap.put("appId", baseBean.getAppId());
         paramMap.put("key", baseBean.getKey());
         paramMap.put("token", baseBean.getToken());
         paramMap.put("userId", baseBean.getUserId() + "");
         return paramMap;
+    }
+
+    public static Map<String, String> getParams() {
+        return getParams(null);
     }
 
 

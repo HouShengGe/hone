@@ -25,6 +25,7 @@ public abstract class RxSubscribeProgress<T> extends Subscriber<T> {
     private ProgressDialog dialog;
     private String mDialogStyle;
     private Subscription mRxSbscription;
+    private boolean showDialog = true;
 
     protected abstract void onOverNext(T t);
 
@@ -38,6 +39,12 @@ public abstract class RxSubscribeProgress<T> extends Subscriber<T> {
     public RxSubscribeProgress(Context context) {
         this.mContext = context;
         this.mDialogStyle = "";
+    }
+
+    public RxSubscribeProgress(Context context, boolean showDialog) {
+        this.mContext = context;
+        this.mDialogStyle = "";
+        this.showDialog = showDialog;
     }
 
     @Override
@@ -59,7 +66,8 @@ public abstract class RxSubscribeProgress<T> extends Subscriber<T> {
                 }
             }
         });
-        dialog.show();
+        if (showDialog)
+            dialog.show();
     }
 
     @Override
@@ -85,7 +93,7 @@ public abstract class RxSubscribeProgress<T> extends Subscriber<T> {
     public void onCompleted() {
         if (dialog != null)
             dialog.dismiss();
-        if (mRxSbscription != null && !mRxSbscription.isUnsubscribed()){
+        if (mRxSbscription != null && !mRxSbscription.isUnsubscribed()) {
             mRxSbscription.unsubscribe();
         }
     }

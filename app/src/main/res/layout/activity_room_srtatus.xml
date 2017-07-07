@@ -1,27 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:ptr="http://schemas.android.com/apk/res-auto"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent">
-        <include layout="@layout/my_action_bar"/>
+    xmlns:ptr="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/mainBG">
+
+    <include layout="@layout/my_action_bar" />
+
     <com.mc.app.hotel.common.view.pulltoreflushgrid.PullToRefreshGridView
         android:id="@+id/pull_refresh_grid"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:columnWidth="100dp"
         android:gravity="center_horizontal"
-        android:horizontalSpacing="1dp"
-        android:numColumns="auto_fit"
+        android:layout_marginTop="10dp"
+        android:horizontalSpacing="3dp"
+        android:numColumns="3"
+        android:layout_marginLeft="4dp"
+        android:layout_marginRight="4dp"
         android:stretchMode="columnWidth"
-        android:verticalSpacing="1dp"
+        android:verticalSpacing="2dp"
         ptr:ptrAnimationStyle="flip"
-        ptr:ptrHeaderBackground="#00ff00"
-        ptr:ptrHeaderSubTextColor="#ff0000"
-        ptr:ptrHeaderTextColor="#0000ff"
+        ptr:ptrHeaderBackground="@color/mainBG"
+        ptr:ptrHeaderSubTextColor="@color/colorGrey"
+        ptr:ptrHeaderTextColor="@color/colorGrey"
         ptr:ptrListViewExtrasEnabled="false"
-        ptr:ptrMode="both"
-        ptr:ptrRefreshableViewBackground="#ff0000"
+        ptr:ptrRefreshableViewBackground="@color/mainBG"
         ptr:ptrScrollingWhileRefreshingEnabled="true"
-        ptr:ptrShowIndicator="true" />
+         />
+    <!--ptr:ptrMode="both"-->
 </LinearLayout>

@@ -121,12 +121,14 @@ public class LoginActivity extends BaseActivity {
                                         SPerfUtil.setReqBaseInfo(t.getToken(), t.getKey(), t.getUserInfo().getUserid());
                                         SPerfUtil.setUserInfo(t.getUserInfo());
                                         toNextActivity(MainActivity.class);
+                                        finish();
                                     }
 
                                     @Override
                                     protected void onOverError(String message) {
                                         ToastUtils.show(LoginActivity.this, message, Toast.LENGTH_SHORT);
                                         toNextActivity(MainActivity.class);
+                                        finish();
                                     }
                                 });
                     }
@@ -161,7 +163,7 @@ public class LoginActivity extends BaseActivity {
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
             if (dialog != null)
                 dialog.dismiss();
-            HttpConstant.setBaseUrl(urlList.get(position).getServiceName());
+            HttpConstant.setBaseUrl(urlList.get(position).getServiceIP());
             tvServiceName.setText(urlList.get(position).getServiceName());
         }
     }
@@ -199,7 +201,7 @@ public class LoginActivity extends BaseActivity {
 
     public CountDownTimers getCountDown() {
         if (this.sendReceiveCountDown == null) {
-            this.sendReceiveCountDown = new CountDownTimers(60000, 1000) {
+            this.sendReceiveCountDown = new CountDownTimers(120000, 1000) {
                 @Override
                 public void onTick(long millisUntilFinished) {
                     int time = (int) millisUntilFinished / 1000;
