@@ -10,6 +10,7 @@ import com.mc.app.hotel.common.facealignment.util.OCRUtil;
 import com.mc.app.hotel.common.facealignment.util.PrefUtil;
 import com.mc.app.hotel.common.facealignment.util.ServiceUtil;
 import com.mc.app.hotel.common.facealignment.util.StateUtil;
+import com.mc.app.hotel.common.util.CrashHandler;
 import com.mc.app.hotel.common.util.SPerfUtil;
 
 import timber.log.Timber;
@@ -31,7 +32,8 @@ public class App extends Application {
         if (StateUtil.SupportNFC == false) {
             PrefUtil.setLinkType(ServiceUtil.OTG);
         }
-
+        CrashHandler crashHandler = CrashHandler.getInstance();
+        crashHandler.init(getApplicationContext());
         Timber.uprootAll();
         if (BuildConfig.DEBUG) {
             Timber.plant(new Timber.DebugTree() {

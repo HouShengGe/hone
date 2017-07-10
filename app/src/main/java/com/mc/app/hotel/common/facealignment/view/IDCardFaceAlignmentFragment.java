@@ -16,6 +16,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Base64;
 import android.util.Log;
 import android.util.Pair;
 import android.view.LayoutInflater;
@@ -24,12 +25,16 @@ import android.view.SurfaceView;
 import android.view.TextureView;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.caihua.cloud.common.entity.PersonInfo;
 import com.caihua.cloud.common.service.ReadCardService;
 import com.mc.app.hotel.R;
+import com.mc.app.hotel.bean.CheckInInfo;
 import com.mc.app.hotel.common.facealignment.RecordManageActivity;
 import com.mc.app.hotel.common.facealignment.SettingActivity;
 import com.mc.app.hotel.common.facealignment.event.EventDataSaveRequest;
@@ -47,12 +52,19 @@ import com.mc.app.hotel.common.facealignment.util.PrefUtil;
 import com.mc.app.hotel.common.facealignment.util.SDCardUtils;
 import com.mc.app.hotel.common.facealignment.util.ServiceUtil;
 import com.mc.app.hotel.common.facealignment.util.UMengUtil;
+import com.mc.app.hotel.common.http.Api;
+import com.mc.app.hotel.common.http.Params;
+import com.mc.app.hotel.common.http.RxSubscribeProgress;
+import com.mc.app.hotel.common.http.RxSubscribeThread;
+import com.mc.app.hotel.common.util.ToastUtils;
 
+import org.feezu.liuli.timeselector.TimeSelector;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
 import java.io.ByteArrayOutputStream;
+import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -90,6 +102,26 @@ public class IDCardFaceAlignmentFragment extends Fragment implements Camera.Prev
     TextureView captureTextureView;
     @BindView(R.id.faceAlignmentResultIv)
     ImageView faceAlignmentResultIv;
+
+    @BindView(R.id.roomNumTv)
+    EditText roomNumTv;
+
+    @BindView(R.id.roomPayTv)
+    EditText roomPayTv;
+
+    @BindView(R.id.phoneNumTv)
+    EditText phoneNumTv;
+
+    @BindView(R.id.comeDayTv)
+    TextView comeDayTv;
+
+    @BindView(R.id.leaveDayTv)
+    TextView leaveDayTv;
+
+    @BindView(R.id.commit)
+    Button commit;
+
+
     Unbinder unbinder;
     Camera camera;
     DataDispatchThread dataDispatchThread = null;
@@ -144,6 +176,7 @@ public class IDCardFaceAlignmentFragment extends Fragment implements Camera.Prev
                                 faceRecord.setSimilarity(confidence);
                                 faceRecord.setIdPhoto(photoPair.second.photoBytes);
                                 faceRecord.setCamPhoto(photoPair.first.photoBytes);
+                                faceinfo = faceRecord;
                                 EventBus.getDefault().post(new EventDataSaveRequest(faceRecord));
                                 faceAlignmentSuccess(confidence);
                             }
@@ -152,6 +185,59 @@ public class IDCardFaceAlignmentFragment extends Fragment implements Camera.Prev
                         }
                     }
                 });
+    }
+
+    FaceRecord faceinfo = new FaceRecord();
+
+
+    private CheckInInfo getInfo() {
+        CheckInInfo info = new CheckInInfo();
+        if (faceinfo.dataIsBlank()) {
+            ToastUtils.show(getContext(), "请确保身份信息完整", Toast.LENGTH_SHORT);
+            return null;
+        }
+        String roomNum = roomNumTv.getText().toString().trim();
+        if (roomNum == null || roomNum.equals("")) {
+            roomNumTv.setError("请填写房间号");
+            return null;
+        }
+        String roomPay = roomPayTv.getText().toString().trim();
+        if (roomPay == null || roomPay.equals("")) {
+            roomPayTv.setError("请填写房价");
+            return null;
+        }
+        String phoneNum = phoneNumTv.getText().toString().trim();
+        if (phoneNum == null || phoneNum.equals("")) {
+            phoneNumTv.setError("请填写手机号");
+            return null;
+        }
+        String arriveDay = comeDayTv.getText().toString().trim();
+        if (arriveDay == null || arriveDay.equals("")) {
+            comeDayTv.setError("请填写到店日期");
+            return null;
+        }
+        String leaveDay = leaveDayTv.getText().toString().trim();
+        if (leaveDay == null || leaveDay.equals("")) {
+            leaveDayTv.setError("请填写离店日期");
+            return null;
+        }
+        info.setAddress(faceinfo.getAddress());
+        info.setArriveDate(arriveDay);
+        info.setBirthDate(faceinfo.getBirthday());
+        info.setCustomer(faceinfo.getName());
+        info.setExprDate(faceinfo.getTermBegin() + "-" + faceinfo.getTermEnd());
+        info.setFaceDegree(faceinfo.getSimilarity() + "");
+        info.setIdCard(faceinfo.getIdNumber());
+        info.setFaceResult(faceinfo.getSimilarity() < PrefUtil.getMinConfidence() ? "未通过" : "通过");
+        info.setLeaveDate(leaveDay);
+        info.setMobile(phoneNum);
+        info.setNation(faceinfo.getNation());
+        info.setRoomNo(roomNum);
+        info.setRoomPrice(roomPay);
+        info.setSex(faceinfo.getSex());
+        info.setIdCardPhoto(Base64.encodeToString(faceinfo.getIdPhoto(), Base64.DEFAULT));
+        info.setScanPhoto(Base64.encodeToString(faceinfo.getCamPhoto(), Base64.DEFAULT));
+        return info;
     }
 
 
@@ -457,7 +543,7 @@ public class IDCardFaceAlignmentFragment extends Fragment implements Camera.Prev
 
     @Override
     public void onFoundFace(final Bitmap faceBmp) {
-        BitmapUtil.savePicInLocal(faceBmp, SDCardUtils.MS_TEMP_PIC,"",1);
+        BitmapUtil.savePicInLocal(faceBmp, SDCardUtils.MS_TEMP_PIC, "", 1);
         Timber.e("\n=====================find face yes!==================\n");
         new Thread() {
             @Override
@@ -545,7 +631,7 @@ public class IDCardFaceAlignmentFragment extends Fragment implements Camera.Prev
         }
     }
 
-    @OnClick({R.id.volumeIBtn, R.id.recordManagementBtn, R.id.settingIBtn, R.id.startFaceDetectBtn, R.id.stopFaceDetectBtn, R.id.doFaceAlignmentBtn, R.id.resetBtn})
+    @OnClick({R.id.volumeIBtn, R.id.recordManagementBtn, R.id.settingIBtn, R.id.startFaceDetectBtn, R.id.stopFaceDetectBtn, R.id.doFaceAlignmentBtn, R.id.resetBtn, R.id.comeDayTv, R.id.leaveDayTv, R.id.commit})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.startFaceDetectBtn:
@@ -568,6 +654,44 @@ public class IDCardFaceAlignmentFragment extends Fragment implements Camera.Prev
                 break;
             case R.id.volumeIBtn:
                 volumePopupWindow.show(view);
+                break;
+            case R.id.comeDayTv:
+                TimeSelector timeSelector = new TimeSelector(getContext(), new TimeSelector.ResultHandler() {
+                    @Override
+                    public void handle(String time) {
+                        comeDayTv.setText(time);
+                    }
+                }, "2017-7-1 00:00", "2030-12-30 23:59");
+                timeSelector.show();
+                break;
+            case R.id.leaveDayTv:
+                TimeSelector timeSelector1 = new TimeSelector(getContext(), new TimeSelector.ResultHandler() {
+                    @Override
+                    public void handle(String time) {
+                        leaveDayTv.setText(time);
+                    }
+                }, "2017-7-1 00:00", "2030-12-30 23:59");
+                timeSelector1.show();
+                break;
+
+            case R.id.commit:
+                CheckInInfo info = getInfo();
+                if (info == null)
+                    return;
+                Map<String, String> map = Params.getCommitParams(info);
+                Api.getInstance().mApiService.commitCheckInMsg(map)
+                        .compose(RxSubscribeThread.<String>ioAndMain()).
+                        subscribe(new RxSubscribeProgress<String>(getActivity()) {
+                            @Override
+                            protected void onOverNext(String t) {
+                                ToastUtils.show(getContext(), "上传成功", Toast.LENGTH_SHORT);
+                            }
+
+                            @Override
+                            protected void onOverError(String message) {
+                                ToastUtils.show(getContext(), message, Toast.LENGTH_SHORT);
+                            }
+                        });
                 break;
         }
     }

@@ -25,8 +25,6 @@ import com.mc.app.hotel.common.facealignment.event.EventDataSaveRequest;
 import com.mc.app.hotel.common.facealignment.event.EventReceiveNFCTag;
 import com.mc.app.hotel.common.facealignment.event.EventTakePhotoRequest;
 import com.mc.app.hotel.common.facealignment.event.EventTakePhotoResponse;
-import com.mc.app.hotel.common.facealignment.service.CheckUpdateService;
-import com.mc.app.hotel.common.facealignment.thread.CheckUpdateThread;
 import com.mc.app.hotel.common.facealignment.thread.DatabaseSaveThread;
 import com.mc.app.hotel.common.facealignment.util.PermissionUtil;
 import com.mc.app.hotel.common.facealignment.util.PrefUtil;
@@ -41,7 +39,6 @@ import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.Timer;
-import java.util.TimerTask;
 
 import butterknife.ButterKnife;
 import timber.log.Timber;
@@ -77,19 +74,19 @@ public class FaceAilgmentActivity extends AppCompatActivity {
         databaseSaveThread.start();
         MobclickAgent.setScenarioType(this, MobclickAgent.EScenarioType.E_UM_NORMAL);
         MobclickAgent.enableEncrypt(true);
-        if (StateUtil.SupportNFC) {
-            initNFC();
-        } else {
-            Toast.makeText(this, R.string.DO_NOT_SUPPORT_NFC, Toast.LENGTH_SHORT).show();
-        }
+//        if (StateUtil.SupportNFC) {
+//            initNFC();
+//        } else {
+////            Toast.makeText(this, R.string.DO_NOT_SUPPORT_NFC, Toast.LENGTH_SHORT).show();
+//        }
         mainHandler = new Handler(Looper.getMainLooper());
-        checkUpdateTimer = new Timer();
-        checkUpdateTimer.scheduleAtFixedRate(new TimerTask() {
-            @Override
-            public void run() {
-                CheckUpdateService.startCheckUpdate(getApplicationContext());
-            }
-        }, 500, CheckUpdateThread.CHECK_UPDATE_INTERVAL_MS);
+//        checkUpdateTimer = new Timer();
+//        checkUpdateTimer.scheduleAtFixedRate(new TimerTask() {
+//            @Override
+//            public void run() {
+//                CheckUpdateService.startCheckUpdate(getApplicationContext());
+//            }
+//        }, 500, CheckUpdateThread.CHECK_UPDATE_INTERVAL_MS);
 
     }
 
@@ -134,9 +131,9 @@ public class FaceAilgmentActivity extends AppCompatActivity {
         MobclickAgent.setDebugMode(PrefUtil.getDebugMode());
         MobclickAgent.onResume(this);
         EventBus.getDefault().register(this);
-        if (StateUtil.SupportNFC) {
-            nfcAdapter.enableForegroundDispatch(this, nfcPi, nfcIfs, techLists);
-        }
+//        if (StateUtil.SupportNFC) {
+//            nfcAdapter.enableForegroundDispatch(this, nfcPi, nfcIfs, techLists);
+//        }
         if (currentLinkType.equals(PrefUtil.getLinkType()) == false && PermissionUtil.requestPermission(this, new String[]{Manifest.permission.CAMERA, Manifest.permission.NFC, Manifest.permission.READ_PHONE_STATE})) {
             switch (PrefUtil.getLinkType()) {
                 case ServiceUtil.CAMERA:

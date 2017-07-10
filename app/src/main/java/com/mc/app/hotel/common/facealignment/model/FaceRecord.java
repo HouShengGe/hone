@@ -164,4 +164,27 @@ public class FaceRecord {
         System.arraycopy(camPhoto, 0, tempBuffer, 0, camPhoto.length);
         this.camPhoto = tempBuffer;
     }
+
+    public boolean dataIsBlank() {
+        return (name.equals("") || sex.equals("") || nation.equals("") || birthday.equals("") || idNumber.equals("") || termBegin.equals(""));
+    }
+
+    @Override
+    public String toString() {
+        return "FaceRecord{" +
+                "recordId=" + recordId +
+                ", recordTime=" + recordTime +
+                ", name='" + name + '\'' +
+                ", sex='" + sex + '\'' +
+                ", nation='" + nation + '\'' +
+                ", birthday='" + birthday + '\'' +
+                ", idNumber='" + idNumber + '\'' +
+                ", address='" + address + '\'' +
+                ", termBegin='" + termBegin + '\'' +
+                ", termEnd='" + termEnd + '\'' +
+                ", issueAuthority='" + issueAuthority + '\'' +
+                ", guid='" + guid + '\'' +
+                ", similarity=" + similarity +
+                '}';
+    }
 }

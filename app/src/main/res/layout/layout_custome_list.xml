@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tool="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/rl_bg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:paddingBottom="8dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingTop="8dp">
+
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="战三"
+            android:textColor="#0d58a9"
+            android:textSize="20sp"/>
+
+        <TextView
+            android:id="@+id/tv_phone_no"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/tv_name"
+            android:layout_marginLeft="8dp"
+            android:layout_toEndOf="@+id/tv_name"
+            android:text="18505855095"
+            android:textColor="#0d58a9"
+            android:textSize="16sp"/>
+
+        <TextView
+            android:id="@+id/tv_room_no"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="8dp"
+            android:text="302"
+            android:textColor="#0d58a9"
+            android:textSize="32sp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/tv_sex"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_name"
+            android:layout_marginTop="8dp"
+            android:text="男"
+            android:textColor="#0d58a9"
+            android:textSize="16sp"/>
+
+        <TextView
+            android:id="@+id/tv_nation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/tv_sex"
+            android:layout_marginLeft="16dp"
+            android:layout_toEndOf="@+id/tv_sex"
+            android:text="汉"
+            android:textColor="#0d58a9"
+            android:textSize="16sp"/>
+
+        <TextView
+            android:id="@+id/tv_id_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_sex"
+            android:layout_marginTop="8dp"
+            android:text="3369854965213698587"
+            android:textColor="#0d58a9"
+            android:textSize="16sp"/>
+
+        <TextView
+            android:id="@+id/tv_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_id_number"
+            android:layout_marginTop="8dp"
+            android:text="浙江省杭州市余杭区XXXXXX"
+            android:textColor="#0d58a9"
+            android:textSize="16sp"/>
+
+        <TextView
+            android:id="@+id/tv_arrive_day"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_address"
+            android:layout_marginTop="8dp"
+            android:text="来期：2016-12-21 下午：5:40"
+            android:textColor="#0d58a9"
+            android:textSize="16sp"/>
+
+        <TextView
+            android:id="@+id/tv_leave_day"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_arrive_day"
+            android:layout_marginTop="8dp"
+            android:text="离期：2016-12-21 下午：5:40"
+            android:textColor="#0d58a9"
+            android:textSize="16sp"/>
+
+        <Button
+            android:id="@+id/btn_check"
+            android:layout_width="75dp"
+            android:layout_height="30dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignTop="@+id/tv_arrive_day"
+            android:background="@drawable/button_bg1"
+            android:text="人证查询"
+            android:textColor="@color/white"
+            android:textSize="14sp"/>
+
+    </RelativeLayout>
+</LinearLayout>

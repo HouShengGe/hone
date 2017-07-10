@@ -5,6 +5,7 @@ import android.widget.LinearLayout;
 
 import com.jakewharton.rxbinding.view.RxView;
 import com.mc.app.hotel.R;
+import com.mc.app.hotel.common.Constants;
 import com.mc.app.hotel.common.facealignment.FaceAilgmentActivity;
 
 import java.util.concurrent.TimeUnit;
@@ -81,7 +82,9 @@ public class MainActivity extends BaseActivity {
                 .subscribe(new Action1<Void>() {
                     @Override
                     public void call(Void aVoid) {
-
+                        Bundle b = new Bundle();
+                        b.putInt(Constants.CUSTOMER_STATUS, 2);
+                        toNextActivity(SearchCustomerActivity.class, b);
                     }
                 });
     }
@@ -92,7 +95,9 @@ public class MainActivity extends BaseActivity {
                 .subscribe(new Action1<Void>() {
                     @Override
                     public void call(Void aVoid) {
-
+                        Bundle b = new Bundle();
+                        b.putInt(Constants.CUSTOMER_STATUS, 1);
+                        toNextActivity(SearchCustomerActivity.class, b);
                     }
                 });
     }
@@ -103,7 +108,7 @@ public class MainActivity extends BaseActivity {
                 .subscribe(new Action1<Void>() {
                     @Override
                     public void call(Void aVoid) {
-
+                        toNextActivity(CheckOutActivity.class);
                     }
                 });
     }
@@ -114,9 +119,9 @@ public class MainActivity extends BaseActivity {
                 .subscribe(new Action1<Void>() {
                     @Override
                     public void call(Void aVoid) {
-
                     }
                 });
     }
 
+    private static final String TAG = "MainActivity";
 }

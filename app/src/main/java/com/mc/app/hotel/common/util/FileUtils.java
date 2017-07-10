@@ -30,11 +30,11 @@ public class FileUtils {
     }
 
     public File getCacheFile(String fileName) {
-        return getFile(SDCardUtils.OMA_CACHE, StringUtil.stringFilter(fileName));
+        return getFile(SDCardUtils.MS_CACHE, StringUtil.stringFilter(fileName));
     }
 
     public File getOmaFile(String fileName) {
-        return getFile(SDCardUtils.OMA_FILE, fileName);
+        return getFile(SDCardUtils.MS_FILE, fileName);
     }
 
     public File getFile(String path, String name) {

@@ -100,9 +100,13 @@ public class BaseActivity extends AppCompatActivity implements TitleInterface, V
                 this.finish();
                 break;
             case R.id.img_right_icon:
-                showToast("right click");
+                rightClick();
                 break;
         }
+    }
+
+    public void rightClick() {
+
     }
 
     @Override

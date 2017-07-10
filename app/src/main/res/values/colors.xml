@@ -12,5 +12,6 @@
     <color name="colorGrey">#666666</color>
     <color name="mainBG">#67C7FA</color>
 
+    <color name="custom_list_bg">#e1ebf5</color>
 
 </resources>

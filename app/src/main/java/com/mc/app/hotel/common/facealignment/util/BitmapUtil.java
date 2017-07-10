@@ -1,7 +1,9 @@
 package com.mc.app.hotel.common.facealignment.util;
 
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
+import android.util.Base64;
 
 import java.io.BufferedOutputStream;
 import java.io.ByteArrayOutputStream;
@@ -99,6 +101,7 @@ public class BitmapUtil {
     }
 
     private static final String TAG = "BitmapUtil";
+
     /**
      * 图片保存本地
      *
@@ -183,5 +186,10 @@ public class BitmapUtil {
             }
             file.delete();
         }
+    }
+
+    public static Bitmap getBase64Pic(String pic) {
+        byte[] b = Base64.decode(pic, Base64.DEFAULT);
+        return BitmapFactory.decodeByteArray(b, 0, b.length);
     }
 }

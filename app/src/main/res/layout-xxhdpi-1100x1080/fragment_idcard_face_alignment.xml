@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_main"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="horizontal"
-    tools:context="com.miaolian.facead.MainActivity">
+              xmlns:tools="http://schemas.android.com/tools"
+              android:id="@+id/activity_main"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="horizontal"
+              tools:context="com.mc.app.hotel.common.facealignment.FaceAilgmentActivity">
 
     <FrameLayout
         android:layout_width="0dp"
@@ -25,7 +25,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text="@string/PEOPLE_CARD_ALIGNMENT" />
+                android:text="@string/PEOPLE_CARD_ALIGNMENT"/>
 
 
             <FrameLayout
@@ -36,7 +36,7 @@
                 <TextureView
                     android:id="@+id/cameraTextureView"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent" />
+                    android:layout_height="match_parent"/>
 
 
             </FrameLayout>
@@ -48,17 +48,42 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text="@string/put_the_face_into_the_box" />
-
-            <Button
-                android:id="@+id/recordManagementBtn"
-                style="@style/RecordManagementButtonStyle"
-                android:layout_width="100dp"
-                android:layout_height="20dp"
-                android:layout_marginTop="5dp"
-                android:text="@string/recode_management" />
-
-
+                android:text="@string/put_the_face_into_the_box"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"/>
+                <Button
+                    android:id="@+id/recordManagementBtn"
+                    style="@style/RecordManagementButtonStyle"
+                    android:layout_width="100dp"
+                    android:layout_height="20dp"
+                    android:layout_marginTop="5dp"
+                    android:text="@string/recode_management"/>
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"/>
+                <Button
+                    android:id="@+id/commit"
+                    style="@style/RecordManagementButtonStyle"
+                    android:layout_width="100dp"
+                    android:layout_height="20dp"
+                    android:layout_marginTop="5dp"
+                    android:text="提交"/>
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"/>
+            </LinearLayout>
+            <SurfaceView
+                android:id="@+id/invisibleSurfaceView"
+                android:layout_width="1px"
+                android:layout_height="1px"/>
 
         </LinearLayout>
 
@@ -76,7 +101,7 @@
                 android:layout_margin="10dp"
                 android:background="@android:color/transparent"
                 android:scaleType="fitCenter"
-                android:src="@drawable/ic_volume" />
+                android:src="@drawable/ic_volume"/>
 
             <ImageButton
                 android:id="@+id/settingIBtn"
@@ -85,15 +110,11 @@
                 android:layout_margin="10dp"
                 android:background="@android:color/transparent"
                 android:scaleType="fitCenter"
-                android:src="@drawable/ic_setting" />
+                android:src="@drawable/ic_setting"/>
 
 
         </LinearLayout>
-        <SurfaceView
-            android:layout_gravity="top|left"
-            android:id="@+id/invisibleSurfaceView"
-            android:layout_width="1px"
-            android:layout_height="1px" />
+
     </FrameLayout>
 
     <LinearLayout
@@ -103,29 +124,24 @@
         android:gravity="center_horizontal|top"
         android:orientation="vertical">
 
-        <ImageView
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginBottom="5dp"
-            android:layout_marginTop="5dp"
-            android:scaleType="fitCenter"
-            android:src="@drawable/ic_jinghui" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
+            android:layout_weight="1"
             android:orientation="vertical">
 
-            <TextView
-                style="@style/HeadLineStyle"
-                android:text="@string/IDCARD_INFO" />
+            <!-- <TextView
+                 style="@style/HeadLineStyle"
+                 android:text="@string/IDCARD_INFO" />-->
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/bodybg"
+
                 android:orientation="vertical">
 
                 <ImageView
@@ -133,7 +149,7 @@
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:layout_gravity="center_horizontal"
-                    android:src="@drawable/ic_face" />
+                    android:src="@drawable/ic_face"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -143,11 +159,11 @@
 
                     <TextView
                         style="@style/LabelStyle"
-                        android:text="姓名:" />
+                        android:text="姓名:"/>
 
                     <TextView
                         android:id="@+id/nameTv"
-                        style="@style/ContentStyle" />
+                        style="@style/ContentStyle"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -158,11 +174,11 @@
 
                     <TextView
                         style="@style/LabelStyle"
-                        android:text="性别:" />
+                        android:text="性别:"/>
 
                     <TextView
                         android:id="@+id/sexTv"
-                        style="@style/ContentStyle" />
+                        style="@style/ContentStyle"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -173,11 +189,11 @@
 
                     <TextView
                         style="@style/LabelStyle"
-                        android:text="身份证号:" />
+                        android:text="身份证号:"/>
 
                     <TextView
                         android:id="@+id/idNumTv"
-                        style="@style/ContentStyle" />
+                        style="@style/ContentStyle"/>
                 </LinearLayout>
 
                 <LinearLayout
@@ -188,11 +204,11 @@
 
                     <TextView
                         style="@style/LabelStyle"
-                        android:text="有效期:" />
+                        android:text="有效期:"/>
 
                     <TextView
                         android:id="@+id/termTv"
-                        style="@style/ContentStyle" />
+                        style="@style/ContentStyle"/>
                 </LinearLayout>
 
 
@@ -205,11 +221,86 @@
                     <TextView
                         style="@style/LabelStyle"
                         android:layout_height="match_parent"
-                        android:text="生日:" />
+                        android:text="生日:"/>
 
                     <TextView
                         android:id="@+id/birthdayTv"
-                        style="@style/ContentStyle" />
+                        style="@style/ContentStyle"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/entry_height"
+                    android:layout_margin="1dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/LabelStyle"
+                        android:layout_height="match_parent"
+                        android:text="房号:"/>
+
+                    <EditText
+                        android:id="@+id/roomNumTv"
+                        style="@style/ContentStyle"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/entry_height"
+                    android:layout_margin="1dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/LabelStyle"
+                        android:layout_height="match_parent"
+                        android:text="房价:"/>
+
+                    <EditText
+                        android:id="@+id/roomPayTv"
+                        style="@style/ContentStyle"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/entry_height"
+                    android:layout_margin="1dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/LabelStyle"
+                        android:layout_height="match_parent"
+                        android:text="手机号:"/>
+
+                    <EditText
+                        android:id="@+id/phoneNumTv"
+                        style="@style/ContentStyle"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/entry_height"
+                    android:layout_margin="1dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/LabelStyle"
+                        android:layout_height="match_parent"
+                        android:text="来期:"/>
+
+                    <TextView
+                        android:id="@+id/comeDayTv"
+                        style="@style/ContentStyle"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/entry_height"
+                    android:layout_margin="1dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/LabelStyle"
+                        android:layout_height="match_parent"
+                        android:text="离期:"/>
+
+                    <TextView
+                        android:id="@+id/leaveDayTv"
+                        style="@style/ContentStyle"/>
                 </LinearLayout>
 
 
@@ -223,40 +314,45 @@
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:layout_marginTop="10dp"
-            android:orientation="vertical">
+            android:orientation="horizontal">
 
-            <TextView
-                style="@style/HeadLineStyle"
-                android:text="@string/ALIGNMENT_INFO" />
+            <!-- <TextView
+                 style="@style/HeadLineStyle"
+                 android:text="@string/ALIGNMENT_INFO" />-->
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/bodybg"
-                android:gravity="center"
-                android:orientation="vertical">
 
-                <FrameLayout
-                    android:layout_width="90dp"
-                    android:layout_height="90dp"
-                    android:layout_margin="5dp">
+            <FrameLayout
+                android:layout_width="90dp"
+                android:layout_height="90dp"
+                android:layout_margin="5dp">
 
-                    <TextureView
-                        android:id="@+id/captureTextureView"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
+                <TextureView
+                    android:id="@+id/captureTextureView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
 
-                    <ImageView
-                        android:id="@+id/faceAlignmentResultIv"
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:layout_gravity="bottom|right"
-                        android:layout_margin="5dp"
-                        android:src="@drawable/ic_success_small"
-                        android:visibility="invisible" />
-                </FrameLayout>
-            </LinearLayout>
+                <ImageView
+                    android:id="@+id/faceAlignmentResultIv"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="bottom|right"
+                    android:layout_margin="5dp"
+                    android:src="@drawable/ic_success_small"
+                    android:visibility="invisible"/>
+            </FrameLayout>
 
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"/>
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_jinghui"/>
         </LinearLayout>
 
     </LinearLayout>
@@ -272,25 +368,25 @@
             android:id="@+id/startFaceDetectBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="抓人脸" />
+            android:text="抓人脸"/>
 
         <Button
             android:id="@+id/stopFaceDetectBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="停止抓人脸" />
+            android:text="停止抓人脸"/>
 
         <Button
             android:id="@+id/doFaceAlignmentBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="比对人脸" />
+            android:text="比对人脸"/>
 
         <Button
             android:id="@+id/resetBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="重置" />
+            android:text="重置"/>
 
     </LinearLayout>
 

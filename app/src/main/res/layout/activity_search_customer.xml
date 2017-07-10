@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:ptr="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/white"
+              android:orientation="vertical">
+
+    <include layout="@layout/my_action_bar"/>
+
+    <com.mc.app.hotel.common.view.pulltoreflushgrid.PullToRefreshListView
+        android:id="@+id/lv_customer_list"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:divider="#e1ebf5"
+        android:dividerHeight="3dp"
+        ptr:ptrAnimationStyle="flip"
+        ptr:ptrHeaderBackground="@color/white"
+        ptr:ptrHeaderSubTextColor="@color/colorGrey"
+        ptr:ptrHeaderTextColor="@color/colorGrey"
+        ptr:ptrListViewExtrasEnabled="false"
+        ptr:ptrMode="pullUpFromBottom"
+        ptr:ptrRefreshableViewBackground="@color/white"
+        ptr:ptrScrollingWhileRefreshingEnabled="true"/>
+
+
+</LinearLayout>

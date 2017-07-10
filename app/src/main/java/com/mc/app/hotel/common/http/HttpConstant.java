@@ -15,4 +15,8 @@ public class HttpConstant {
     public static final String USER_LOGIN = "UserLogin";//登陆
     public static final String GET_CODE = "GetCode";//获取验证码
     public static final String GET_ROOM_PIC = "GetRoomPic";//获取房态图
+    public static final String CHECK_IN = "CheckIn";//申请入驻
+    public static final String GET_CUST_LIST = "GetCustList";//申请入驻
+    public static final String GET_FACE = "GetFace";//人证对比
+    public static final String CHEC_KOUT = "CheckOut";//申报离开
 }
