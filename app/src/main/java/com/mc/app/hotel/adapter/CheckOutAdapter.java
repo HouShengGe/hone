@@ -1,7 +1,6 @@
 package com.mc.app.hotel.adapter;
 
 import android.app.Activity;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,15 +30,6 @@ public class CheckOutAdapter extends BaseAdapter {
 
     boolean isAllSelected = false;
 
-//    OnItemsSelectedChangeListener<CustomerInfo> changeListener;
-
-//    public CheckOutAdapter(List<CustomerInfo> dataList, Activity context,
-//                           OnItemsSelectedChangeListener<CustomerInfo> listener) {
-//        super();
-//        this.a = context;
-//        this.data = dataList;
-////        this.changeListener = listener;
-//    }
 
     public CheckOutAdapter(Activity a, List<CustomerInfo> data) {
         this.a = a;
@@ -86,7 +76,7 @@ public class CheckOutAdapter extends BaseAdapter {
             ButterKnife.bind(this, view);
         }
 
-        public void setView(CustomerInfo info, int position) {
+        public void setView(CustomerInfo info) {
             tvName.setText(info.getCustomer());
             tvPhoneNo.setText(info.getMobile());
             tvRoomNo.setText(info.getRoomNo());
@@ -94,26 +84,9 @@ public class CheckOutAdapter extends BaseAdapter {
             tvArriceDay.setText(info.getArriveDate());
             checkbox.setSelected(info.isChecked());
             checkbox.setSelected(seletedItems.containsKey(info.getCustomer()));
-            checkbox.setOnClickListener(new CheckChangeEvent(info, position));
         }
     }
 
-
-    class CheckChangeEvent implements View.OnClickListener {
-        int position;
-        CustomerInfo info;
-
-        public CheckChangeEvent(CustomerInfo info, int position) {
-            this.info = info;
-            this.position = position;
-        }
-
-        @Override
-        public void onClick(View v) {
-            info.setChecked(!info.isChecked());
-
-        }
-    }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
@@ -126,26 +99,19 @@ public class CheckOutAdapter extends BaseAdapter {
         } else {
             vh = (ViewHolder) convertView.getTag();
         }
-        vh.setView(info, position);
+        vh.setView(info);
         return convertView;
     }
 
 
-    //    public interface OnItemsSelectedChangeListener<T> {
-//        public void onItemsSelectedChanged(boolean selected, List<T> squadrons);
-//    }
     public void addSeletedItem(CustomerInfo info) {
         seletedItems.put(info.getCustomer(), info);
         notifyDataSetChanged();
-//        if (changeListener != null) {
-//            changeListener.onItemsSelectedChanged(true, getSelectedItems());
-//        }
 
     }
 
     public void removeSeletedItem(CustomerInfo squadron) {
         seletedItems.remove(squadron.getCustomer());
-//        changeListener.onItemsSelectedChanged(false, getSelectedItems());
         notifyDataSetChanged();
     }
 
@@ -160,17 +126,11 @@ public class CheckOutAdapter extends BaseAdapter {
         }
 
         notifyDataSetChanged();
-//        if (changeListener != null) {
-//            changeListener.onItemsSelectedChanged(true, getSelectedItems());
-//        }
     }
 
     public void removeAllSeletedItems() {
         seletedItems.clear();
         notifyDataSetChanged();
-//        if (changeListener != null) {
-//            changeListener.onItemsSelectedChanged(false, getSelectedItems());
-//        }
     }
 
     public void toggleItemSeleted(CustomerInfo info) {
@@ -182,7 +142,6 @@ public class CheckOutAdapter extends BaseAdapter {
     }
 
     public void toggleAllItemsSelected(boolean selectAll) {
-        Log.d(TAG, "toggleAllItemsSelected: " + selectAll);
         this.isAllSelected = selectAll;
         if (isAllSelected) {
             selectAllItems();
@@ -204,20 +163,8 @@ public class CheckOutAdapter extends BaseAdapter {
             sb.append(info.getMasterId() + ",");
         }
         mastreID = sb.toString().substring(0, sb.toString().length() - 1);
-        Log.d(TAG, "getSelectMasterid: " + mastreID);
         return mastreID;
     }
 
-    private static final String TAG = "CheckOutAdapter";
-//    public boolean hasMoreThanOneItemSelected() {
-//        return getSeletedItemsAmount() > 1;
-//    }
 
-    public int getSeletedItemsAmount() {
-        return seletedItems.keySet().size();
-    }
-
-//    public boolean hasSeletedItems() {
-//        return getSeletedItemsAmount() > 0;
-//    }
 }

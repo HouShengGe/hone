@@ -7,6 +7,7 @@ package com.mc.app.hotel.bean;
 public class RoomStatusInfo {
 
     private String roomNo;
+    private int storeId;
     private String roomColor;
     private String roomSta;
     private String roomStaName;
@@ -14,6 +15,15 @@ public class RoomStatusInfo {
     private String roomTypeName;
     private String custName_1;
     private String custName_2;
+
+
+    public int getStoreId() {
+        return storeId;
+    }
+
+    public void setStoreId(int storeId) {
+        this.storeId = storeId;
+    }
 
     public String getRoomNo() {
         return roomNo;

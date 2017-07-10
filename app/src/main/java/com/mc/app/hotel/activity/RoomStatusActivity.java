@@ -2,14 +2,19 @@ package com.mc.app.hotel.activity;
 
 import android.os.Bundle;
 import android.text.format.DateUtils;
+import android.view.View;
+import android.widget.AdapterView;
 
 import com.mc.app.hotel.R;
 import com.mc.app.hotel.adapter.RoomStatusAdapter;
+import com.mc.app.hotel.bean.RoomDetialBean;
 import com.mc.app.hotel.bean.RoomStatusBean;
+import com.mc.app.hotel.common.facealignment.FaceAilgmentActivity;
 import com.mc.app.hotel.common.http.Api;
 import com.mc.app.hotel.common.http.Params;
 import com.mc.app.hotel.common.http.RxSubscribeProgress;
 import com.mc.app.hotel.common.http.RxSubscribeThread;
+import com.mc.app.hotel.common.view.DialogRoomStatu;
 import com.mc.app.hotel.common.view.pulltoreflushgrid.ILoadingLayout;
 import com.mc.app.hotel.common.view.pulltoreflushgrid.PullToRefreshBase;
 import com.mc.app.hotel.common.view.pulltoreflushgrid.PullToRefreshGridView;
@@ -21,7 +26,7 @@ import butterknife.ButterKnife;
  * Created by admin on 2017/7/2.
  */
 
-public class RoomStatusActivity extends BaseActivity implements PullToRefreshBase.OnRefreshListener2 {
+public class RoomStatusActivity extends BaseActivity implements PullToRefreshBase.OnRefreshListener2, AdapterView.OnItemClickListener {
     @BindView(R.id.pull_refresh_grid)
     PullToRefreshGridView mPullRefreshListView;
 
@@ -33,7 +38,6 @@ public class RoomStatusActivity extends BaseActivity implements PullToRefreshBas
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_room_srtatus);
         ButterKnife.bind(this);
-        // 初始化数据和数据源
         getRoomStatus();
         initIndicator();
         buckButton(true);
@@ -41,6 +45,7 @@ public class RoomStatusActivity extends BaseActivity implements PullToRefreshBas
         adapter = new RoomStatusAdapter(this, statusBean.getRooms());
         mPullRefreshListView.setAdapter(adapter);
         mPullRefreshListView.setOnRefreshListener(this);
+        mPullRefreshListView.setOnItemClickListener(this);
     }
 
     private void initIndicator() {
@@ -50,11 +55,6 @@ public class RoomStatusActivity extends BaseActivity implements PullToRefreshBas
         startLabels.setRefreshingLabel("正在刷新...");// 刷新时
         startLabels.setReleaseLabel("放手刷新数据...");// 下来达到一定距离时，显示的提示
 
-//        ILoadingLayout endLabels = mPullRefreshListView.getLoadingLayoutProxy(
-//                false, true);
-//        endLabels.setPullLabel("你可劲拉，拉2...");// 刚下拉时，显示的提示
-//        endLabels.setRefreshingLabel("好嘞，正在刷新2...");// 刷新时
-//        endLabels.setReleaseLabel("你敢放，我就敢刷新2...");// 下来达到一定距离时，显示的提示
     }
 
 
@@ -65,6 +65,7 @@ public class RoomStatusActivity extends BaseActivity implements PullToRefreshBas
                 subscribe(new RxSubscribeProgress<RoomStatusBean>(RoomStatusActivity.this, false) {
                     @Override
                     protected void onOverNext(RoomStatusBean t) {
+                        statusBean = t;
                         adapter.setData(t.getRooms());
                         mPullRefreshListView.onRefreshComplete();
                     }
@@ -93,5 +94,37 @@ public class RoomStatusActivity extends BaseActivity implements PullToRefreshBas
     @Override
     public void onPullUpToRefresh(PullToRefreshBase refreshView) {
 
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        String roomNO = statusBean.getRooms().get(position).getRoomNo();
+        int storeId = statusBean.getRooms().get(position).getStoreId();
+        final String roomStr = statusBean.getRooms().get(position).getRoomSta();
+
+        Api.getInstance().mApiService.getRoomDetial(Params.getRoomDetialParams(roomNO, storeId))
+                .compose(RxSubscribeThread.<RoomDetialBean>ioAndMain()).
+                subscribe(new RxSubscribeProgress<RoomDetialBean>(RoomStatusActivity.this, false) {
+                    @Override
+                    protected void onOverNext(RoomDetialBean t) {
+                        if (roomStr.equals("VC")) {
+                            toNextActivity(FaceAilgmentActivity.class);
+                        } else {
+                            showRoomDetialDialog(t);
+                        }
+                    }
+
+                    @Override
+                    protected void onOverError(String message) {
+
+                    }
+                });
+    }
+
+    DialogRoomStatu dialogs;
+
+    private void showRoomDetialDialog(RoomDetialBean bean) {
+        dialogs = new DialogRoomStatu(this);
+        dialogs.setData(bean);
     }
 }

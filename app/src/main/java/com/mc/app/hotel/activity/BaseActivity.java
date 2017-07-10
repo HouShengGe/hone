@@ -53,7 +53,7 @@ public class BaseActivity extends AppCompatActivity implements TitleInterface, V
             return;
         }
         titleViewHolder = new TitleViewHolder(headerTitleView);
-        titleViewHolder.leftBtn.setOnClickListener(this);
+        titleViewHolder.rlLeft.setOnClickListener(this);
 
     }
 

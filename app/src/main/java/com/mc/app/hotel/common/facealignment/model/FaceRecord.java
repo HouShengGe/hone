@@ -1,10 +1,12 @@
 package com.mc.app.hotel.common.facealignment.model;
 
+import java.io.Serializable;
+
 /**
  * Created by gaofeng on 2017-04-24.
  */
 
-public class FaceRecord {
+public class FaceRecord implements Serializable{
     long recordId = 0;
     long recordTime = 0;
     String name = "";

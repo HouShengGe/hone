@@ -219,7 +219,7 @@ public class CameraFaceAlignmentFragment extends Fragment {
                                 faceAlignmentDialogFragment.showFragment(getChildFragmentManager(), FaceAlignmentDialogFragment.FAILED_FRAGMENT);
                             } else {
                                 hintTv.setText(getString(R.string.FACE_ALIGNMENT_SUCCESS) + "," + getString(R.string.SIMILARITY) + ":" + ((FaceRecord) o).getSimilarity());
-                                EventBus.getDefault().post(new EventDataSaveRequest((FaceRecord) o));
+                                EventBus.getDefault().post(new EventDataSaveRequest((FaceRecord) o,2));
                                 faceAlignmentDialogFragment.showFragment(getChildFragmentManager(), FaceAlignmentDialogFragment.SUCCESS_FRAGMENT);
                             }
                             mainHandler.postDelayed(new Runnable() {

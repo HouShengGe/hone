@@ -94,9 +94,17 @@ public class Params {
         map.put("masterId", masterID + "");
         return getParams(map);
     }
+
     public static Map<String, String> getCheckOutParams(String masterIDs) {
         Map<String, String> map = new HashMap<>();
         map.put("masterIds", masterIDs);
+        return getParams(map);
+    }
+
+    public static Map<String, String> getRoomDetialParams(String roomNo, int storeID) {
+        Map<String, String> map = new HashMap<>();
+        map.put("roomNo", roomNo);
+        map.put("storeId", storeID + "");
         return getParams(map);
     }
 }

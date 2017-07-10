@@ -9,9 +9,11 @@ import com.mc.app.hotel.common.facealignment.model.FaceRecord;
 
 public class EventDataSaveRequest {
     FaceRecord faceRecord;
+    int from;
 
-    public EventDataSaveRequest(FaceRecord faceRecord) {
+    public EventDataSaveRequest(FaceRecord faceRecord, int from) {
         this.faceRecord = faceRecord;
+        this.from = from;
     }
 
     public FaceRecord getFaceRecord() {
@@ -20,5 +22,13 @@ public class EventDataSaveRequest {
 
     public void setFaceRecord(FaceRecord faceRecord) {
         this.faceRecord = faceRecord;
+    }
+
+    public int getFrom() {
+        return from;
+    }
+
+    public void setFrom(int from) {
+        this.from = from;
     }
 }

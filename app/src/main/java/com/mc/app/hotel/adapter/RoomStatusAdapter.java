@@ -1,6 +1,7 @@
 package com.mc.app.hotel.adapter;
 
 import android.app.Activity;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 import com.mc.app.hotel.R;
 import com.mc.app.hotel.bean.RoomStatusInfo;
 import com.mc.app.hotel.common.util.DrawableUtils;
+import com.mc.app.hotel.common.util.StringUtil;
 
 import java.util.List;
 
@@ -68,7 +70,7 @@ public class RoomStatusAdapter extends BaseAdapter {
             vh.tvRoomrvType = (TextView) convertView.findViewById(R.id.tv_room_type);
             vh.tvRoomrvCust = (TextView) convertView.findViewById(R.id.tv_room_cust);
             int pwidth = parent.getWidth();
-            int width = (pwidth-14) / 3;
+            int width = (pwidth - 14) / 3;
             int hight = width * 4 / 5;
             LinearLayout.LayoutParams param = new LinearLayout.LayoutParams(width, hight);
             vh.rlRoomStatus.setLayoutParams(param);
@@ -79,7 +81,10 @@ public class RoomStatusAdapter extends BaseAdapter {
         vh.rlRoomStatus.setBackground(DrawableUtils.getDrawable(bean.getRoomColor()));
         vh.tvRoomNum.setText(bean.getRoomNo());
         vh.tvRoomrvType.setText(bean.getRoomTypeName());
-        vh.tvRoomrvCust.setText(bean.getCustName_1() + " " + bean.getCustName_2());
+        vh.tvRoomrvCust.setText(bean.getCustName_1() + "\n" + bean.getCustName_2());
+        if (!StringUtil.isBlank(bean.getCustName_2())) {
+            vh.tvRoomrvCust.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16);
+        }
         return convertView;
     }
 }

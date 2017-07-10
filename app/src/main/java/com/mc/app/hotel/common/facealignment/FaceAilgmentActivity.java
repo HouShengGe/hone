@@ -7,8 +7,6 @@ import android.content.IntentFilter;
 import android.graphics.Bitmap;
 import android.nfc.NfcAdapter;
 import android.nfc.Tag;
-import android.nfc.tech.IsoDep;
-import android.nfc.tech.NfcB;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -18,9 +16,10 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.WindowManager;
-import android.widget.Toast;
 
 import com.mc.app.hotel.R;
+import com.mc.app.hotel.activity.DeclareInActivity;
+import com.mc.app.hotel.common.Constants;
 import com.mc.app.hotel.common.facealignment.event.EventDataSaveRequest;
 import com.mc.app.hotel.common.facealignment.event.EventReceiveNFCTag;
 import com.mc.app.hotel.common.facealignment.event.EventTakePhotoRequest;
@@ -29,7 +28,6 @@ import com.mc.app.hotel.common.facealignment.thread.DatabaseSaveThread;
 import com.mc.app.hotel.common.facealignment.util.PermissionUtil;
 import com.mc.app.hotel.common.facealignment.util.PrefUtil;
 import com.mc.app.hotel.common.facealignment.util.ServiceUtil;
-import com.mc.app.hotel.common.facealignment.util.StateUtil;
 import com.mc.app.hotel.common.facealignment.view.CameraFaceAlignmentFragment;
 import com.mc.app.hotel.common.facealignment.view.IDCardFaceAlignmentFragment;
 import com.umeng.analytics.MobclickAgent;
@@ -53,7 +51,7 @@ public class FaceAilgmentActivity extends AppCompatActivity {
     private static final int FACE_PHOTO_CAMEAR_REQUEST = 0x02;
     Timer checkUpdateTimer;
     DatabaseSaveThread databaseSaveThread = null;
-    NfcAdapter nfcAdapter = null;
+    //    NfcAdapter nfcAdapter = null;
     PendingIntent nfcPi = null;
     IntentFilter[] nfcIfs = null;
     String[][] techLists = null;
@@ -90,15 +88,15 @@ public class FaceAilgmentActivity extends AppCompatActivity {
 
     }
 
-    private void initNFC() {
-        nfcAdapter = NfcAdapter.getDefaultAdapter(this);
-        if (PrefUtil.getLinkType().equals(ServiceUtil.NFC) && nfcAdapter.isEnabled() == false) {
-            Toast.makeText(this, R.string.NFC_NOT_OPEN, Toast.LENGTH_SHORT).show();
-        }
-        nfcPi = PendingIntent.getActivity(this, 0, new Intent(this, getClass()).addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP), PendingIntent.FLAG_UPDATE_CURRENT);
-        nfcIfs = new IntentFilter[]{new IntentFilter(NfcAdapter.ACTION_TECH_DISCOVERED)};
-        techLists = new String[][]{new String[]{NfcB.class.getName()}, new String[]{IsoDep.class.getName()}};
-    }
+//    private void initNFC() {
+//        nfcAdapter = NfcAdapter.getDefaultAdapter(this);
+//        if (PrefUtil.getLinkType().equals(ServiceUtil.NFC) && nfcAdapter.isEnabled() == false) {
+//            Toast.makeText(this, R.string.NFC_NOT_OPEN, Toast.LENGTH_SHORT).show();
+//        }
+//        nfcPi = PendingIntent.getActivity(this, 0, new Intent(this, getClass()).addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP), PendingIntent.FLAG_UPDATE_CURRENT);
+//        nfcIfs = new IntentFilter[]{new IntentFilter(NfcAdapter.ACTION_TECH_DISCOVERED)};
+//        techLists = new String[][]{new String[]{NfcB.class.getName()}, new String[]{IsoDep.class.getName()}};
+//    }
 
 
     @Override
@@ -162,9 +160,9 @@ public class FaceAilgmentActivity extends AppCompatActivity {
     protected void onPause() {
         MobclickAgent.onPause(this);
         EventBus.getDefault().unregister(this);
-        if (StateUtil.SupportNFC) {
-            nfcAdapter.disableForegroundDispatch(this);
-        }
+//        if (StateUtil.SupportNFC) {
+//            nfcAdapter.disableForegroundDispatch(this);
+//        }
         super.onPause();
     }
 
@@ -180,6 +178,13 @@ public class FaceAilgmentActivity extends AppCompatActivity {
     @Subscribe(threadMode = ThreadMode.ASYNC)
     public void onEventDataSaveRequest(EventDataSaveRequest request) {
         databaseSaveThread.submit(request.getFaceRecord());
+        Intent i = new Intent(this, DeclareInActivity.class);
+        Bundle b = new Bundle();
+        b.putSerializable(Constants.READ_ID_CARD, request.getFaceRecord());
+        b.putInt(Constants.FROM, request.getFrom());
+        i.putExtras(b);
+        startActivity(i);
+        finish();
     }
 
     @Override

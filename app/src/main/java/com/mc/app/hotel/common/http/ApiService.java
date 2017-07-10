@@ -5,6 +5,7 @@ import com.mc.app.hotel.bean.ComparedFaceBean;
 import com.mc.app.hotel.bean.CustomerBean;
 import com.mc.app.hotel.bean.HttpResBaseBean;
 import com.mc.app.hotel.bean.LoginResBean;
+import com.mc.app.hotel.bean.RoomDetialBean;
 import com.mc.app.hotel.bean.RoomStatusBean;
 import com.mc.app.hotel.bean.UrlBean;
 
@@ -52,6 +53,10 @@ public interface ApiService {
     @FormUrlEncoded
     @POST(HttpConstant.CHEC_KOUT)
     Observable<HttpResBaseBean<String>> checkOut(@FieldMap Map<String, String> a);
+
+    @FormUrlEncoded
+    @POST(HttpConstant.GET_ROOM_INFO)
+    Observable<HttpResBaseBean<RoomDetialBean>> getRoomDetial(@FieldMap Map<String, String> a);
 
 
 }
