@@ -43,4 +43,5 @@ public class RoomDetialBean {
     public void setCusts(List<RoomDetialInfo> custs) {
         this.custs = custs;
     }
+
 }

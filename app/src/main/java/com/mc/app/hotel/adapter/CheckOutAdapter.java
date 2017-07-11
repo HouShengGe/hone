@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.mc.app.hotel.R;
 import com.mc.app.hotel.bean.CustomerInfo;
+import com.mc.app.hotel.common.util.StringUtil;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -77,11 +78,11 @@ public class CheckOutAdapter extends BaseAdapter {
         }
 
         public void setView(CustomerInfo info) {
-            tvName.setText(info.getCustomer());
-            tvPhoneNo.setText(info.getMobile());
-            tvRoomNo.setText(info.getRoomNo());
-            tvIDCard.setText(info.getIdCard());
-            tvArriceDay.setText(info.getArriveDate());
+            tvName.setText("名字："+StringUtil.getString(info.getCustomer()));
+            tvPhoneNo.setText("手机号："+ StringUtil.getString(info.getMobile()));
+            tvRoomNo.setText(StringUtil.getString(info.getRoomNo()));
+            tvIDCard.setText("身份证："+StringUtil.getString(info.getIdCard()));
+            tvArriceDay.setText("居住日期："+StringUtil.getString(info.getArriveDate()));
             checkbox.setSelected(info.isChecked());
             checkbox.setSelected(seletedItems.containsKey(info.getCustomer()));
         }

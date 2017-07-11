@@ -96,7 +96,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="离店："
+                android:text="预离："
                 android:textColor="#333333"
                 android:textSize="16sp" />
 

@@ -1,10 +1,15 @@
 package com.mc.app.hotel.common.http;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.widget.Toast;
 
 import com.mc.app.hotel.activity.LoginActivity;
 import com.mc.app.hotel.common.App;
 import com.mc.app.hotel.common.util.SPerfUtil;
+import com.mc.app.hotel.common.util.ToastUtils;
+
+import static com.mc.app.hotel.common.App.store;
 
 /**
  * Created by Administrator on 2017/7/3.
@@ -43,7 +48,11 @@ public class ServerException extends Exception {
                 break;
             case ERROR_TOKEN_FAULT:
                 SPerfUtil.reset();
-                App.getAppContext().startActivity(new Intent(App.getAppContext(), LoginActivity.class));
+                store.get(store.size() - 1).startActivity(new Intent(store.get(store.size() - 1), LoginActivity.class));
+                for (Activity a : store) {
+                    a.finish();
+                }
+                ToastUtils.show(App.getAppContext(), "请重新登录", Toast.LENGTH_SHORT);
                 break;
             default:
                 message = "未知错误";

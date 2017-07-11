@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:background="@color/white"
-              android:orientation="vertical"
-    xmlns:tool="http://schemas.android.com/tools">
+    xmlns:tool="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
 
-    <include layout="@layout/my_action_bar"/>
+    <include layout="@layout/my_action_bar" />
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -17,104 +17,183 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/timg"/>
+            android:src="@drawable/timg" />
     </RelativeLayout>
+
     <LinearLayout
+        android:id="@+id/ll_normal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="40dp"
-        android:layout_marginLeft="20dp"
-        android:gravity="center_vertical">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="16sp"
-            android:textColor="#333333"
-            android:text="&#8195;酒店名称："/>
-        <TextView
-            android:id="@+id/tv_heotel_name"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:textSize="16sp"
-            android:textColor="#333333"
-            tool:text="阳光快捷酒店"/>
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="40dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="&#8195;酒店名称："
+                android:textColor="#333333"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/tv_heotel_name"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textColor="#333333"
+                android:textSize="16sp"
+                tool:text="阳光快捷酒店" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="16dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="&#8195;&#8195;&#8195;地址："
+                android:textColor="#333333"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/tv_heotel_address"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textColor="#333333"
+                android:textSize="16sp"
+                tool:text="阳光快捷酒店" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="16dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="&#8195;&#8195;负责人："
+                android:textColor="#333333"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/tv_heotel_own"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textColor="#333333"
+                android:textSize="16sp"
+                tool:text="阳光快捷酒店" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="16dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="负责人电话："
+                android:textColor="#333333"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/tv_heotel_phone"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textColor="#333333"
+                android:textSize="16sp"
+                tool:text="阳光快捷酒店" />
+        </LinearLayout>
     </LinearLayout>
+
     <LinearLayout
+        android:id="@+id/ll_police"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="16dp"
-        android:layout_marginLeft="20dp"
-        android:gravity="center_vertical">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="16sp"
-            android:textColor="#333333"
-            android:text="&#8195;&#8195;&#8195;地址："/>
-        <TextView
-            android:id="@+id/tv_heotel_address"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:textSize="16sp"
-            android:textColor="#333333"
-            tool:text="阳光快捷酒店"/>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="16dp"
-        android:layout_marginLeft="20dp"
-        android:gravity="center_vertical">
-        <TextView
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="16sp"
-            android:textColor="#333333"
-            android:text="&#8195;&#8195;负责人："/>
-        <TextView
-            android:id="@+id/tv_heotel_own"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="40dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="&#8195;&#8195;&#8195;姓名："
+                android:textColor="#333333"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/tv_name"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textColor="#333333"
+                android:textSize="16sp"
+                tool:text="阳光快捷酒店" />
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:textSize="16sp"
-            android:textColor="#333333"
-            tool:text="阳光快捷酒店"/>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="16dp"
-        android:layout_marginLeft="20dp"
-        android:gravity="center_vertical">
-        <TextView
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="16sp"
-            android:textColor="#333333"
-            android:text="负责人电话："/>
-        <TextView
-            android:id="@+id/tv_heotel_phone"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:textSize="16sp"
-            android:textColor="#333333"
-            tool:text="阳光快捷酒店"/>
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="&#8195;负责区域："
+                android:textColor="#333333"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/tv_aera"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="24dp"
+                android:textColor="#333333"
+                android:textSize="16sp"
+                tool:text="阳光快捷酒店" />
+        </LinearLayout>
+
     </LinearLayout>
+
     <View
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"/>
+        android:layout_weight="1" />
+
     <Button
         android:id="@+id/btn_exit"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_marginBottom="50dp"
-        android:background="@drawable/select_btn_bg_1"
-        android:textSize="18sp"
-        android:text="退出登录"
         android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"/>
+        android:layout_marginRight="16dp"
+        android:background="@drawable/select_btn_bg_1"
+        android:text="退出登录"
+        android:textSize="18sp" />
 </LinearLayout>

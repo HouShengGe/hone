@@ -3,6 +3,8 @@ package com.mc.app.hotel.activity;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Base64;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -20,8 +22,10 @@ import com.mc.app.hotel.common.http.Api;
 import com.mc.app.hotel.common.http.Params;
 import com.mc.app.hotel.common.http.RxSubscribeProgress;
 import com.mc.app.hotel.common.http.RxSubscribeThread;
+import com.mc.app.hotel.common.util.SPerfUtil;
 import com.mc.app.hotel.common.util.StringUtil;
 import com.mc.app.hotel.common.util.ToastUtils;
+import com.mc.app.hotel.common.view.DialogListView;
 
 import org.feezu.liuli.timeselector.TimeSelector;
 
@@ -49,6 +53,8 @@ public class DeclareInActivity extends BaseActivity {
 
     @BindView(R.id.et_room_sex)
     EditText etRoomSex;
+    @BindView(R.id.et_nation)
+    TextView etNation;
 
     @BindView(R.id.et_id_card)
     EditText etIdCard;
@@ -108,6 +114,7 @@ public class DeclareInActivity extends BaseActivity {
         etIdCard.setText(StringUtil.getString(record.getIdNumber()));
         etInDay.setText(StringUtil.getString(record.getTermBegin()) + "-" + StringUtil.getString(record.getTermEnd()));
         etBirthday.setText(StringUtil.getString(record.getBirthday()));
+        etNation.setText(StringUtil.getString(record.getNation()));
         imgvIDPic.setImageBitmap(BitmapFactory.decodeByteArray(record.getIdPhoto(), 0, record.getIdPhoto().length));
         imgvFacePic.setImageBitmap(BitmapFactory.decodeByteArray(record.getCamPhoto(), 0, record.getCamPhoto().length));
         etArriveDay.setText(DateUtils.getCurrentFormateTime());
@@ -116,6 +123,7 @@ public class DeclareInActivity extends BaseActivity {
         commit();
         setArriveDay();
         setLeaveDay();
+        selectNation();
     }
 
     private CheckInInfo getInfo() {
@@ -146,23 +154,28 @@ public class DeclareInActivity extends BaseActivity {
             return null;
         }
         String birthday = etBirthday.getText().toString().trim();
-        if (leaveDay == null || leaveDay.equals("")) {
+        if (birthday == null || birthday.equals("")) {
             etBirthday.setError("请填写生日");
             return null;
         }
         String name = etRoomName.getText().toString().trim();
-        if (leaveDay == null || leaveDay.equals("")) {
+        if (name == null || name.equals("")) {
             etRoomName.setError("请填写姓名");
             return null;
         }
         String exprDate = etInDay.getText().toString().trim();
-        if (leaveDay == null || leaveDay.equals("")) {
+        if (exprDate == null || exprDate.equals("")) {
             etInDay.setError("请填写身份证有效日期");
             return null;
         }
         String idCard = etIdCard.getText().toString().trim();
-        if (leaveDay == null || leaveDay.equals("")) {
+        if (idCard == null || idCard.equals("")) {
             etIdCard.setError("请填写身份证号码");
+            return null;
+        }
+        String nations = etNation.getText().toString().trim();
+        if (nations == null || nations.equals("")) {
+            etNation.setError("请填写民族");
             return null;
         }
         info.setIdCard(idCard);
@@ -172,7 +185,7 @@ public class DeclareInActivity extends BaseActivity {
         info.setAddress(record.getAddress());
         info.setFaceDegree(record.getSimilarity() + "");
         info.setFaceResult(record.getSimilarity() < PrefUtil.getMinConfidence() ? "未通过" : "通过");
-        info.setNation(record.getNation());
+        info.setNation(nations);
         info.setSex(record.getSex());
         info.setArriveDate(arriveDay);
         info.setLeaveDate(leaveDay);
@@ -182,6 +195,30 @@ public class DeclareInActivity extends BaseActivity {
         info.setIdCardPhoto(Base64.encodeToString(record.getIdPhoto(), Base64.DEFAULT));
         info.setScanPhoto(Base64.encodeToString(record.getCamPhoto(), Base64.DEFAULT));
         return info;
+    }
+
+    DialogListView dialog;
+
+    private void selectNation() {
+        RxView.clicks(etNation)
+                .throttleFirst(2, TimeUnit.SECONDS)
+                .subscribe(new Action1<Void>() {
+                    @Override
+                    public void call(Void aVoid) {
+                        dialog = new DialogListView(DeclareInActivity.this, SPerfUtil.readNation(), new OnItemCilckEvent());
+                        dialog.setCanceledOnTouchOutside(true);
+                    }
+                });
+    }
+
+    class OnItemCilckEvent implements AdapterView.OnItemClickListener {
+
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            etNation.setText(SPerfUtil.readNation().get(position));
+            if (dialog != null)
+                dialog.dismiss();
+        }
     }
 
     private void commit() {

@@ -5,10 +5,17 @@ import android.widget.LinearLayout;
 
 import com.jakewharton.rxbinding.view.RxView;
 import com.mc.app.hotel.R;
+import com.mc.app.hotel.bean.NationBean;
 import com.mc.app.hotel.common.Constants;
 import com.mc.app.hotel.common.facealignment.FaceAilgmentActivity;
+import com.mc.app.hotel.common.http.Api;
+import com.mc.app.hotel.common.http.Params;
+import com.mc.app.hotel.common.http.RxSubscribeProgress;
+import com.mc.app.hotel.common.http.RxSubscribeThread;
+import com.mc.app.hotel.common.util.SPerfUtil;
 import com.mc.app.hotel.common.util.ToastUtils;
 
+import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.TimeUnit;
@@ -45,6 +52,7 @@ public class MainActivity extends BaseActivity {
     }
 
     private void initView() {
+        getNation();
         buckButton(false);
         leftTitle("民宿入住申报");
         roomStatus();
@@ -125,7 +133,9 @@ public class MainActivity extends BaseActivity {
                     }
                 });
     }
+
     private static boolean mBackKeyPressed = false;//记录是否有首次按键
+
     @Override
     public void onBackPressed() {
         if (!mBackKeyPressed) {
@@ -142,4 +152,24 @@ public class MainActivity extends BaseActivity {
             //   System.exit(0);
         }
     }
+
+    private static final String TAG = "MainActivity";
+
+    private void getNation() {
+        Api.getInstance().mApiService.getNationList(Params.getParams())
+                .compose(RxSubscribeThread.<List<NationBean>>ioAndMain()).
+                subscribe(new RxSubscribeProgress<List<NationBean>>(MainActivity.this, false) {
+                    @Override
+                    protected void onOverNext(List<NationBean> t) {
+                        SPerfUtil.saveNation(t);
+                    }
+
+                    @Override
+                    protected void onOverError(String message) {
+
+                    }
+                });
+
+    }
+
 }

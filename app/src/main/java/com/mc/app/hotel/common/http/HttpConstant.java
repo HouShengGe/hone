@@ -22,4 +22,6 @@ public class HttpConstant {
     public static final String GET_ROOM_INFO = "GetRoomInfo";//获取房间信息
     public static final String USER_LOG_OFF = "UserLogOff";//登出
     public static final String GET_STORE_LIST = "GetStoreList";//获取酒店列表
+    public static final String GET_NATION_LIST = "GetNationList";//获取酒店列表
+    public static final String USE_CENTER = "UseCenter";//个人中心
 }

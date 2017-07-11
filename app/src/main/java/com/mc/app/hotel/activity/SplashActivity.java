@@ -21,6 +21,7 @@ public class SplashActivity extends Activity {
 
     long startTime;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,14 +60,16 @@ public class SplashActivity extends Activity {
     }
 
 
+
+
     void toNextActivity(Class<?> targetActivity) {
-        long distanceTime = System.currentTimeMillis() - startTime;
-        if (distanceTime > 2000) {
-            startActivity(new Intent(SplashActivity.this, targetActivity));
-            finish();
-        } else {
-            getCountDown(targetActivity, 2000 - distanceTime).start();
-        }
+            long distanceTime = System.currentTimeMillis() - startTime;
+            if (distanceTime > 2000) {
+                startActivity(new Intent(SplashActivity.this, targetActivity));
+                finish();
+            } else {
+                getCountDown(targetActivity, 2000 - distanceTime).start();
+            }
     }
 
     private CountDownTimers sendReceiveCountDown;

@@ -4,8 +4,14 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+import com.mc.app.hotel.bean.NationBean;
 import com.mc.app.hotel.bean.ReqBaseBean;
 import com.mc.app.hotel.bean.UserInfo;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by admin on 2017/7/4.
@@ -27,6 +33,7 @@ public class SPerfUtil {
     public static final String PREF_KEY_USER_MOBILE = "PREF_KEY_USER_MOBILE";
     public static final String PREF_KEY_USER_STORE_ID = "PREF_KEY_USER_STORE_ID";
     public static final String PREF_KEY_USER_TYPE = "PREF_KEY_USER_TYPE";
+    public static final String PREF_KEY_NATIONS = "PREF_KEY_NATIONS";
 
 
     public static void init(Context context) {
@@ -77,8 +84,24 @@ public class SPerfUtil {
     public static boolean isLogin() {
         UserInfo user = getUserInfo();
         ReqBaseBean bean = getReqBaseInfo();
-        return (user.getUserid() != -1&&!bean.getToken().equals(""));
+        return (user.getUserid() != -1 && !bean.getToken().equals(""));
     }
 
+    public static void saveNation(List<NationBean> list) {
+        Gson gson = new Gson();
+        String nations = gson.toJson(list);
+        prefs.edit().putString(PREF_KEY_NATIONS, nations).commit();
+    }
+
+    public static List<String> readNation() {
+        Gson gson = new Gson();
+        List<NationBean> list = gson.fromJson(prefs.getString(PREF_KEY_NATIONS, DEFAULT_STRING), new TypeToken<List<NationBean>>() {
+        }.getType());
+        List<String> list1 = new ArrayList<>();
+        for (NationBean bean : list) {
+            list1.add(bean.getNation());
+        }
+        return list1;
+    }
 
 }

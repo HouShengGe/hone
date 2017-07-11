@@ -2,16 +2,21 @@ package com.mc.app.hotel.activity;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.jakewharton.rxbinding.view.RxView;
 import com.mc.app.hotel.R;
+import com.mc.app.hotel.bean.PersonBean;
 import com.mc.app.hotel.common.App;
 import com.mc.app.hotel.common.http.Api;
 import com.mc.app.hotel.common.http.Params;
 import com.mc.app.hotel.common.http.RxSubscribeProgress;
 import com.mc.app.hotel.common.http.RxSubscribeThread;
+import com.mc.app.hotel.common.util.ArrayListUtils;
 import com.mc.app.hotel.common.util.SPerfUtil;
 import com.mc.app.hotel.common.util.ToastUtils;
 
@@ -30,6 +35,22 @@ public class PersonCenterActivity extends BaseActivity {
 
     @BindView(R.id.btn_exit)
     Button btnExit;
+    @BindView(R.id.ll_normal)
+    LinearLayout llNormal;
+    @BindView(R.id.ll_police)
+    LinearLayout llPolice;
+    @BindView(R.id.tv_heotel_name)
+    TextView tvHeotelName;
+    @BindView(R.id.tv_heotel_address)
+    TextView tvHeotelAddress;
+    @BindView(R.id.tv_heotel_own)
+    TextView tvHeotelOwn;
+    @BindView(R.id.tv_heotel_phone)
+    TextView tvHeotelPhone;
+    @BindView(R.id.tv_name)
+    TextView tvName;
+    @BindView(R.id.tv_aera)
+    TextView tvAera;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +59,7 @@ public class PersonCenterActivity extends BaseActivity {
         ButterKnife.bind(this);
         buckButton(true);
         setTitle("个人中心");
+        getPersonInfo();
         exit();
     }
 
@@ -66,6 +88,33 @@ public class PersonCenterActivity extends BaseActivity {
                                         ToastUtils.show(PersonCenterActivity.this, message, Toast.LENGTH_SHORT);
                                     }
                                 });
+                    }
+                });
+    }
+
+    private void getPersonInfo() {
+
+        Api.getInstance().mApiService.getPersonInfo(Params.getParams())
+                .compose(RxSubscribeThread.<PersonBean>ioAndMain()).
+                subscribe(new RxSubscribeProgress<PersonBean>(PersonCenterActivity.this) {
+                    @Override
+                    protected void onOverNext(PersonBean t) {
+                        if (SPerfUtil.getUserInfo().getUserType() == 0) {
+                            llNormal.setVisibility(View.VISIBLE);
+                            tvHeotelName.setText(t.getStoreName());
+                            tvHeotelAddress.setText(t.getAddress());
+                            tvHeotelOwn.setText(t.getChargeName());
+                            tvHeotelPhone.setText(t.getChargePhone());
+                        } else {
+                            llPolice.setVisibility(View.VISIBLE);
+                            tvName.setText(t.getPoliceMan());
+                            tvAera.setText(ArrayListUtils.toStrings(t.getStoresList()));
+                        }
+                    }
+
+                    @Override
+                    protected void onOverError(String message) {
+                        ToastUtils.show(PersonCenterActivity.this, message, Toast.LENGTH_SHORT);
                     }
                 });
     }

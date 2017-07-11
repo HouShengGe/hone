@@ -6,6 +6,8 @@ import com.mc.app.hotel.bean.CustomerBean;
 import com.mc.app.hotel.bean.HotelBean;
 import com.mc.app.hotel.bean.HttpResBaseBean;
 import com.mc.app.hotel.bean.LoginResBean;
+import com.mc.app.hotel.bean.NationBean;
+import com.mc.app.hotel.bean.PersonBean;
 import com.mc.app.hotel.bean.RoomDetialBean;
 import com.mc.app.hotel.bean.RoomStatusBean;
 import com.mc.app.hotel.bean.UrlBean;
@@ -66,6 +68,14 @@ public interface ApiService {
     @FormUrlEncoded
     @POST(HttpConstant.GET_STORE_LIST)
     Observable<HttpResBaseBean<HotelBean>> getHotelList(@FieldMap Map<String, String> a);
+
+    @FormUrlEncoded
+    @POST(HttpConstant.GET_NATION_LIST)
+    Observable<HttpResBaseBean<List<NationBean>>> getNationList(@FieldMap Map<String, String> a);
+
+    @FormUrlEncoded
+    @POST(HttpConstant.USE_CENTER)
+    Observable<HttpResBaseBean<PersonBean>> getPersonInfo(@FieldMap Map<String, String> a);
 
 
 }

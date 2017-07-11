@@ -164,10 +164,10 @@ public class LoginActivity extends BaseActivity {
 
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            if (dialog != null)
-                dialog.dismiss();
             HttpConstant.setBaseUrl(urlList.get(position).getServiceIP());
             tvServiceName.setText(urlList.get(position).getServiceName());
+            if (dialog != null)
+                dialog.dismiss();
         }
     }
 
