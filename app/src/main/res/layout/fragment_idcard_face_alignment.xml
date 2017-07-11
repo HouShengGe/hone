@@ -49,37 +49,45 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:text="@string/put_the_face_into_the_box"/>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
-          <View
-              android:layout_width="0dp"
-              android:layout_height="match_parent"
-              android:layout_weight="2"/>
-            <Button
-                android:id="@+id/recordManagementBtn"
-                style="@style/RecordManagementButtonStyle"
-                android:layout_width="100dp"
-                android:layout_height="20dp"
-                android:layout_marginTop="5dp"
-                android:text="@string/recode_management"/>
+                android:orientation="horizontal"
+                android:visibility="invisible">
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"/>
+
+                <Button
+                    android:id="@+id/recordManagementBtn"
+                    style="@style/RecordManagementButtonStyle"
+                    android:layout_width="100dp"
+                    android:layout_height="20dp"
+                    android:layout_marginTop="5dp"
+                    android:text="@string/recode_management"/>
+
                 <View
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"/>
-            <Button
-                android:id="@+id/commit"
-                style="@style/RecordManagementButtonStyle"
-                android:layout_width="100dp"
-                android:layout_height="20dp"
-                android:layout_marginTop="5dp"
-                android:text="提交"/>
+
+                <Button
+                    android:id="@+id/commit"
+                    style="@style/RecordManagementButtonStyle"
+                    android:layout_width="100dp"
+                    android:layout_height="20dp"
+                    android:layout_marginTop="5dp"
+                    android:text="提交"/>
+
                 <View
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="2"/>
             </LinearLayout>
+
             <SurfaceView
                 android:id="@+id/invisibleSurfaceView"
                 android:layout_width="1px"
@@ -101,7 +109,7 @@
                 android:layout_margin="10dp"
                 android:background="@android:color/transparent"
                 android:scaleType="fitCenter"
-                android:src="@drawable/ic_volume"/>
+                android:src="@drawable/voice"/>
 
             <ImageButton
                 android:id="@+id/settingIBtn"
@@ -110,7 +118,7 @@
                 android:layout_margin="10dp"
                 android:background="@android:color/transparent"
                 android:scaleType="fitCenter"
-                android:src="@drawable/ic_setting"/>
+                android:src="@drawable/set"/>
 
 
         </LinearLayout>
@@ -118,7 +126,7 @@
     </FrameLayout>
 
     <LinearLayout
-        android:layout_width="200dp"
+        android:layout_width="250dp"
         android:layout_height="match_parent"
         android:background="@drawable/rightpanel_bg"
         android:gravity="center_horizontal|top"
@@ -130,6 +138,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
+            android:layout_marginTop="20dp"
             android:layout_weight="1"
             android:orientation="vertical">
 
@@ -146,8 +155,8 @@
 
                 <ImageView
                     android:id="@+id/photoIv"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
                     android:layout_gravity="center_horizontal"
                     android:src="@drawable/ic_face"/>
 
@@ -189,7 +198,7 @@
 
                     <TextView
                         style="@style/LabelStyle"
-                        android:text="身份证号:"/>
+                        android:text="身份:"/>
 
                     <TextView
                         android:id="@+id/idNumTv"
@@ -204,7 +213,7 @@
 
                     <TextView
                         style="@style/LabelStyle"
-                        android:text="有效期:"/>
+                        android:text="有效:"/>
 
                     <TextView
                         android:id="@+id/termTv"
@@ -227,93 +236,21 @@
                         android:id="@+id/birthdayTv"
                         style="@style/ContentStyle"/>
                 </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/entry_height"
-                    android:layout_margin="1dp"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        style="@style/LabelStyle"
-                        android:layout_height="match_parent"
-                        android:text="房号:"/>
-
-                    <EditText
-                        android:id="@+id/roomNumTv"
-                        style="@style/ContentStyle"/>
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/entry_height"
-                    android:layout_margin="1dp"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        style="@style/LabelStyle"
-                        android:layout_height="match_parent"
-                        android:text="房价:"/>
-
-                    <EditText
-                        android:id="@+id/roomPayTv"
-                        style="@style/ContentStyle"/>
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/entry_height"
-                    android:layout_margin="1dp"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        style="@style/LabelStyle"
-                        android:layout_height="match_parent"
-                        android:text="手机号:"/>
-
-                    <EditText
-                        android:id="@+id/phoneNumTv"
-                        style="@style/ContentStyle"/>
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/entry_height"
-                    android:layout_margin="1dp"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        style="@style/LabelStyle"
-                        android:layout_height="match_parent"
-                        android:text="来期:"/>
-
-                    <TextView
-                        android:id="@+id/comeDayTv"
-                        style="@style/ContentStyle"/>
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/entry_height"
-                    android:layout_margin="1dp"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        style="@style/LabelStyle"
-                        android:layout_height="match_parent"
-                        android:text="离期:"/>
-
-                    <TextView
-                        android:id="@+id/leaveDayTv"
-                        style="@style/ContentStyle"/>
-                </LinearLayout>
 
 
             </LinearLayout>
 
         </LinearLayout>
-
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
-            android:layout_marginTop="10dp"
             android:orientation="horizontal">
 
             <!-- <TextView
@@ -322,8 +259,8 @@
 
 
             <FrameLayout
-                android:layout_width="90dp"
-                android:layout_height="90dp"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
                 android:layout_margin="5dp">
 
                 <TextureView
@@ -347,8 +284,8 @@
                 android:layout_weight="1"/>
 
             <ImageView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
                 android:layout_marginBottom="5dp"
                 android:layout_marginTop="5dp"
                 android:scaleType="fitCenter"

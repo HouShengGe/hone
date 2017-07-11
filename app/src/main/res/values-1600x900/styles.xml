@@ -64,7 +64,7 @@
         <item name="android:layout_margin">5dp</item>
     </style>
     <style name="LabelStyle">
-        <item name="android:textSize">16sp</item>
+        <item name="android:textSize">20sp</item>
         <item name="android:layout_height">match_parent</item>
         <item name="android:layout_width">@dimen/label_width</item>
         <item name="android:background">@drawable/labelbg</item>
@@ -72,7 +72,7 @@
     </style>
     <style name="ContentStyle">
         <item name="android:paddingLeft">2dp</item>
-        <item name="android:textSize">16sp</item>
+        <item name="android:textSize">20sp</item>
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">match_parent</item>
         <item name="android:layout_weight">1</item>

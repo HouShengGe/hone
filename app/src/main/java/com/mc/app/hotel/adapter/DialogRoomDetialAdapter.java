@@ -46,6 +46,8 @@ public class DialogRoomDetialAdapter extends BaseAdapter {
         TextView tvArrive;
         TextView tvLeave;
         TextView tvIdCard;
+        TextView tvPhoneNo;
+        TextView tvAddr;
     }
 
     @Override
@@ -60,6 +62,8 @@ public class DialogRoomDetialAdapter extends BaseAdapter {
             vh.tvArrive = (TextView) convertView.findViewById(R.id.tv_room_arrive);
             vh.tvLeave = (TextView) convertView.findViewById(R.id.tv_room_leave);
             vh.tvIdCard = (TextView) convertView.findViewById(R.id.tv_room_id_card);
+            vh.tvPhoneNo = (TextView) convertView.findViewById(R.id.tv_phone_no);
+            vh.tvAddr = (TextView) convertView.findViewById(R.id.tv_addr);
             convertView.setTag(vh);
         } else {
             vh = (ViewHolder) convertView.getTag();
@@ -69,6 +73,8 @@ public class DialogRoomDetialAdapter extends BaseAdapter {
         vh.tvArrive.setText(info.getArriveDate());
         vh.tvLeave.setText(info.getLeaveDate());
         vh.tvIdCard.setText(info.getIdCard());
+        vh.tvPhoneNo.setText(info.getMobile());
+        vh.tvAddr.setText(info.getAddress());
         return convertView;
     }
 }

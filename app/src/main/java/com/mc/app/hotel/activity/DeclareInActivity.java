@@ -178,6 +178,11 @@ public class DeclareInActivity extends BaseActivity {
             etNation.setError("请填写民族");
             return null;
         }
+        String sex = etRoomSex.getText().toString().trim();
+        if (sex == null || sex.equals("")) {
+            etRoomSex.setError("请填写性别");
+            return null;
+        }
         info.setIdCard(idCard);
         info.setBirthDate(birthday);
         info.setCustomer(name);
@@ -186,7 +191,7 @@ public class DeclareInActivity extends BaseActivity {
         info.setFaceDegree(record.getSimilarity() + "");
         info.setFaceResult(record.getSimilarity() < PrefUtil.getMinConfidence() ? "未通过" : "通过");
         info.setNation(nations);
-        info.setSex(record.getSex());
+        info.setSex(sex);
         info.setArriveDate(arriveDay);
         info.setLeaveDate(leaveDay);
         info.setMobile(phoneNum);
