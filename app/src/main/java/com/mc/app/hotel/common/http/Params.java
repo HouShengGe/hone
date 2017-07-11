@@ -78,8 +78,8 @@ public class Params {
         map.put("qtype", info.getQtype() + "");
         if (!StringUtil.isBlank(info.getRoomNo()))
             map.put("roomNo", info.getRoomNo());
-        if (!StringUtil.isBlank(info.getStoreId()))
-            map.put("storeId", info.getStoreId());
+        if (info.getStoreId() != 0)
+            map.put("storeId", info.getStoreId() + "");
         if (!StringUtil.isBlank(info.getCustName()))
             map.put("custName", info.getCustName());
         if (!StringUtil.isBlank(info.getIdCard()))
@@ -107,4 +107,14 @@ public class Params {
         map.put("storeId", storeID + "");
         return getParams(map);
     }
+
+    public static Map<String, String> getHotelListParams(String storeName, int pageIndex) {
+        Map<String, String> map = new HashMap<>();
+        if (!StringUtil.isBlank(storeName))
+            map.put("storeName", storeName);
+        map.put("pageIndex", pageIndex + "");
+        map.put("pageSize", 15 + "");
+        return getParams(map);
+    }
+
 }

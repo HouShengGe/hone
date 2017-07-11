@@ -120,15 +120,18 @@ public class LoginActivity extends BaseActivity {
                                     protected void onOverNext(LoginResBean t) {
                                         SPerfUtil.setReqBaseInfo(t.getToken(), t.getKey(), t.getUserInfo().getUserid());
                                         SPerfUtil.setUserInfo(t.getUserInfo());
-                                        toNextActivity(MainActivity.class);
-                                        finish();
+                                        if (t.getUserInfo().getUserType() == 0) {
+                                            toNextActivity(MainActivity.class);
+                                            finish();
+                                        } else {
+                                            toNextActivity(PoliceMainActivity.class);
+                                            finish();
+                                        }
                                     }
 
                                     @Override
                                     protected void onOverError(String message) {
                                         ToastUtils.show(LoginActivity.this, message, Toast.LENGTH_SHORT);
-                                        toNextActivity(MainActivity.class);
-                                        finish();
                                     }
                                 });
                     }

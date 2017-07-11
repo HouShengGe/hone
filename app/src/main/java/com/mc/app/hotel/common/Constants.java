@@ -12,5 +12,6 @@ public class Constants {
     public static final String MASTER_ID= "masterId";
     public static final String READ_ID_CARD= "readIDCard";
     public static final String FROM= "from";
+    public static final String STORE_ID= "storeid";
 
 }

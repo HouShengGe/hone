@@ -1,6 +1,7 @@
 package com.mc.app.hotel.activity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import com.mc.app.hotel.R;
@@ -13,6 +14,7 @@ import com.mc.app.hotel.common.http.Api;
 import com.mc.app.hotel.common.http.Params;
 import com.mc.app.hotel.common.http.RxSubscribeProgress;
 import com.mc.app.hotel.common.http.RxSubscribeThread;
+import com.mc.app.hotel.common.util.SPerfUtil;
 import com.mc.app.hotel.common.view.SearchDialog;
 import com.mc.app.hotel.common.view.pulltoreflushgrid.ILoadingLayout;
 import com.mc.app.hotel.common.view.pulltoreflushgrid.PullToRefreshBase;
@@ -38,6 +40,7 @@ public class SearchCustomerActivity extends BaseActivity implements PullToRefres
 
     CustomerAdapter adapter;
     SearchDialog dialog;
+    int storeId = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +59,8 @@ public class SearchCustomerActivity extends BaseActivity implements PullToRefres
     private void init() {
         if (getIntent() != null && getIntent().getExtras() != null) {
             roomType = getIntent().getIntExtra(Constants.CUSTOMER_STATUS, 0);
+            storeId = getIntent().getIntExtra(Constants.STORE_ID, 0);
+            Log.d(TAG, "init: storeId = " + storeId);
         }
         rightTitle(R.drawable.find);
         if (roomType == 0)
@@ -137,6 +142,11 @@ public class SearchCustomerActivity extends BaseActivity implements PullToRefres
     private void loadData() {
         paramsInfo.setQtype(roomType);
         paramsInfo.setPageIndex(pageNo);
+        if (SPerfUtil.getUserInfo().getUserType() == 0) {
+            paramsInfo.setStoreId(SPerfUtil.getUserInfo().getStoreId());
+        } else {
+            paramsInfo.setStoreId(storeId);
+        }
         getCustomerList(paramsInfo);
     }
 

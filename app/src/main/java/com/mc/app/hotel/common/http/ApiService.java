@@ -3,6 +3,7 @@ package com.mc.app.hotel.common.http;
 
 import com.mc.app.hotel.bean.ComparedFaceBean;
 import com.mc.app.hotel.bean.CustomerBean;
+import com.mc.app.hotel.bean.HotelBean;
 import com.mc.app.hotel.bean.HttpResBaseBean;
 import com.mc.app.hotel.bean.LoginResBean;
 import com.mc.app.hotel.bean.RoomDetialBean;
@@ -57,6 +58,14 @@ public interface ApiService {
     @FormUrlEncoded
     @POST(HttpConstant.GET_ROOM_INFO)
     Observable<HttpResBaseBean<RoomDetialBean>> getRoomDetial(@FieldMap Map<String, String> a);
+
+    @FormUrlEncoded
+    @POST(HttpConstant.USER_LOG_OFF)
+    Observable<HttpResBaseBean<String>> getExit(@FieldMap Map<String, String> a);
+
+    @FormUrlEncoded
+    @POST(HttpConstant.GET_STORE_LIST)
+    Observable<HttpResBaseBean<HotelBean>> getHotelList(@FieldMap Map<String, String> a);
 
 
 }

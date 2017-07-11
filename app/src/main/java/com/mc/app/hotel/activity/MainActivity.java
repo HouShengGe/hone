@@ -7,7 +7,10 @@ import com.jakewharton.rxbinding.view.RxView;
 import com.mc.app.hotel.R;
 import com.mc.app.hotel.common.Constants;
 import com.mc.app.hotel.common.facealignment.FaceAilgmentActivity;
+import com.mc.app.hotel.common.util.ToastUtils;
 
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
@@ -43,8 +46,7 @@ public class MainActivity extends BaseActivity {
 
     private void initView() {
         buckButton(false);
-        leftTitle("民宿APP");
-        rightTitle(R.drawable.user);
+        leftTitle("民宿入住申报");
         roomStatus();
         declareIn();
         customerHistory();
@@ -119,9 +121,25 @@ public class MainActivity extends BaseActivity {
                 .subscribe(new Action1<Void>() {
                     @Override
                     public void call(Void aVoid) {
+                        toNextActivity(PersonCenterActivity.class);
                     }
                 });
     }
-
-    private static final String TAG = "MainActivity";
+    private static boolean mBackKeyPressed = false;//记录是否有首次按键
+    @Override
+    public void onBackPressed() {
+        if (!mBackKeyPressed) {
+            ToastUtils.showShort(this, "再按一次退出程序");
+            mBackKeyPressed = true;
+            new Timer().schedule(new TimerTask() {//延时两秒，如果超出则擦错第一次按键记录
+                @Override
+                public void run() {
+                    mBackKeyPressed = false;
+                }
+            }, 2000);
+        } else {//退出程序
+            this.finish();
+            //   System.exit(0);
+        }
+    }
 }

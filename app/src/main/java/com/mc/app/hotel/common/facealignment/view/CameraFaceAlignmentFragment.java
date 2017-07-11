@@ -228,7 +228,7 @@ public class CameraFaceAlignmentFragment extends Fragment {
                                     faceAlignmentDialogFragment.dismiss();
                                     unFreezeUI();
                                 }
-                            }, 2000);
+                            }, 0);
                         }
                     }.execute(idCardPhoto, facePhoto);
                 } else {

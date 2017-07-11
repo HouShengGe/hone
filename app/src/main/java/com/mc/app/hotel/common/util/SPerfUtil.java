@@ -59,13 +59,13 @@ public class SPerfUtil {
         prefs.edit().putString(PREF_KEY_USER_NO, userInfo.getUserNo()).commit();
         prefs.edit().putString(PREF_KEY_USER_NAME, userInfo.getUsername()).commit();
         prefs.edit().putString(PREF_KEY_USER_MOBILE, userInfo.getStrMobile()).commit();
-        prefs.edit().putString(PREF_KEY_USER_STORE_ID, userInfo.getStoreId()).commit();
+        prefs.edit().putInt(PREF_KEY_USER_STORE_ID, userInfo.getStoreId()).commit();
         prefs.edit().putInt(PREF_KEY_USER_TYPE, userInfo.getUserType()).commit();
     }
 
     public static UserInfo getUserInfo() {
         UserInfo userInfo = new UserInfo();
-        userInfo.setStoreId(prefs.getString(PREF_KEY_USER_STORE_ID, DEFAULT_STRING));
+        userInfo.setStoreId(prefs.getInt(PREF_KEY_USER_STORE_ID, DEFAULT_INT));
         userInfo.setStrMobile(prefs.getString(PREF_KEY_USER_MOBILE, DEFAULT_STRING));
         userInfo.setUserid(prefs.getInt(PREF_KEY_USER_ID, DEFAULT_INT));
         userInfo.setUsername(prefs.getString(PREF_KEY_USER_NAME, DEFAULT_STRING));

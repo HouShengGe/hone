@@ -24,14 +24,15 @@ public class DateUtils {
     public static String getCurrentFormateTime() {
         return format24TimeWithoutSecond(getCurrentTime());
     }
+
     /**
      * 获取当前时间戳
      *
      * @return 时间戳
      */
     public static String getNextDay() {
-
-        return getCurrentYear()+"-"+getCurrentMonth()+"-"+getCurrentDay()+" "+"13:00";
+        long times = getCurrentTime() + 60 * 60 * 24 * 1000;
+        return formatDate(times) + " " + "13:00";
     }
 
     public static String getCurrentTimeString() {

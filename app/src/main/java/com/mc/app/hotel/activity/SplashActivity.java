@@ -34,12 +34,17 @@ public class SplashActivity extends Activity {
             String mobile = SPerfUtil.getUserInfo().getStrMobile();
             Api.getInstance().mApiService.userLogin(Params.getLoginParams(mobile, ""))
                     .compose(RxSubscribeThread.<LoginResBean>ioAndMain()).
-                    subscribe(new RxSubscribeProgress<LoginResBean>(SplashActivity.this,false) {
+                    subscribe(new RxSubscribeProgress<LoginResBean>(SplashActivity.this, false) {
                         @Override
                         protected void onOverNext(LoginResBean t) {
                             SPerfUtil.setReqBaseInfo(t.getToken(), t.getKey(), t.getUserInfo().getUserid());
                             SPerfUtil.setUserInfo(t.getUserInfo());
-                            toNextActivity(MainActivity.class);
+                            if (t.getUserInfo().getUserType() == 0) {
+                                toNextActivity(MainActivity.class);
+                            } else {
+                                toNextActivity(PoliceMainActivity.class);
+                            }
+
                         }
 
                         @Override

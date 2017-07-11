@@ -177,7 +177,7 @@ public class FaceAilgmentActivity extends AppCompatActivity {
 
     @Subscribe(threadMode = ThreadMode.ASYNC)
     public void onEventDataSaveRequest(EventDataSaveRequest request) {
-        databaseSaveThread.submit(request.getFaceRecord());
+//        databaseSaveThread.submit(request.getFaceRecord());
         Intent i = new Intent(this, DeclareInActivity.class);
         Bundle b = new Bundle();
         b.putSerializable(Constants.READ_ID_CARD, request.getFaceRecord());

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">HotelManage</string>
+    <string name="app_name">民宿入住申报</string>
     <string name="system_name">MOCHUANG名宿管理系统</string>
     <string name="please_input_phone_num">请输入手机号</string>
     <string name="please_input_vCode">请输入验证码</string>

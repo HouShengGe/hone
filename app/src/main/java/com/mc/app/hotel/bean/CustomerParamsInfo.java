@@ -8,7 +8,7 @@ public class CustomerParamsInfo {
     int pageIndex;
     int pageSize = 5;
     String roomNo;
-    String storeId;
+    int storeId;
     String custName;
     String idCard;
     String mobile;
@@ -38,11 +38,11 @@ public class CustomerParamsInfo {
         this.roomNo = roomNo;
     }
 
-    public String getStoreId() {
+    public int getStoreId() {
         return storeId;
     }
 
-    public void setStoreId(String storeId) {
+    public void setStoreId(int storeId) {
         this.storeId = storeId;
     }
 
@@ -79,9 +79,9 @@ public class CustomerParamsInfo {
     }
 
     public void setCustomerParamsInfo(CustomerParamsInfo info) {
-            setRoomNo(info.getRoomNo());
-            setCustName(info.getCustName());
-            setIdCard(info.getIdCard());
-            setMobile(info.getMobile());
+        setRoomNo(info.getRoomNo());
+        setCustName(info.getCustName());
+        setIdCard(info.getIdCard());
+        setMobile(info.getMobile());
     }
 }

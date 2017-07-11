@@ -9,7 +9,7 @@ public class UserInfo {
     String userNo;
     String username;
     String strMobile;
-    String storeId;
+    int storeId;
     int userType;
 
     public int getUserid() {
@@ -44,11 +44,11 @@ public class UserInfo {
         this.strMobile = strMobile;
     }
 
-    public String getStoreId() {
+    public int getStoreId() {
         return storeId;
     }
 
-    public void setStoreId(String storeId) {
+    public void setStoreId(int storeId) {
         this.storeId = storeId;
     }
 

@@ -22,7 +22,6 @@ import com.mc.app.hotel.common.http.RxSubscribeProgress;
 import com.mc.app.hotel.common.http.RxSubscribeThread;
 import com.mc.app.hotel.common.util.StringUtil;
 import com.mc.app.hotel.common.util.ToastUtils;
-import com.mc.app.hotel.common.util.WidgetUtils;
 
 import org.feezu.liuli.timeselector.TimeSelector;
 
@@ -102,8 +101,8 @@ public class DeclareInActivity extends BaseActivity {
     }
 
     private void initView() {
-        WidgetUtils.setHeigthEQWidget(imgvIDPic);
-        WidgetUtils.setHeigthEQWidget(imgvFacePic);
+        setTitle("申报入住");
+        buckButton(true);
         etRoomName.setText(StringUtil.getString(record.getName()));
         etRoomSex.setText(StringUtil.getString(record.getSex()));
         etIdCard.setText(StringUtil.getString(record.getIdNumber()));
@@ -112,7 +111,7 @@ public class DeclareInActivity extends BaseActivity {
         imgvIDPic.setImageBitmap(BitmapFactory.decodeByteArray(record.getIdPhoto(), 0, record.getIdPhoto().length));
         imgvFacePic.setImageBitmap(BitmapFactory.decodeByteArray(record.getCamPhoto(), 0, record.getCamPhoto().length));
         etArriveDay.setText(DateUtils.getCurrentFormateTime());
-        etArriveDay.setText(DateUtils.getNextDay());
+        etLeaveDay.setText(DateUtils.getNextDay());
         tvEnd.setText("通过");
         commit();
         setArriveDay();
@@ -201,7 +200,10 @@ public class DeclareInActivity extends BaseActivity {
                                 subscribe(new RxSubscribeProgress<String>(DeclareInActivity.this) {
                                     @Override
                                     protected void onOverNext(String t) {
-                                        ToastUtils.show(DeclareInActivity.this, "上传成功", Toast.LENGTH_SHORT);
+                                        Bundle b = new Bundle();
+                                        b.putInt(Constants.CUSTOMER_STATUS, 1);
+                                        toNextActivity(SearchCustomerActivity.class, b);
+                                        finish();
                                     }
 
                                     @Override
@@ -212,6 +214,7 @@ public class DeclareInActivity extends BaseActivity {
                     }
                 });
     }
+
     private void setArriveDay() {
 
         RxView.clicks(etArriveDay)
@@ -230,6 +233,7 @@ public class DeclareInActivity extends BaseActivity {
                     }
                 });
     }
+
     private void setLeaveDay() {
 
         RxView.clicks(etLeaveDay)
