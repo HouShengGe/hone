@@ -13,7 +13,6 @@ import com.mc.app.hotel.common.http.Params;
 import com.mc.app.hotel.common.http.RxSubscribeProgress;
 import com.mc.app.hotel.common.http.RxSubscribeThread;
 import com.mc.app.hotel.common.util.SPerfUtil;
-import com.mc.app.hotel.common.util.ToastUtils;
 
 import java.util.List;
 import java.util.Timer;
@@ -139,7 +138,7 @@ public class MainActivity extends BaseActivity {
     @Override
     public void onBackPressed() {
         if (!mBackKeyPressed) {
-            ToastUtils.showShort(this, "再按一次退出程序");
+            showToast("再按一次退出程序");
             mBackKeyPressed = true;
             new Timer().schedule(new TimerTask() {//延时两秒，如果超出则擦错第一次按键记录
                 @Override

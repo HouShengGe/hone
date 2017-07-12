@@ -8,10 +8,11 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.mc.app.hotel.R;
 import com.mc.app.hotel.common.inter.TitleInterface;
+import com.mic.etoast2.EToast2;
+import com.mic.etoast2.Toast;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -139,7 +140,7 @@ public class BaseActivity extends AppCompatActivity implements TitleInterface, V
     }
 
     public void showToast(String msg) {
-        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, msg, EToast2.LENGTH_SHORT).show();
     }
 
     @Override
@@ -194,5 +195,6 @@ public class BaseActivity extends AppCompatActivity implements TitleInterface, V
     public void toNextActivity(Class<?> targetActivity, int reqCode) {
         toNextActivity(targetActivity, null, reqCode);
     }
+
 
 }

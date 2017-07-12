@@ -13,7 +13,6 @@ import com.mc.app.hotel.common.http.Api;
 import com.mc.app.hotel.common.http.Params;
 import com.mc.app.hotel.common.http.RxSubscribeProgress;
 import com.mc.app.hotel.common.http.RxSubscribeThread;
-import com.mc.app.hotel.common.util.ToastUtils;
 import com.mc.app.hotel.common.view.pulltoreflushgrid.ILoadingLayout;
 import com.mc.app.hotel.common.view.pulltoreflushgrid.PullToRefreshBase;
 import com.mc.app.hotel.common.view.pulltoreflushgrid.PullToRefreshListView;
@@ -142,7 +141,7 @@ public class PoliceMainActivity extends BaseActivity implements PullToRefreshBas
     @Override
     public void onBackPressed() {
         if (!mBackKeyPressed) {
-            ToastUtils.showShort(this, "再按一次退出程序");
+            showToast("再按一次退出程序");
             mBackKeyPressed = true;
             new Timer().schedule(new TimerTask() {//延时两秒，如果超出则擦错第一次按键记录
                 @Override

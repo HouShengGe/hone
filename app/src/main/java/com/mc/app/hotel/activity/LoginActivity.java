@@ -7,12 +7,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.jakewharton.rxbinding.view.RxView;
 import com.mc.app.hotel.R;
 import com.mc.app.hotel.bean.LoginResBean;
 import com.mc.app.hotel.bean.UrlBean;
+import com.mc.app.hotel.common.Constants;
 import com.mc.app.hotel.common.http.Api;
 import com.mc.app.hotel.common.http.HttpConstant;
 import com.mc.app.hotel.common.http.Params;
@@ -20,7 +20,6 @@ import com.mc.app.hotel.common.http.RxSubscribeProgress;
 import com.mc.app.hotel.common.http.RxSubscribeThread;
 import com.mc.app.hotel.common.util.CountDownTimers;
 import com.mc.app.hotel.common.util.SPerfUtil;
-import com.mc.app.hotel.common.util.ToastUtils;
 import com.mc.app.hotel.common.util.Zz;
 import com.mc.app.hotel.common.view.DialogListView;
 
@@ -67,8 +66,13 @@ public class LoginActivity extends BaseActivity {
         initData();
     }
 
-
     private void initView() {
+        if (getIntent() != null && getIntent().getExtras() != null) {
+            int flag = getIntent().getExtras().getInt(Constants.LONG_OUT, 0);
+            if (flag == Constants.LONG_OUT_FLAG) {
+                showToast("请重新登录");
+            }
+        }
         login();
         getVCode();
         buckButton(false);
@@ -131,7 +135,7 @@ public class LoginActivity extends BaseActivity {
 
                                     @Override
                                     protected void onOverError(String message) {
-                                        ToastUtils.show(LoginActivity.this, message, Toast.LENGTH_SHORT);
+                                        showToast(message);
                                     }
                                 });
                     }

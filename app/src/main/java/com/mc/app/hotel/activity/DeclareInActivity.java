@@ -9,7 +9,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.jakewharton.rxbinding.view.RxView;
 import com.mc.app.hotel.R;
@@ -24,7 +23,6 @@ import com.mc.app.hotel.common.http.RxSubscribeProgress;
 import com.mc.app.hotel.common.http.RxSubscribeThread;
 import com.mc.app.hotel.common.util.SPerfUtil;
 import com.mc.app.hotel.common.util.StringUtil;
-import com.mc.app.hotel.common.util.ToastUtils;
 import com.mc.app.hotel.common.view.DialogListView;
 
 import org.feezu.liuli.timeselector.TimeSelector;
@@ -52,15 +50,19 @@ public class DeclareInActivity extends BaseActivity {
     EditText etRoomName;
 
     @BindView(R.id.et_room_sex)
-    EditText etRoomSex;
+    TextView etRoomSex;
     @BindView(R.id.et_nation)
     TextView etNation;
 
     @BindView(R.id.et_id_card)
     EditText etIdCard;
 
-    @BindView(R.id.et_in_day)
-    EditText etInDay;
+    @BindView(R.id.et_in_fromday)
+    EditText etFromDay;
+    @BindView(R.id.et_in_today)
+    EditText etToDay;
+    @BindView(R.id.et_id_addr)
+    EditText etAddress;
 
     @BindView(R.id.et_birthday)
     EditText etBirthday;
@@ -112,7 +114,9 @@ public class DeclareInActivity extends BaseActivity {
         etRoomName.setText(StringUtil.getString(record.getName()));
         etRoomSex.setText(StringUtil.getString(record.getSex()));
         etIdCard.setText(StringUtil.getString(record.getIdNumber()));
-        etInDay.setText(StringUtil.getString(record.getTermBegin()) + "-" + StringUtil.getString(record.getTermEnd()));
+        etFromDay.setText(StringUtil.getString(record.getTermBegin()));
+        etToDay.setText(StringUtil.getString(record.getTermEnd()));
+        etAddress.setText(StringUtil.getString(record.getAddress()));
         etBirthday.setText(StringUtil.getString(record.getBirthday()));
         etNation.setText(StringUtil.getString(record.getNation()));
         imgvIDPic.setImageBitmap(BitmapFactory.decodeByteArray(record.getIdPhoto(), 0, record.getIdPhoto().length));
@@ -124,6 +128,7 @@ public class DeclareInActivity extends BaseActivity {
         setArriveDay();
         setLeaveDay();
         selectNation();
+        selectSex();
     }
 
     private CheckInInfo getInfo() {
@@ -163,14 +168,25 @@ public class DeclareInActivity extends BaseActivity {
             etRoomName.setError("请填写姓名");
             return null;
         }
-        String exprDate = etInDay.getText().toString().trim();
-        if (exprDate == null || exprDate.equals("")) {
-            etInDay.setError("请填写身份证有效日期");
+        String exprFDate = etFromDay.getText().toString().trim();
+        if (exprFDate == null || exprFDate.equals("")) {
+            etFromDay.setError("请填写身份证有效日期");
             return null;
         }
+        String exprTDate = etFromDay.getText().toString().trim();
+        if (exprTDate == null || exprTDate.equals("")) {
+            etToDay.setError("请填写身份证有效日期");
+            return null;
+        }
+        String exprDate = exprFDate + "-" + exprTDate;
         String idCard = etIdCard.getText().toString().trim();
         if (idCard == null || idCard.equals("")) {
             etIdCard.setError("请填写身份证号码");
+            return null;
+        }
+        String address = etAddress.getText().toString().trim();
+        if (address == null || address.equals("")) {
+            etAddress.setError("请填写地址");
             return null;
         }
         String nations = etNation.getText().toString().trim();
@@ -187,7 +203,7 @@ public class DeclareInActivity extends BaseActivity {
         info.setBirthDate(birthday);
         info.setCustomer(name);
         info.setExprDate(exprDate);
-        info.setAddress(record.getAddress());
+        info.setAddress(address);
         info.setFaceDegree(record.getSimilarity() + "");
         info.setFaceResult(record.getSimilarity() < PrefUtil.getMinConfidence() ? "未通过" : "通过");
         info.setNation(nations);
@@ -226,6 +242,28 @@ public class DeclareInActivity extends BaseActivity {
         }
     }
 
+    private void selectSex() {
+        RxView.clicks(etRoomSex)
+                .throttleFirst(2, TimeUnit.SECONDS)
+                .subscribe(new Action1<Void>() {
+                    @Override
+                    public void call(Void aVoid) {
+                        dialog = new DialogListView(DeclareInActivity.this, Constants.getSexLset(), new OnItemSexCilckEvent());
+                        dialog.setCanceledOnTouchOutside(true);
+                    }
+                });
+    }
+
+    class OnItemSexCilckEvent implements AdapterView.OnItemClickListener {
+
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            etRoomSex.setText(Constants.getSexLset().get(position));
+            if (dialog != null)
+                dialog.dismiss();
+        }
+    }
+
     private void commit() {
 
         RxView.clicks(btnCommit)
@@ -250,7 +288,7 @@ public class DeclareInActivity extends BaseActivity {
 
                                     @Override
                                     protected void onOverError(String message) {
-                                        ToastUtils.show(DeclareInActivity.this, message, Toast.LENGTH_SHORT);
+                                        showToast(message);
                                     }
                                 });
                     }

@@ -6,7 +6,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.jakewharton.rxbinding.view.RxView;
 import com.mc.app.hotel.R;
@@ -18,7 +17,6 @@ import com.mc.app.hotel.common.http.RxSubscribeProgress;
 import com.mc.app.hotel.common.http.RxSubscribeThread;
 import com.mc.app.hotel.common.util.ArrayListUtils;
 import com.mc.app.hotel.common.util.SPerfUtil;
-import com.mc.app.hotel.common.util.ToastUtils;
 
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
@@ -85,7 +83,7 @@ public class PersonCenterActivity extends BaseActivity {
 
                                     @Override
                                     protected void onOverError(String message) {
-                                        ToastUtils.show(PersonCenterActivity.this, message, Toast.LENGTH_SHORT);
+                                        showToast(message);
                                     }
                                 });
                     }
@@ -114,8 +112,9 @@ public class PersonCenterActivity extends BaseActivity {
 
                     @Override
                     protected void onOverError(String message) {
-                        ToastUtils.show(PersonCenterActivity.this, message, Toast.LENGTH_SHORT);
+                        showToast(message);
                     }
+
                 });
     }
 }

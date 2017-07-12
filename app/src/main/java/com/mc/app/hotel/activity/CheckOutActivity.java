@@ -6,7 +6,6 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
-import android.widget.Toast;
 
 import com.jakewharton.rxbinding.view.RxView;
 import com.mc.app.hotel.R;
@@ -18,7 +17,6 @@ import com.mc.app.hotel.common.http.Api;
 import com.mc.app.hotel.common.http.Params;
 import com.mc.app.hotel.common.http.RxSubscribeProgress;
 import com.mc.app.hotel.common.http.RxSubscribeThread;
-import com.mc.app.hotel.common.util.ToastUtils;
 import com.mc.app.hotel.common.view.pulltoreflushgrid.ILoadingLayout;
 import com.mc.app.hotel.common.view.pulltoreflushgrid.PullToRefreshBase;
 import com.mc.app.hotel.common.view.pulltoreflushgrid.PullToRefreshListView;
@@ -164,7 +162,7 @@ public class CheckOutActivity extends BaseActivity implements PullToRefreshBase.
 
                                     @Override
                                     protected void onOverError(String message) {
-                                        ToastUtils.show(CheckOutActivity.this, message, Toast.LENGTH_SHORT);
+                                        showToast(message);
                                     }
                                 });
                     }

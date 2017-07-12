@@ -81,7 +81,7 @@
                 android:textColor="@color/colorGrey"
                 android:textSize="16sp" />
 
-            <EditText
+            <TextView
                 android:id="@+id/et_room_sex"
                 android:layout_width="0dp"
                 android:layout_height="20dp"
@@ -133,6 +133,28 @@
                 android:background="@drawable/shap_input_bg_5" />
 
         </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="&#8195;&#8195;地址："
+                android:textColor="@color/colorGrey"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/et_id_addr"
+                android:layout_width="0dp"
+                android:layout_height="20dp"
+                android:layout_weight="1"
+                android:background="@drawable/shap_input_bg_5" />
+
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -149,7 +171,20 @@
                 android:textSize="16sp" />
 
             <EditText
-                android:id="@+id/et_in_day"
+                android:id="@+id/et_in_fromday"
+                android:layout_width="0dp"
+                android:layout_height="20dp"
+                android:layout_weight="1"
+                android:background="@drawable/shap_input_bg_5" />
+            <TextView
+                android:layout_width="20dp"
+                android:layout_height="match_parent"
+                android:text="--"
+                android:textColor="@color/colorGrey"
+                android:gravity="center"
+                android:textStyle="bold"/>
+            <EditText
+                android:id="@+id/et_in_today"
                 android:layout_width="0dp"
                 android:layout_height="20dp"
                 android:layout_weight="1"
@@ -252,7 +287,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="120dp"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
         android:layout_marginTop="16dp"

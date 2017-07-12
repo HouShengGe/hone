@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:ptr="http://schemas.android.com/apk/res-auto"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:background="@color/white"
-              android:orientation="vertical">
+    xmlns:ptr="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
 
-    <include layout="@layout/my_action_bar"/>
+    <include layout="@layout/my_action_bar" />
 
     <com.mc.app.hotel.common.view.pulltoreflushgrid.PullToRefreshListView
         android:id="@+id/lv_customer_list"
@@ -19,9 +19,9 @@
         ptr:ptrHeaderSubTextColor="@color/colorGrey"
         ptr:ptrHeaderTextColor="@color/colorGrey"
         ptr:ptrListViewExtrasEnabled="false"
-        ptr:ptrMode="pullUpFromBottom"
+        ptr:ptrMode="both"
         ptr:ptrRefreshableViewBackground="@color/white"
-        ptr:ptrScrollingWhileRefreshingEnabled="true"/>
+        ptr:ptrScrollingWhileRefreshingEnabled="true" />
 
 
 </LinearLayout>

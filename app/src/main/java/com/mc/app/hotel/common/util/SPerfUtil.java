@@ -34,6 +34,8 @@ public class SPerfUtil {
     public static final String PREF_KEY_USER_STORE_ID = "PREF_KEY_USER_STORE_ID";
     public static final String PREF_KEY_USER_TYPE = "PREF_KEY_USER_TYPE";
     public static final String PREF_KEY_NATIONS = "PREF_KEY_NATIONS";
+    public static final String TOAST_X = "TOAST_X";
+    public static final String TOAST_Y = "TOAST_Y";
 
 
     public static void init(Context context) {
@@ -104,4 +106,19 @@ public class SPerfUtil {
         return list1;
     }
 
+    public static void saveToastX(int x) {
+        prefs.edit().putInt(TOAST_X, x).commit();
+    }
+
+    public static void saveToastY(int y) {
+        prefs.edit().putInt(TOAST_Y, y).commit();
+    }
+
+    public static int readToastX() {
+        return prefs.getInt(TOAST_X, DEFAULT_INT);
+    }
+
+    public static int readToastY() {
+        return prefs.getInt(TOAST_Y, DEFAULT_INT);
+    }
 }

@@ -3,7 +3,6 @@ package com.mc.app.hotel.activity;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.mc.app.hotel.R;
 import com.mc.app.hotel.bean.ComparedFaceBean;
@@ -13,7 +12,6 @@ import com.mc.app.hotel.common.http.Api;
 import com.mc.app.hotel.common.http.Params;
 import com.mc.app.hotel.common.http.RxSubscribeProgress;
 import com.mc.app.hotel.common.http.RxSubscribeThread;
-import com.mc.app.hotel.common.util.ToastUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -66,7 +64,7 @@ public class ComparedFaceCardActivity extends BaseActivity {
 
                     @Override
                     protected void onOverError(String message) {
-                        ToastUtils.show(ComparedFaceCardActivity.this, message, Toast.LENGTH_SHORT);
+                        showToast(message);
                     }
                 });
     }

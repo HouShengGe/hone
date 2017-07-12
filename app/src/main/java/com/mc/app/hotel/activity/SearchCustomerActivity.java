@@ -98,6 +98,11 @@ public class SearchCustomerActivity extends BaseActivity implements PullToRefres
         endLabels.setPullLabel("上拉加载更多...");
         endLabels.setRefreshingLabel("正在加载...");
         endLabels.setReleaseLabel("放手加载更多...");
+        ILoadingLayout startLabels = mPullRefreshListView
+                .getLoadingLayoutProxy(true, false);
+        startLabels.setPullLabel("下拉刷新...");// 刚下拉时，显示的提示
+        startLabels.setRefreshingLabel("正在刷新...");// 刷新时
+        startLabels.setReleaseLabel("放手刷新数据...");// 下来达到一定距离时，显示的提示
     }
 
 
@@ -110,9 +115,9 @@ public class SearchCustomerActivity extends BaseActivity implements PullToRefres
                         pageNo++;
                         custList.addAll(t.getCusts());
                         if (t.getRecordNums() == custList.size())
-                            mPullRefreshListView.setMode(PullToRefreshBase.Mode.DISABLED);
+                            mPullRefreshListView.setMode(PullToRefreshBase.Mode.PULL_FROM_START);
                         else
-                            mPullRefreshListView.setMode(PullToRefreshBase.Mode.PULL_FROM_END);
+                            mPullRefreshListView.setMode(PullToRefreshBase.Mode.BOTH);
                         mPullRefreshListView.onRefreshComplete();
                         if (dialog != null) {
                             dialog.dismiss();
@@ -130,6 +135,7 @@ public class SearchCustomerActivity extends BaseActivity implements PullToRefres
 
     @Override
     public void onPullDownToRefresh(PullToRefreshBase refreshView) {
+        searchData(new CustomerParamsInfo());
     }
 
     @Override
