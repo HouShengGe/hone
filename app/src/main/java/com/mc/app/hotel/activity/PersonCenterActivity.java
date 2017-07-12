@@ -91,23 +91,16 @@ public class PersonCenterActivity extends BaseActivity {
     }
 
     private void getPersonInfo() {
+        PersonBean t = SPerfUtil.getPerson();
+        setPersonInfo(t);
+
 
         Api.getInstance().mApiService.getPersonInfo(Params.getParams())
                 .compose(RxSubscribeThread.<PersonBean>ioAndMain()).
-                subscribe(new RxSubscribeProgress<PersonBean>(PersonCenterActivity.this) {
+                subscribe(new RxSubscribeProgress<PersonBean>(PersonCenterActivity.this, false) {
                     @Override
                     protected void onOverNext(PersonBean t) {
-                        if (SPerfUtil.getUserInfo().getUserType() == 0) {
-                            llNormal.setVisibility(View.VISIBLE);
-                            tvHeotelName.setText(t.getStoreName());
-                            tvHeotelAddress.setText(t.getAddress());
-                            tvHeotelOwn.setText(t.getChargeName());
-                            tvHeotelPhone.setText(t.getChargePhone());
-                        } else {
-                            llPolice.setVisibility(View.VISIBLE);
-                            tvName.setText(t.getPoliceMan());
-                            tvAera.setText(ArrayListUtils.toStrings(t.getStoresList()));
-                        }
+                        setPersonInfo(t);
                     }
 
                     @Override
@@ -116,5 +109,19 @@ public class PersonCenterActivity extends BaseActivity {
                     }
 
                 });
+    }
+
+    private void setPersonInfo(PersonBean t) {
+        if (SPerfUtil.getUserInfo().getUserType() == 0) {
+            llNormal.setVisibility(View.VISIBLE);
+            tvHeotelName.setText(t.getStoreName());
+            tvHeotelAddress.setText(t.getAddress());
+            tvHeotelOwn.setText(t.getChargeName());
+            tvHeotelPhone.setText(t.getChargePhone());
+        } else {
+            llPolice.setVisibility(View.VISIBLE);
+            tvName.setText(t.getPoliceMan());
+            tvAera.setText(ArrayListUtils.toStrings(t.getStoresList()));
+        }
     }
 }

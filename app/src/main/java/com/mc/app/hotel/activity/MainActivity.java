@@ -6,6 +6,7 @@ import android.widget.LinearLayout;
 import com.jakewharton.rxbinding.view.RxView;
 import com.mc.app.hotel.R;
 import com.mc.app.hotel.bean.NationBean;
+import com.mc.app.hotel.bean.PersonBean;
 import com.mc.app.hotel.common.Constants;
 import com.mc.app.hotel.common.facealignment.FaceAilgmentActivity;
 import com.mc.app.hotel.common.http.Api;
@@ -60,6 +61,7 @@ public class MainActivity extends BaseActivity {
         livingList();
         declareOut();
         setting();
+        getPersonInfo();
 
     }
 
@@ -169,6 +171,23 @@ public class MainActivity extends BaseActivity {
                     }
                 });
 
+    }
+
+    private void getPersonInfo() {
+
+        Api.getInstance().mApiService.getPersonInfo(Params.getParams())
+                .compose(RxSubscribeThread.<PersonBean>ioAndMain()).
+                subscribe(new RxSubscribeProgress<PersonBean>(MainActivity.this) {
+                    @Override
+                    protected void onOverNext(PersonBean t) {
+                        SPerfUtil.savePerson(t);
+                    }
+
+                    @Override
+                    protected void onOverError(String message) {
+                    }
+
+                });
     }
 
 }
