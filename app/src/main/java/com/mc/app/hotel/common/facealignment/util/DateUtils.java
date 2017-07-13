@@ -1,6 +1,7 @@
 package com.mc.app.hotel.common.facealignment.util;
 
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -282,4 +283,18 @@ public class DateUtils {
         return date.getTime();
     }
 
+    public static boolean dateFormatRight(String dateSource) {
+        if (dateSource == null || dateSource.length() < 8)
+            return false;
+        String dateStr = dateSource.substring(0, 4) + "-" + dateSource.substring(4, 6) + "-"
+                + dateSource.substring(6, 8);
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        sdf.setLenient(false);
+        try {
+            Date date = sdf.parse(dateStr);
+            return (date != null);
+        } catch (ParseException e) {
+            return false;
+        }
+    }
 }

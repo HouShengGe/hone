@@ -51,9 +51,6 @@ public class SearchCustomerActivity extends BaseActivity implements PullToRefres
         init();
         initIndicator();
         buckButton(true);
-        adapter = new CustomerAdapter(this, custList);
-        mPullRefreshListView.setAdapter(adapter);
-        mPullRefreshListView.setOnRefreshListener(this);
     }
 
     private void init() {
@@ -62,6 +59,9 @@ public class SearchCustomerActivity extends BaseActivity implements PullToRefres
             storeId = getIntent().getIntExtra(Constants.STORE_ID, 0);
             Log.d(TAG, "init: storeId = " + storeId);
         }
+        adapter = new CustomerAdapter(this, custList,roomType);
+        mPullRefreshListView.setAdapter(adapter);
+        mPullRefreshListView.setOnRefreshListener(this);
         rightTitle(R.drawable.find);
         if (roomType == 0)
             setTitle("全部住客");

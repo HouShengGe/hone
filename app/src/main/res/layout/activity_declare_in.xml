@@ -88,6 +88,7 @@
                 android:layout_weight="1"
                 android:background="@drawable/shap_input_bg_5" />
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -130,9 +131,11 @@
                 android:layout_width="0dp"
                 android:layout_height="20dp"
                 android:layout_weight="1"
-                android:background="@drawable/shap_input_bg_5" />
+                android:background="@drawable/shap_input_bg_5"
+                android:digits="0123456789X" />
 
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -175,14 +178,17 @@
                 android:layout_width="0dp"
                 android:layout_height="20dp"
                 android:layout_weight="1"
-                android:background="@drawable/shap_input_bg_5" />
+                android:background="@drawable/shap_input_bg_5"
+                android:inputType="number" />
+
             <TextView
                 android:layout_width="20dp"
                 android:layout_height="match_parent"
+                android:gravity="center"
                 android:text="--"
                 android:textColor="@color/colorGrey"
-                android:gravity="center"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
+
             <EditText
                 android:id="@+id/et_in_today"
                 android:layout_width="0dp"
@@ -211,7 +217,8 @@
                 android:layout_width="0dp"
                 android:layout_height="20dp"
                 android:layout_weight="1"
-                android:background="@drawable/shap_input_bg_5" />
+                android:background="@drawable/shap_input_bg_5"
+                android:inputType="number" />
 
         </LinearLayout>
 
@@ -234,6 +241,7 @@
                 android:layout_width="0dp"
                 android:layout_height="20dp"
                 android:layout_weight="1"
+                android:inputType="number"
                 android:background="@drawable/shap_input_bg_5" />
 
         </LinearLayout>
@@ -298,7 +306,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:scaleType="fitCenter"/>
+            android:scaleType="fitCenter" />
 
         <View
             android:layout_width="25dp"
@@ -309,7 +317,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:scaleType="fitCenter"/>
+            android:scaleType="fitCenter" />
     </LinearLayout>
 
     <LinearLayout

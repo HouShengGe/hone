@@ -107,7 +107,7 @@ public class RoomStatusActivity extends BaseActivity implements PullToRefreshBas
                 subscribe(new RxSubscribeProgress<RoomDetialBean>(RoomStatusActivity.this, false) {
                     @Override
                     protected void onOverNext(RoomDetialBean t) {
-                        if (roomStr.equals("VC")) {
+                        if (roomStr.equals("VC")||roomStr.equals("VD")) {
                             toNextActivity(FaceAilgmentActivity.class);
                         } else {
                             showRoomDetialDialog(t);

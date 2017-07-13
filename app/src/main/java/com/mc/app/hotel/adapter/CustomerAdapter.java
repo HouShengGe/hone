@@ -29,10 +29,12 @@ import butterknife.ButterKnife;
 public class CustomerAdapter extends BaseAdapter {
     private Activity a;
     private List<CustomerInfo> data;
+    private int type;
 
-    public CustomerAdapter(Activity a, List<CustomerInfo> data) {
+    public CustomerAdapter(Activity a, List<CustomerInfo> data,int type) {
         this.a = a;
         this.data = data;
+        this.type = type;
     }
 
     public void setData(List<CustomerInfo> data) {
@@ -110,11 +112,12 @@ public class CustomerAdapter extends BaseAdapter {
             tvIdNumber.setText(info.getIdCard());
             tvAddress.setText(info.getAddress());
             tvArriveDay.setText("来期：" + info.getArriveDate());
-            tvLeaveDay.setText("离期：" + info.getLeaveDate());
+            String leaveDay = type == 1?"预离：":"离期：";
+            tvLeaveDay.setText(leaveDay + info.getLeaveDate());
             btnCheck.setOnClickListener(new OnClickEvent(info));
             if (position % 2 == 0) {
                 rlBg.setBackgroundResource(R.color.custom_list_bg);
-            }else{
+            } else {
                 rlBg.setBackgroundResource(R.color.white);
             }
         }

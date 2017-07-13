@@ -2,6 +2,8 @@ package com.mc.app.hotel.activity;
 
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Base64;
 import android.view.View;
 import android.widget.AdapterView;
@@ -21,6 +23,7 @@ import com.mc.app.hotel.common.http.Api;
 import com.mc.app.hotel.common.http.Params;
 import com.mc.app.hotel.common.http.RxSubscribeProgress;
 import com.mc.app.hotel.common.http.RxSubscribeThread;
+import com.mc.app.hotel.common.util.Identity;
 import com.mc.app.hotel.common.util.SPerfUtil;
 import com.mc.app.hotel.common.util.StringUtil;
 import com.mc.app.hotel.common.view.DialogListView;
@@ -123,6 +126,24 @@ public class DeclareInActivity extends BaseActivity {
         imgvFacePic.setImageBitmap(BitmapFactory.decodeByteArray(record.getCamPhoto(), 0, record.getCamPhoto().length));
         etArriveDay.setText(DateUtils.getCurrentFormateTime());
         etLeaveDay.setText(DateUtils.getNextDay());
+        etIdCard.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (s.length() == 18) {
+                    etBirthday.setText(Identity.getIDDate(s.toString()));
+                }
+            }
+        });
         tvEnd.setText("通过");
         commit();
         setArriveDay();
@@ -144,10 +165,6 @@ public class DeclareInActivity extends BaseActivity {
             return null;
         }
         String phoneNum = etPhoneNo.getText().toString().trim();
-        if (phoneNum == null || phoneNum.equals("")) {
-            etPhoneNo.setError("请填写手机号");
-            return null;
-        }
         String arriveDay = etArriveDay.getText().toString().trim();
         if (arriveDay == null || arriveDay.equals("")) {
             etArriveDay.setError("请填写到店日期");
@@ -162,28 +179,37 @@ public class DeclareInActivity extends BaseActivity {
         if (birthday == null || birthday.equals("")) {
             etBirthday.setError("请填写生日");
             return null;
+        } else if (!DateUtils.dateFormatRight(birthday)) {
+            etBirthday.setError("请填写正确生日");
+            return null;
         }
         String name = etRoomName.getText().toString().trim();
         if (name == null || name.equals("")) {
             etRoomName.setError("请填写姓名");
             return null;
         }
+        String idCard = etIdCard.getText().toString().trim();
+        if (!Identity.checkIDCard(idCard)) {
+            etIdCard.setError("请填写正确身份证号码");
+            return null;
+        }
         String exprFDate = etFromDay.getText().toString().trim();
         if (exprFDate == null || exprFDate.equals("")) {
             etFromDay.setError("请填写身份证有效日期");
             return null;
+        } else if (!DateUtils.dateFormatRight(exprFDate)) {
+            etFromDay.setError("请填写正确身份证有效日期");
+            return null;
         }
-        String exprTDate = etFromDay.getText().toString().trim();
+        String exprTDate = etToDay.getText().toString().trim();
         if (exprTDate == null || exprTDate.equals("")) {
             etToDay.setError("请填写身份证有效日期");
             return null;
-        }
-        String exprDate = exprFDate + "-" + exprTDate;
-        String idCard = etIdCard.getText().toString().trim();
-        if (idCard == null || idCard.equals("")) {
-            etIdCard.setError("请填写身份证号码");
+        } else if (!DateUtils.dateFormatRight(exprTDate) && !exprTDate.equals("永久")) {
+            etToDay.setError("请填写正确身份证有效日期");
             return null;
         }
+        String exprDate = exprFDate + "-" + exprTDate;
         String address = etAddress.getText().toString().trim();
         if (address == null || address.equals("")) {
             etAddress.setError("请填写地址");
