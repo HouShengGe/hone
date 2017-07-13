@@ -72,6 +72,9 @@ public class BaseActivity extends AppCompatActivity implements TitleInterface, V
         if (registerEventBus) {
             EventBus.getDefault().unregister(this);
         }
+        if (toast != null) {
+            toast.cancel();
+        }
         super.onStop();
     }
 
@@ -139,8 +142,11 @@ public class BaseActivity extends AppCompatActivity implements TitleInterface, V
         titleViewHolder.titleTv.setText(title);
     }
 
+    Toast toast;
+
     public void showToast(String msg) {
-        Toast.makeText(this, msg, EToast2.LENGTH_SHORT).show();
+        toast = Toast.makeText(this, msg, EToast2.LENGTH_SHORT);
+        toast.show();
     }
 
     @Override
@@ -196,5 +202,9 @@ public class BaseActivity extends AppCompatActivity implements TitleInterface, V
         toNextActivity(targetActivity, null, reqCode);
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
 
+    }
 }

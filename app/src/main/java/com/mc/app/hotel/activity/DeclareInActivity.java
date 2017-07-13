@@ -218,6 +218,7 @@ public class DeclareInActivity extends BaseActivity {
         return info;
     }
 
+
     DialogListView dialog;
 
     private void selectNation() {

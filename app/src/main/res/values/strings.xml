@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">名宿实名</string>
+    <string name="app_name">民宿实名</string>
     <string name="system_name">民宿实名申报及查验系统</string>
     <string name="please_input_phone_num">请输入手机号</string>
     <string name="please_input_vCode">请输入验证码</string>
