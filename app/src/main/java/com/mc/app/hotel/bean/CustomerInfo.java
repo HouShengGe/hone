@@ -16,6 +16,15 @@ public class CustomerInfo {
     String sex;
     String nation;
     String address;
+    String roomPrice;
+
+    public String getRoomPrice() {
+        return roomPrice;
+    }
+
+    public void setRoomPrice(String roomPrice) {
+        this.roomPrice = roomPrice;
+    }
 
     boolean isChecked;
 

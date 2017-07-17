@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tool="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#C8D2DB"
-    android:orientation="vertical">
+              xmlns:tool="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="#C8D2DB"
+              android:orientation="vertical">
 
-    <include layout="@layout/my_action_bar" />
+    <include layout="@layout/my_action_bar"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -29,28 +29,28 @@
                 android:layout_height="wrap_content"
                 android:text="&#8195;&#8195;房号："
                 android:textColor="@color/colorGrey"
-                android:textSize="16sp" />
+                android:textSize="16sp"/>
 
             <EditText
                 android:id="@+id/et_room_no"
                 android:layout_width="0dp"
                 android:layout_height="20dp"
                 android:layout_weight="1"
-                android:background="@drawable/shap_input_bg_5" />
+                android:background="@drawable/shap_input_bg_5"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="房价："
+                android:text=" 房价："
                 android:textColor="@color/colorGrey"
-                android:textSize="16sp" />
+                android:textSize="16sp"/>
 
             <EditText
                 android:id="@+id/et_room_price"
                 android:layout_width="0dp"
                 android:layout_height="20dp"
                 android:layout_weight="1"
-                android:background="@drawable/shap_input_bg_5" />
+                android:background="@drawable/shap_input_bg_5"/>
         </LinearLayout>
 
         <LinearLayout
@@ -65,28 +65,28 @@
                 android:layout_height="wrap_content"
                 android:text="&#8195;&#8195;姓名："
                 android:textColor="@color/colorGrey"
-                android:textSize="16sp" />
+                android:textSize="16sp"/>
 
             <EditText
                 android:id="@+id/et_room_name"
                 android:layout_width="0dp"
                 android:layout_height="20dp"
                 android:layout_weight="1"
-                android:background="@drawable/shap_input_bg_5" />
+                android:background="@drawable/shap_input_bg_5"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="性别："
+                android:text=" 性别："
                 android:textColor="@color/colorGrey"
-                android:textSize="16sp" />
+                android:textSize="16sp"/>
 
             <TextView
                 android:id="@+id/et_room_sex"
                 android:layout_width="0dp"
                 android:layout_height="20dp"
                 android:layout_weight="1"
-                android:background="@drawable/shap_input_bg_5" />
+                android:background="@drawable/shap_input_bg_5"/>
         </LinearLayout>
 
         <LinearLayout
@@ -101,14 +101,14 @@
                 android:layout_height="wrap_content"
                 android:text="&#8195;&#8195;民族："
                 android:textColor="@color/colorGrey"
-                android:textSize="16sp" />
+                android:textSize="16sp"/>
 
             <TextView
                 android:id="@+id/et_nation"
                 android:layout_width="0dp"
                 android:layout_height="20dp"
                 android:layout_weight="1"
-                android:background="@drawable/shap_input_bg_5" />
+                android:background="@drawable/shap_input_bg_5"/>
 
         </LinearLayout>
 
@@ -124,7 +124,7 @@
                 android:layout_height="wrap_content"
                 android:text="身份证号："
                 android:textColor="@color/colorGrey"
-                android:textSize="16sp" />
+                android:textSize="16sp"/>
 
             <EditText
                 android:id="@+id/et_id_card"
@@ -132,7 +132,7 @@
                 android:layout_height="20dp"
                 android:layout_weight="1"
                 android:background="@drawable/shap_input_bg_5"
-                android:digits="0123456789X" />
+                android:digits="0123456789X"/>
 
         </LinearLayout>
 
@@ -148,14 +148,15 @@
                 android:layout_height="wrap_content"
                 android:text="&#8195;&#8195;地址："
                 android:textColor="@color/colorGrey"
-                android:textSize="16sp" />
+                android:textSize="16sp"/>
 
             <EditText
                 android:id="@+id/et_id_addr"
                 android:layout_width="0dp"
                 android:layout_height="20dp"
                 android:layout_weight="1"
-                android:background="@drawable/shap_input_bg_5" />
+                android:background="@drawable/shap_input_bg_5"
+                android:maxLines="1"/>
 
         </LinearLayout>
 
@@ -171,7 +172,7 @@
                 android:layout_height="wrap_content"
                 android:text="&#8195;有效期："
                 android:textColor="@color/colorGrey"
-                android:textSize="16sp" />
+                android:textSize="16sp"/>
 
             <EditText
                 android:id="@+id/et_in_fromday"
@@ -179,7 +180,7 @@
                 android:layout_height="20dp"
                 android:layout_weight="1"
                 android:background="@drawable/shap_input_bg_5"
-                android:inputType="number" />
+                android:inputType="number"/>
 
             <TextView
                 android:layout_width="20dp"
@@ -187,14 +188,14 @@
                 android:gravity="center"
                 android:text="--"
                 android:textColor="@color/colorGrey"
-                android:textStyle="bold" />
+                android:textStyle="bold"/>
 
             <EditText
                 android:id="@+id/et_in_today"
                 android:layout_width="0dp"
                 android:layout_height="20dp"
                 android:layout_weight="1"
-                android:background="@drawable/shap_input_bg_5" />
+                android:background="@drawable/shap_input_bg_5"/>
 
         </LinearLayout>
 
@@ -208,9 +209,9 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="&#8195;&#8195;生日："
+                android:text="出生日期："
                 android:textColor="@color/colorGrey"
-                android:textSize="16sp" />
+                android:textSize="16sp"/>
 
             <EditText
                 android:id="@+id/et_birthday"
@@ -218,7 +219,7 @@
                 android:layout_height="20dp"
                 android:layout_weight="1"
                 android:background="@drawable/shap_input_bg_5"
-                android:inputType="number" />
+                android:inputType="number"/>
 
         </LinearLayout>
 
@@ -232,17 +233,17 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="手机号码："
+                android:text="&#8195;&#8195;电话："
                 android:textColor="@color/colorGrey"
-                android:textSize="16sp" />
+                android:textSize="16sp"/>
 
             <EditText
                 android:id="@+id/et_phone_no"
                 android:layout_width="0dp"
                 android:layout_height="20dp"
                 android:layout_weight="1"
-                android:inputType="number"
-                android:background="@drawable/shap_input_bg_5" />
+                android:background="@drawable/shap_input_bg_5"
+                android:inputType="number"/>
 
         </LinearLayout>
 
@@ -256,16 +257,16 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="居住日期："
+                android:text="&#8195;&#8195;来期："
                 android:textColor="@color/colorGrey"
-                android:textSize="16sp" />
+                android:textSize="16sp"/>
 
             <TextView
                 android:id="@+id/et_arrive_day"
                 android:layout_width="0dp"
                 android:layout_height="20dp"
                 android:layout_weight="1"
-                android:background="@drawable/shap_input_bg_5" />
+                android:background="@drawable/shap_input_bg_5"/>
 
         </LinearLayout>
 
@@ -279,16 +280,16 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="离店日期："
+                android:text="&#8195;&#8195;预离："
                 android:textColor="@color/colorGrey"
-                android:textSize="16sp" />
+                android:textSize="16sp"/>
 
             <TextView
                 android:id="@+id/et_leave_day"
                 android:layout_width="0dp"
                 android:layout_height="20dp"
                 android:layout_weight="1"
-                android:background="@drawable/shap_input_bg_5" />
+                android:background="@drawable/shap_input_bg_5"/>
 
         </LinearLayout>
     </LinearLayout>
@@ -306,18 +307,18 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:scaleType="fitCenter" />
+            android:scaleType="fitCenter"/>
 
         <View
             android:layout_width="25dp"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"/>
 
         <ImageView
             android:id="@+id/imgv_face_pic"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:scaleType="fitCenter" />
+            android:scaleType="fitCenter"/>
     </LinearLayout>
 
     <LinearLayout
@@ -331,7 +332,7 @@
             android:layout_height="wrap_content"
             android:text="对比结果："
             android:textColor="#424342"
-            android:textSize="24sp" />
+            android:textSize="24sp"/>
 
         <TextView
             android:id="@+id/tv_end"
@@ -339,13 +340,13 @@
             android:layout_height="wrap_content"
             android:textColor="#369c16"
             android:textSize="24sp"
-            tool:text="通过" />
+            tool:text="通过"/>
     </LinearLayout>
 
     <View
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1" />
+        android:layout_weight="1"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -363,11 +364,11 @@
             android:text="确认"
             android:textColor="@color/white"
             android:textSize="26sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"/>
 
         <View
             android:layout_width="10dp"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"/>
 
         <Button
             android:id="@+id/btn_cancel"
@@ -378,6 +379,6 @@
             android:text="取消"
             android:textColor="@color/white"
             android:textSize="26sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"/>
     </LinearLayout>
 </LinearLayout>

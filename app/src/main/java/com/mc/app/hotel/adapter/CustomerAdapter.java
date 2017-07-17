@@ -8,13 +8,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
-import android.widget.RelativeLayout;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.mc.app.hotel.R;
 import com.mc.app.hotel.activity.ComparedFaceCardActivity;
 import com.mc.app.hotel.bean.CustomerInfo;
 import com.mc.app.hotel.common.Constants;
+import com.mc.app.hotel.common.util.Identity;
 import com.mc.app.hotel.common.util.StringUtil;
 
 import java.util.List;
@@ -31,7 +32,7 @@ public class CustomerAdapter extends BaseAdapter {
     private List<CustomerInfo> data;
     private int type;
 
-    public CustomerAdapter(Activity a, List<CustomerInfo> data,int type) {
+    public CustomerAdapter(Activity a, List<CustomerInfo> data, int type) {
         this.a = a;
         this.data = data;
         this.type = type;
@@ -79,7 +80,11 @@ public class CustomerAdapter extends BaseAdapter {
         @BindView(R.id.btn_check)
         Button btnCheck;
         @BindView(R.id.rl_bg)
-        RelativeLayout rlBg;
+        LinearLayout rlBg;
+        @BindView(R.id.tv_room_price)
+        TextView tvRoomPrice;
+        @BindView(R.id.tv_birthday)
+        TextView tvBirthday;
 
         public ViewHolder(View view) {
             ButterKnife.bind(this, view);
@@ -104,15 +109,17 @@ public class CustomerAdapter extends BaseAdapter {
                 tvArriveDay.setVisibility(View.GONE);
             if (StringUtil.isBlank(info.getLeaveDate()))
                 tvLeaveDay.setVisibility(View.GONE);
-            tvName.setText(info.getCustomer());
-            tvPhoneNo.setText(info.getMobile());
-            tvRoomNo.setText(info.getRoomNo());
-            tvSex.setText(info.getSex());
-            tvNation.setText(info.getNation());
-            tvIdNumber.setText(info.getIdCard());
-            tvAddress.setText(info.getAddress());
+            tvName.setText(StringUtil.getString(info.getCustomer()));
+            tvPhoneNo.setText(StringUtil.getString(info.getMobile()));
+            tvRoomNo.setText(StringUtil.getString(info.getRoomNo()));
+            tvSex.setText(StringUtil.getString(info.getSex()));
+            tvNation.setText(StringUtil.getString(info.getNation()));
+            tvIdNumber.setText(StringUtil.getString(info.getIdCard()));
+            tvAddress.setText(StringUtil.getString(info.getAddress()));
+            tvRoomPrice.setText(StringUtil.getString(info.getRoomPrice()));
+            tvBirthday.setText(Identity.getBirthday(info.getIdCard()));
             tvArriveDay.setText("来期：" + info.getArriveDate());
-            String leaveDay = type == 1?"预离：":"离期：";
+            String leaveDay = type == 1 ? "预离：" : "离期：";
             tvLeaveDay.setText(leaveDay + info.getLeaveDate());
             btnCheck.setOnClickListener(new OnClickEvent(info));
             if (position % 2 == 0) {

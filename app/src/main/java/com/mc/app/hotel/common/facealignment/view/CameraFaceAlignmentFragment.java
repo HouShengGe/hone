@@ -19,7 +19,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.mc.app.hotel.R;
-import com.mc.app.hotel.common.facealignment.SettingActivity;
+import com.mc.app.hotel.common.facealignment.NewSettingActivity;
 import com.mc.app.hotel.common.facealignment.event.EventDataSaveRequest;
 import com.mc.app.hotel.common.facealignment.event.EventTakePhotoRequest;
 import com.mc.app.hotel.common.facealignment.event.EventTakePhotoResponse;
@@ -236,7 +236,7 @@ public class CameraFaceAlignmentFragment extends Fragment {
                 }
                 break;
             case R.id.settingIBtn:
-                getContext().startActivity(new Intent(getContext(), SettingActivity.class));
+                getContext().startActivity(new Intent(getContext(), NewSettingActivity.class));
                 break;
         }
     }

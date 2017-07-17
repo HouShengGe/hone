@@ -72,6 +72,8 @@ public class CheckOutAdapter extends BaseAdapter {
         TextView tvArriceDay;
         @BindView(R.id.tv_id_card)
         TextView tvIDCard;
+        @BindView(R.id.tv_room_price)
+        TextView tvRoomPrice;
         @BindView(R.id.ll_bg)
         LinearLayout llBG;
 
@@ -86,6 +88,7 @@ public class CheckOutAdapter extends BaseAdapter {
             tvRoomNo.setText(StringUtil.getString(info.getRoomNo()));
             tvIDCard.setText("身份证：" + StringUtil.getString(info.getIdCard()));
             tvArriceDay.setText("居住日期：" + StringUtil.getString(info.getArriveDate()));
+            tvRoomPrice.setText(StringUtil.getString(info.getRoomPrice()));
             if (position % 2 == 0) {
                 llBG.setBackgroundResource(R.color.custom_list_bg);
             } else {

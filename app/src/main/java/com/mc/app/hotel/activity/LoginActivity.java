@@ -193,7 +193,6 @@ public class LoginActivity extends BaseActivity {
                             etPhoneNum.setError("请输入正确手机号");
                             return;
                         }
-                        getCountDown().start();
                         Map<String, String> map = Params.getVCodeParams(moblie);
                         ApiService mService = Api.getInstance().mApiService;
                         if (mService != null)
@@ -202,6 +201,7 @@ public class LoginActivity extends BaseActivity {
                                     subscribe(new RxSubscribeProgress<String>(LoginActivity.this) {
                                         @Override
                                         protected void onOverNext(String t) {
+                                            getCountDown().start();
                                         }
 
                                         @Override

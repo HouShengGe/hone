@@ -187,7 +187,7 @@ public class IDCardSettingFragment extends Fragment {
         }
     }
 
-    @OnClick({R.id.selectLinkTypeBtn, R.id.setDecodeServerBtn})
+    @OnClick({R.id.selectLinkTypeBtn,R.id.setDecodeServerBtn})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.selectLinkTypeBtn:
