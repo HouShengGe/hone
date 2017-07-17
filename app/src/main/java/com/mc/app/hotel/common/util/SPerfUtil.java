@@ -36,6 +36,7 @@ public class SPerfUtil {
     public static final String PREF_KEY_USER_TYPE = "PREF_KEY_USER_TYPE";
     public static final String PREF_KEY_NATIONS = "PREF_KEY_NATIONS";
     public static final String PREF_KEY_PERSON = "PREF_KEY_PERSON";
+    public static final String PREF_KEY_URL = "PREF_KEY_URL";
 
 
     public static void init(Context context) {
@@ -115,5 +116,14 @@ public class SPerfUtil {
     public static PersonBean getPerson() {
         Gson gson = new Gson();
         return gson.fromJson(prefs.getString(PREF_KEY_PERSON, DEFAULT_STRING), PersonBean.class);
+    }
+
+    public static void setUrl(String url) {
+        String baseUrl = "http://" + url + "/rest/";
+        prefs.edit().putString(PREF_KEY_URL, baseUrl).commit();
+    }
+
+    public static String getUrl() {
+        return prefs.getString(PREF_KEY_URL, DEFAULT_STRING);
     }
 }

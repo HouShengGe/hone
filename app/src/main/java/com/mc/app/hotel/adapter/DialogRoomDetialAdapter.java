@@ -9,6 +9,8 @@ import android.widget.TextView;
 
 import com.mc.app.hotel.R;
 import com.mc.app.hotel.bean.RoomDetialInfo;
+import com.mc.app.hotel.common.util.Identity;
+import com.mc.app.hotel.common.util.StringUtil;
 
 import java.util.List;
 
@@ -49,6 +51,7 @@ public class DialogRoomDetialAdapter extends BaseAdapter {
         TextView tvPhoneNo;
         TextView tvAddr;
         TextView tvSex;
+        TextView tvBirthday;
     }
 
     @Override
@@ -66,18 +69,20 @@ public class DialogRoomDetialAdapter extends BaseAdapter {
             vh.tvPhoneNo = (TextView) convertView.findViewById(R.id.tv_phone_no);
             vh.tvAddr = (TextView) convertView.findViewById(R.id.tv_addr);
             vh.tvSex = (TextView) convertView.findViewById(R.id.tv_room_sex);
+            vh.tvBirthday = (TextView) convertView.findViewById(R.id.tv_birthday);
             convertView.setTag(vh);
         } else {
             vh = (ViewHolder) convertView.getTag();
         }
-        vh.tvCustomer.setText(info.getCustomer());
-        vh.tvCuntry.setText(info.getNation());
-        vh.tvArrive.setText(info.getArriveDate());
-        vh.tvLeave.setText(info.getLeaveDate());
-        vh.tvIdCard.setText(info.getIdCard());
-        vh.tvPhoneNo.setText(info.getMobile());
-        vh.tvAddr.setText(info.getAddress());
-        vh.tvSex.setText(info.getSex());
+        vh.tvCustomer.setText(StringUtil.getString(info.getCustomer()));
+        vh.tvCuntry.setText(StringUtil.getString(info.getNation()));
+        vh.tvArrive.setText(StringUtil.getString(info.getArriveDate()));
+        vh.tvLeave.setText(StringUtil.getString(info.getLeaveDate()));
+        vh.tvIdCard.setText(StringUtil.getString(info.getIdCard()));
+        vh.tvPhoneNo.setText(StringUtil.getString(info.getMobile()));
+        vh.tvAddr.setText(StringUtil.getString(info.getAddress()));
+        vh.tvSex.setText(StringUtil.getString(info.getSex()));
+        vh.tvBirthday.setText(Identity.getBirthday(info.getIdCard()));
         return convertView;
     }
 }

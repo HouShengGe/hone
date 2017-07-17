@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.mc.app.hotel.R;
@@ -71,18 +72,25 @@ public class CheckOutAdapter extends BaseAdapter {
         TextView tvArriceDay;
         @BindView(R.id.tv_id_card)
         TextView tvIDCard;
+        @BindView(R.id.ll_bg)
+        LinearLayout llBG;
 
 
         public ViewHolder(View view) {
             ButterKnife.bind(this, view);
         }
 
-        public void setView(CustomerInfo info) {
-            tvName.setText("名字："+StringUtil.getString(info.getCustomer()));
-            tvPhoneNo.setText("手机号："+ StringUtil.getString(info.getMobile()));
+        public void setView(CustomerInfo info, int position) {
+            tvName.setText("名字：" + StringUtil.getString(info.getCustomer()));
+            tvPhoneNo.setText("手机号：" + StringUtil.getString(info.getMobile()));
             tvRoomNo.setText(StringUtil.getString(info.getRoomNo()));
-            tvIDCard.setText("身份证："+StringUtil.getString(info.getIdCard()));
-            tvArriceDay.setText("居住日期："+StringUtil.getString(info.getArriveDate()));
+            tvIDCard.setText("身份证：" + StringUtil.getString(info.getIdCard()));
+            tvArriceDay.setText("居住日期：" + StringUtil.getString(info.getArriveDate()));
+            if (position % 2 == 0) {
+                llBG.setBackgroundResource(R.color.custom_list_bg);
+            } else {
+                llBG.setBackgroundResource(R.color.white);
+            }
             checkbox.setSelected(info.isChecked());
             checkbox.setSelected(seletedItems.containsKey(info.getCustomer()));
         }
@@ -100,7 +108,7 @@ public class CheckOutAdapter extends BaseAdapter {
         } else {
             vh = (ViewHolder) convertView.getTag();
         }
-        vh.setView(info);
+        vh.setView(info, position);
         return convertView;
     }
 

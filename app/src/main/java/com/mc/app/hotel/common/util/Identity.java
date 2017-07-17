@@ -60,11 +60,21 @@ public class Identity {
     // 获取时间串
     public static String getIDDate(final String idCard) {
         String dateStr = "";
+        if (idCard == null || idCard.length() < 15)
+            return dateStr;
         if (isNew(idCard))
             dateStr = idCard.substring(fPart, fPart + 8);
         else
             dateStr = yearFlag + idCard.substring(fPart, fPart + 6);
         return dateStr;
+    }
+
+    public static String getBirthday(final String idCard) {
+        String date = getIDDate(idCard);
+        if (date == null || date.length() < 8)
+            return "";
+        return date.substring(0, 4) + "-" + date.substring(4, 6) + "-"
+                + date.substring(6, 8);
     }
 
     // 判断时间合法性

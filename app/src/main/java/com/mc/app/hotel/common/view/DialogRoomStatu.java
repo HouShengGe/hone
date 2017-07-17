@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.mc.app.hotel.R;
 import com.mc.app.hotel.adapter.DialogRoomDetialAdapter;
 import com.mc.app.hotel.bean.RoomDetialBean;
+import com.mc.app.hotel.common.util.StringUtil;
 
 /**
  * Created by Administrator on 2017/7/10.
@@ -44,8 +45,10 @@ public class DialogRoomStatu {
         View view = LayoutInflater.from(a).inflate(R.layout.layout_dialog_room_head, null);
         TextView tvRoomNum = (TextView) view.findViewById(R.id.tv_room_no);
         TextView tvRoomType = (TextView) view.findViewById(R.id.tv_room_type);
-        tvRoomNum.setText(bean.getRoomNo());
-        tvRoomType.setText(bean.getRoomType());
+        TextView tvRoomPrice = (TextView) view.findViewById(R.id.tv_room_price);
+        tvRoomNum.setText(StringUtil.getString(bean.getRoomNo()));
+        tvRoomType.setText(StringUtil.getString(bean.getRoomType()));
+        tvRoomPrice.setText(StringUtil.getString(bean.getRoomPrice()));
         listView.addHeaderView(view);
         DialogRoomDetialAdapter adapter = new DialogRoomDetialAdapter(a, bean.getCusts());
         listView.setAdapter(adapter);

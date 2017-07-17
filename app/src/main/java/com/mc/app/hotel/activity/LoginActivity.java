@@ -14,6 +14,9 @@ import com.mc.app.hotel.bean.LoginResBean;
 import com.mc.app.hotel.bean.UrlBean;
 import com.mc.app.hotel.common.Constants;
 import com.mc.app.hotel.common.http.Api;
+import com.mc.app.hotel.common.http.ApiService;
+import com.mc.app.hotel.common.http.ErrorHttpEvent;
+import com.mc.app.hotel.common.http.GetUrl;
 import com.mc.app.hotel.common.http.HttpConstant;
 import com.mc.app.hotel.common.http.Params;
 import com.mc.app.hotel.common.http.RxSubscribeProgress;
@@ -22,6 +25,8 @@ import com.mc.app.hotel.common.util.CountDownTimers;
 import com.mc.app.hotel.common.util.SPerfUtil;
 import com.mc.app.hotel.common.util.Zz;
 import com.mc.app.hotel.common.view.DialogListView;
+
+import org.greenrobot.eventbus.Subscribe;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -59,7 +64,7 @@ public class LoginActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+        super.onCreate(savedInstanceState, true);
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
         initView();
@@ -84,7 +89,7 @@ public class LoginActivity extends BaseActivity {
     }
 
     private void getURL() {
-        Api.getInstance().mApiService.getURL()
+        GetUrl.getInstance().mApiService.getURL()
                 .compose(RxSubscribeThread.<List<UrlBean>>ioAndMain()).
                 subscribe(new RxSubscribeProgress<List<UrlBean>>(LoginActivity.this) {
                     @Override
@@ -169,6 +174,7 @@ public class LoginActivity extends BaseActivity {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
             HttpConstant.setBaseUrl(urlList.get(position).getServiceIP());
+            Api.getInstance().init();
             tvServiceName.setText(urlList.get(position).getServiceName());
             if (dialog != null)
                 dialog.dismiss();
@@ -189,17 +195,19 @@ public class LoginActivity extends BaseActivity {
                         }
                         getCountDown().start();
                         Map<String, String> map = Params.getVCodeParams(moblie);
-                        Api.getInstance().mApiService.getVCode(map)
-                                .compose(RxSubscribeThread.<String>ioAndMain()).
-                                subscribe(new RxSubscribeProgress<String>(LoginActivity.this) {
-                                    @Override
-                                    protected void onOverNext(String t) {
-                                    }
+                        ApiService mService = Api.getInstance().mApiService;
+                        if (mService != null)
+                            mService.getVCode(map)
+                                    .compose(RxSubscribeThread.<String>ioAndMain()).
+                                    subscribe(new RxSubscribeProgress<String>(LoginActivity.this) {
+                                        @Override
+                                        protected void onOverNext(String t) {
+                                        }
 
-                                    @Override
-                                    protected void onOverError(String message) {
-                                    }
-                                });
+                                        @Override
+                                        protected void onOverError(String message) {
+                                        }
+                                    });
                     }
                 });
     }
@@ -225,5 +233,10 @@ public class LoginActivity extends BaseActivity {
 
         }
         return this.sendReceiveCountDown;
+    }
+
+    @Subscribe
+    public void onEvent(ErrorHttpEvent event) {
+        showToast("请选择服务器");
     }
 }

@@ -6,8 +6,6 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.mc.app.hotel.common.App;
 
-import org.greenrobot.eventbus.EventBus;
-
 import java.io.File;
 import java.util.concurrent.TimeUnit;
 
@@ -18,36 +16,31 @@ import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
- * Created by Administrator on 2016/10/31.
+ * Created by Administrator on 2017/7/17.
  */
-public class Api {
 
+public class GetUrl {
     private static final String CACHE_PATH = "cache";
     private static final String DATE_FORMAT = "yyyy-MM-dd'T'HH:mm:ssZ";
 
-    public  Retrofit retrofit;
-    public  ApiService mApiService;
+    public static Retrofit retrofit;
+    public static ApiService mApiService;
 
     //在访问HttpMethods时创建单例
-//    private static class ApiHolder {
-//        private static final Api INSTANCE = new Api();
-//    }
-    private static Api INSTANCE;
-
-    //获取单例
-    public static Api getInstance() {
-        synchronized (Api.class) {
-            if (INSTANCE == null)
-                INSTANCE = new Api();
-        }
-        return INSTANCE;
+    private static class ApiHolder {
+        private static final GetUrl INSTANCE = new GetUrl();
     }
 
-    public Api() {
+    //获取单例
+    public static GetUrl getInstance() {
+        return GetUrl.ApiHolder.INSTANCE;
+    }
+
+    public GetUrl() {
         init();
     }
 
-    public void init() {
+    public static void init() {
         /*设置缓存*/
         File cacheFile = new File(App.getAppContext().getCacheDir(), CACHE_PATH);
         Cache cache = new Cache(cacheFile, 1024 * 1024 * 50); //50Mb
@@ -64,20 +57,13 @@ public class Api {
 
         Gson gson = new GsonBuilder().setDateFormat(DATE_FORMAT).create();
         Log.e(TAG, "init: HttpConstant.getBaseUrl() = " + HttpConstant.getBaseUrl());
-        try {
-            retrofit = new Retrofit.Builder()
-                    .client(okHttpClient)
-                    .addConverterFactory(GsonConverterFactory.create(gson))
-                    .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                    .baseUrl(HttpConstant.getBaseUrl())
-                    .build();
-            mApiService = retrofit.create(ApiService.class);
-        } catch (IllegalArgumentException e) {
-            ErrorHttpEvent event = new ErrorHttpEvent();
-            event.setMsg("URL ERROR");
-            EventBus.getDefault().post(event);
-        }
-
+        retrofit = new Retrofit.Builder()
+                .client(okHttpClient)
+                .addConverterFactory(GsonConverterFactory.create(gson))
+                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                .baseUrl(HttpConstant.BASE_URL)
+                .build();
+        mApiService = retrofit.create(ApiService.class);
     }
 
     private static final String TAG = "Api----------api";

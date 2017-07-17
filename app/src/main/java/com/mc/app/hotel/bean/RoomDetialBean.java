@@ -10,7 +10,16 @@ public class RoomDetialBean {
     String roomNo;
     int recordNums;
     String roomType;
+    String roomPrice;
     List<RoomDetialInfo> custs;
+
+    public String getRoomPrice() {
+        return roomPrice;
+    }
+
+    public void setRoomPrice(String roomPrice) {
+        this.roomPrice = roomPrice;
+    }
 
     public String getRoomNo() {
         return roomNo;

@@ -1,5 +1,7 @@
 package com.mc.app.hotel.common.http;
 
+import com.mc.app.hotel.common.util.SPerfUtil;
+
 /**
  * Created by Administrator on 2016/10/31.
  */
@@ -8,8 +10,13 @@ public class HttpConstant {
     public static String BASE_URL = "http://103.27.6.36:8501/rest/";          //上传图片接口使用
 
     public static void setBaseUrl(String url) {
-        BASE_URL = url;
+        SPerfUtil.setUrl(url);
     }
+
+    public static String getBaseUrl() {
+        return SPerfUtil.getUrl();
+    }
+
 
     public static final String GET_URL = "GetServiceList";//获取URL
     public static final String USER_LOGIN = "UserLogin";//登陆

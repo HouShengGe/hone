@@ -72,8 +72,12 @@ public class BaseActivity extends AppCompatActivity implements TitleInterface, V
         if (registerEventBus) {
             EventBus.getDefault().unregister(this);
         }
-        if (toast != null) {
-            toast.cancel();
+        try {
+            if (toast != null) {
+                toast.cancel();
+            }
+        } catch (IllegalArgumentException e) {
+
         }
         super.onStop();
     }
