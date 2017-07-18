@@ -128,7 +128,7 @@ public class PrefUtil {
         try {
             cameraType = CameraUtil.CameraType.valueOf(str);
         } catch (Exception e) {
-            cameraType = CameraUtil.CameraType.ANYONE;
+            cameraType = CameraUtil.CameraType.BACK_CAMERA;
         }
         return cameraType;
     }

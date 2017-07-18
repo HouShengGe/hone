@@ -59,7 +59,7 @@ public class PoliceMainActivity extends BaseActivity implements PullToRefreshBas
 
     private void init() {
         setTitle("在住查询");
-        leftTitle("民宿入住申报");
+        leftTitle("民宿实名申报");
         rightTitle(R.drawable.user);
         buckButton(false);
         getHotelList();

@@ -77,6 +77,14 @@ public class Identity {
                 + date.substring(6, 8);
     }
 
+    public static String getBirthdayCH(final String idCard) {
+        String date = getIDDate(idCard);
+        if (date == null || date.length() < 8)
+            return "";
+        return date.substring(0, 4) + "年" + date.substring(4, 6) + "月"
+                + date.substring(6, 8) + "日";
+    }
+
     // 判断时间合法性
     private static boolean checkDate(final String dateSource) {
         if (dateSource == null || dateSource.length() < 8)

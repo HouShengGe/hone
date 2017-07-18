@@ -31,7 +31,7 @@ public class FaceDetectThread extends Thread {
     Lock mutex;
     volatile boolean paused = true;
     volatile boolean destroyed = false;
-    TextureView textureView;
+//    TextureView textureView;
     int previewWidth;
     int previewHeight;
     FaceDetectThreadListener listener;
@@ -50,7 +50,7 @@ public class FaceDetectThread extends Thread {
         dataPipe = new DataPipe(DATA_PIPE_SIZE);
         mutex = new ReentrantLock();
         paused = false;
-        this.textureView = textureView;
+//        this.textureView = textureView;
         this.previewWidth = previewWidth;
         this.previewHeight = previewHeight;
         midPoint = new PointF();

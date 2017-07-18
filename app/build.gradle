@@ -48,7 +48,7 @@ dependencies {
 
     compile 'io.reactivex:rxandroid:1.2.1'
     compile 'pl.droidsonroids.gif:android-gif-drawable:1.2.5'
-    compile 'com.umeng.analytics:analytics:latest.integration'
+//    compile 'com.umeng.analytics:analytics:latest.integration'
 
     compile 'com.feezu.liuli:timeselector:1.0.3'
 

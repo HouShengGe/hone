@@ -132,7 +132,7 @@
                 android:layout_height="20dp"
                 android:layout_weight="1"
                 android:background="@drawable/shap_input_bg_5"
-                android:digits="0123456789X"/>
+                android:digits="0123456789Xx"/>
 
         </LinearLayout>
 

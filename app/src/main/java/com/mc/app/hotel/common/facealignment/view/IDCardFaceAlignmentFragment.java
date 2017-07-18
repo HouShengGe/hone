@@ -47,7 +47,6 @@ import com.mc.app.hotel.common.facealignment.util.PlaySoundUtil;
 import com.mc.app.hotel.common.facealignment.util.PrefUtil;
 import com.mc.app.hotel.common.facealignment.util.SDCardUtils;
 import com.mc.app.hotel.common.facealignment.util.ServiceUtil;
-import com.mc.app.hotel.common.facealignment.util.UMengUtil;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -206,7 +205,7 @@ public class IDCardFaceAlignmentFragment extends Fragment implements Camera.Prev
 
 
     private void faceAlignmentSuccess(double confidence) {
-        UMengUtil.faceAlignmentSuccess(getContext());
+//        UMengUtil.faceAlignmentSuccess(getContext());
         faceAlignmentHasSucceed = true;
         setFaceAlignmentResultIvVisibility(View.VISIBLE, true);
         mainHandler.post(new Runnable() {
@@ -234,7 +233,7 @@ public class IDCardFaceAlignmentFragment extends Fragment implements Camera.Prev
 
     private void faceAlignmentFailed(String errorMsg) {
         Timber.e("faceAlignmentFailed:here" + errorMsg);
-        UMengUtil.faceAlignemntFailed(getContext(), errorMsg);
+//        UMengUtil.faceAlignemntFailed(getContext(), errorMsg);
         faceAlignmentHasSucceed = false;
         setFaceAlignmentResultIvVisibility(View.VISIBLE, false);
         mainHandler.post(new Runnable() {
@@ -319,7 +318,7 @@ public class IDCardFaceAlignmentFragment extends Fragment implements Camera.Prev
         Log.e(TAG, "读身份证成功 姓名:" + intent.getStringExtra(ServiceUtil.NAME));
         personInfo = tmpPersonInfo;
         PlaySoundUtil.play(getContext(), R.raw.readidcard_success);
-        UMengUtil.readIDCardSuccess(getContext());
+//        UMengUtil.readIDCardSuccess(getContext());
         showPersonInfo();
         setFaceAlignmentResultIvVisibility(View.INVISIBLE, false);
         new Timer().schedule(new TimerTask() {
@@ -364,7 +363,7 @@ public class IDCardFaceAlignmentFragment extends Fragment implements Camera.Prev
             }, 2000);
         }
         Timber.e("读身份证失败 " + intent.getStringExtra(ServiceUtil.ERROR_MESSAGE));
-        UMengUtil.readIDCardFailed(getContext(), intent.getStringExtra(ServiceUtil.ERROR_MESSAGE));
+//        UMengUtil.readIDCardFailed(getContext(), intent.getStringExtra(ServiceUtil.ERROR_MESSAGE));
 
     }
 
@@ -391,7 +390,7 @@ public class IDCardFaceAlignmentFragment extends Fragment implements Camera.Prev
                     getContext().startService(intent);
                 }
             }
-        }, 500, 1000);
+        }, 500, 5000);
     }
 
     @Override
@@ -551,7 +550,7 @@ public class IDCardFaceAlignmentFragment extends Fragment implements Camera.Prev
         }
     }
 
-    @OnClick({R.id.volumeIBtn, R.id.recordManagementBtn, R.id.settingIBtn, R.id.startFaceDetectBtn, R.id.stopFaceDetectBtn, R.id.doFaceAlignmentBtn, R.id.resetBtn})
+    @OnClick({R.id.colse, R.id.volumeIBtn, R.id.recordManagementBtn, R.id.settingIBtn, R.id.startFaceDetectBtn, R.id.stopFaceDetectBtn, R.id.doFaceAlignmentBtn, R.id.resetBtn})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.startFaceDetectBtn:
@@ -574,6 +573,9 @@ public class IDCardFaceAlignmentFragment extends Fragment implements Camera.Prev
                 break;
             case R.id.volumeIBtn:
                 volumePopupWindow.show(view);
+                break;
+            case R.id.colse:
+                getActivity().finish();
                 break;
         }
     }

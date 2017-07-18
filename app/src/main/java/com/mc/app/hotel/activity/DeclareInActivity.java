@@ -134,7 +134,10 @@ public class DeclareInActivity extends BaseActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-
+                etIdCard.removeTextChangedListener(this);//解除文字改变事件
+                etIdCard.setText(s.toString().toUpperCase());//转换
+                etIdCard.setSelection(s.toString().length());//重新设置光标位置
+                etIdCard.addTextChangedListener(this);//重新绑
             }
 
             @Override
@@ -152,6 +155,7 @@ public class DeclareInActivity extends BaseActivity {
         selectSex();
     }
 
+
     private CheckInInfo getInfo() {
         CheckInInfo info = new CheckInInfo();
         String roomNum = tvRoomNo.getText().toString().trim();
@@ -160,10 +164,6 @@ public class DeclareInActivity extends BaseActivity {
             return null;
         }
         String roomPay = etRoomPrice.getText().toString().trim();
-        if (roomPay == null || roomPay.equals("")) {
-            etRoomPrice.setError("请填写房价");
-            return null;
-        }
         String phoneNum = etPhoneNo.getText().toString().trim();
         String arriveDay = etArriveDay.getText().toString().trim();
         if (arriveDay == null || arriveDay.equals("")) {
@@ -175,14 +175,7 @@ public class DeclareInActivity extends BaseActivity {
             etLeaveDay.setError("请填写离店日期");
             return null;
         }
-        String birthday = etBirthday.getText().toString().trim();
-        if (birthday == null || birthday.equals("")) {
-            etBirthday.setError("请填写生日");
-            return null;
-        } else if (!DateUtils.dateFormatRight(birthday)) {
-            etBirthday.setError("请填写正确生日");
-            return null;
-        }
+
         String name = etRoomName.getText().toString().trim();
         if (name == null || name.equals("")) {
             etRoomName.setError("请填写姓名");
@@ -191,6 +184,19 @@ public class DeclareInActivity extends BaseActivity {
         String idCard = etIdCard.getText().toString().trim();
         if (!Identity.checkIDCard(idCard)) {
             etIdCard.setError("请填写正确身份证号码");
+            return null;
+        }
+        String birthday = etBirthday.getText().toString().trim();
+        if (birthday == null || birthday.equals("")) {
+            etBirthday.setError("请填写生日");
+            return null;
+        } else if (!DateUtils.dateFormatRight(birthday)) {
+            etBirthday.setError("请填写正确生日");
+            return null;
+        }
+        String address = etAddress.getText().toString().trim();
+        if (address == null || address.equals("")) {
+            etAddress.setError("请填写地址");
             return null;
         }
         String exprFDate = etFromDay.getText().toString().trim();
@@ -210,11 +216,7 @@ public class DeclareInActivity extends BaseActivity {
             return null;
         }
         String exprDate = exprFDate + "-" + exprTDate;
-        String address = etAddress.getText().toString().trim();
-        if (address == null || address.equals("")) {
-            etAddress.setError("请填写地址");
-            return null;
-        }
+
         String nations = etNation.getText().toString().trim();
         if (nations == null || nations.equals("")) {
             etNation.setError("请填写民族");

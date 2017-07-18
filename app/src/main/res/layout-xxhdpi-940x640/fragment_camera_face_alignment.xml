@@ -24,12 +24,12 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:gravity="center"
-                    android:textStyle="bold"
-                    android:textSize="15sp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="点击拍摄身份证照片" />
+                    android:gravity="center"
+                    android:text="点击拍摄身份证照片"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
 
                 <android.support.v7.widget.CardView
                     android:layout_width="match_parent"
@@ -71,12 +71,12 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:gravity="center"
-                    android:textStyle="bold"
-                    android:textSize="15sp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="点击拍摄人脸照片" />
+                    android:gravity="center"
+                    android:text="点击拍摄人脸照片"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
 
                 <android.support.v7.widget.CardView
                     android:layout_width="match_parent"
@@ -140,5 +140,15 @@
         android:layout_margin="10dp"
         android:background="@android:color/transparent"
         android:scaleType="fitCenter"
-        android:src="@drawable/ic_setting" />
+        android:src="@drawable/set" />
+
+    <ImageButton
+        android:id="@+id/close"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_gravity="top|left"
+        android:layout_margin="10dp"
+        android:background="@android:color/transparent"
+        android:scaleType="fitCenter"
+        android:src="@drawable/close_face" />
 </FrameLayout>

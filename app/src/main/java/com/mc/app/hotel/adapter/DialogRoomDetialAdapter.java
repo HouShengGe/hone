@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.mc.app.hotel.R;
 import com.mc.app.hotel.bean.RoomDetialInfo;
+import com.mc.app.hotel.common.facealignment.util.DateUtils;
 import com.mc.app.hotel.common.util.Identity;
 import com.mc.app.hotel.common.util.StringUtil;
 
@@ -76,8 +77,8 @@ public class DialogRoomDetialAdapter extends BaseAdapter {
         }
         vh.tvCustomer.setText(StringUtil.getString(info.getCustomer()));
         vh.tvCuntry.setText(StringUtil.getString(info.getNation()));
-        vh.tvArrive.setText(StringUtil.getString(info.getArriveDate()));
-        vh.tvLeave.setText(StringUtil.getString(info.getLeaveDate()));
+        vh.tvArrive.setText(StringUtil.getString(DateUtils.string2stringNoS(info.getArriveDate())));
+        vh.tvLeave.setText(StringUtil.getString(DateUtils.string2stringNoS(info.getLeaveDate())));
         vh.tvIdCard.setText(StringUtil.getString(info.getIdCard()));
         vh.tvPhoneNo.setText(StringUtil.getString(info.getMobile()));
         vh.tvAddr.setText(StringUtil.getString(info.getAddress()));

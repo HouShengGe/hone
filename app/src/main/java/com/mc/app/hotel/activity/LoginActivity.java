@@ -81,7 +81,7 @@ public class LoginActivity extends BaseActivity {
         login();
         getVCode();
         buckButton(false);
-        leftTitle("登录");
+        setTitle("登录");
     }
 
     private void initData() {

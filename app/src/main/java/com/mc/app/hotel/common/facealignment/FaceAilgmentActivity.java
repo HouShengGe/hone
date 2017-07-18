@@ -24,19 +24,15 @@ import com.mc.app.hotel.common.facealignment.event.EventDataSaveRequest;
 import com.mc.app.hotel.common.facealignment.event.EventReceiveNFCTag;
 import com.mc.app.hotel.common.facealignment.event.EventTakePhotoRequest;
 import com.mc.app.hotel.common.facealignment.event.EventTakePhotoResponse;
-import com.mc.app.hotel.common.facealignment.thread.DatabaseSaveThread;
 import com.mc.app.hotel.common.facealignment.util.PermissionUtil;
 import com.mc.app.hotel.common.facealignment.util.PrefUtil;
 import com.mc.app.hotel.common.facealignment.util.ServiceUtil;
 import com.mc.app.hotel.common.facealignment.view.CameraFaceAlignmentFragment;
 import com.mc.app.hotel.common.facealignment.view.IDCardFaceAlignmentFragment;
-import com.umeng.analytics.MobclickAgent;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
-
-import java.util.Timer;
 
 import butterknife.ButterKnife;
 import timber.log.Timber;
@@ -49,8 +45,8 @@ public class FaceAilgmentActivity extends AppCompatActivity {
     private static final String TAG = FaceAilgmentActivity.class.getSimpleName();
     private static final int IDCARD_PHOTO_CAMEAR_REQUEST = 0x01;
     private static final int FACE_PHOTO_CAMEAR_REQUEST = 0x02;
-    Timer checkUpdateTimer;
-    DatabaseSaveThread databaseSaveThread = null;
+//    Timer checkUpdateTimer;
+//    DatabaseSaveThread databaseSaveThread = null;
     //    NfcAdapter nfcAdapter = null;
     PendingIntent nfcPi = null;
     IntentFilter[] nfcIfs = null;
@@ -68,10 +64,8 @@ public class FaceAilgmentActivity extends AppCompatActivity {
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         idCardFaceAlignmentFragment = IDCardFaceAlignmentFragment.newInstance();
         cameraFaceAlignmentFragment = CameraFaceAlignmentFragment.newInstance();
-        databaseSaveThread = new DatabaseSaveThread();
-        databaseSaveThread.start();
-        MobclickAgent.setScenarioType(this, MobclickAgent.EScenarioType.E_UM_NORMAL);
-        MobclickAgent.enableEncrypt(true);
+//        databaseSaveThread = new DatabaseSaveThread();
+//        databaseSaveThread.start();
 //        if (StateUtil.SupportNFC) {
 //            initNFC();
 //        } else {
@@ -126,8 +120,6 @@ public class FaceAilgmentActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        MobclickAgent.setDebugMode(PrefUtil.getDebugMode());
-        MobclickAgent.onResume(this);
         EventBus.getDefault().register(this);
 //        if (StateUtil.SupportNFC) {
 //            nfcAdapter.enableForegroundDispatch(this, nfcPi, nfcIfs, techLists);
@@ -158,7 +150,6 @@ public class FaceAilgmentActivity extends AppCompatActivity {
 
     @Override
     protected void onPause() {
-        MobclickAgent.onPause(this);
         EventBus.getDefault().unregister(this);
 //        if (StateUtil.SupportNFC) {
 //            nfcAdapter.disableForegroundDispatch(this);
@@ -189,11 +180,11 @@ public class FaceAilgmentActivity extends AppCompatActivity {
 
     @Override
     protected void onDestroy() {
-        try {
-            checkUpdateTimer.cancel();
-        } catch (Exception e) {
-        }
-        databaseSaveThread.destroyThread();
+//        try {
+//            checkUpdateTimer.cancel();
+//        } catch (Exception e) {
+//        }
+//        databaseSaveThread.destroyThread();
         super.onDestroy();
     }
 

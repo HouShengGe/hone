@@ -18,12 +18,12 @@ public class CustomerInfo {
     String address;
     String roomPrice;
 
-    public String getRoomPrice() {
-        return roomPrice;
-    }
-
     public void setRoomPrice(String roomPrice) {
         this.roomPrice = roomPrice;
+    }
+
+    public String getRoomPrice() {
+        return roomPrice;
     }
 
     boolean isChecked;

@@ -15,6 +15,7 @@ import com.mc.app.hotel.R;
 import com.mc.app.hotel.activity.ComparedFaceCardActivity;
 import com.mc.app.hotel.bean.CustomerInfo;
 import com.mc.app.hotel.common.Constants;
+import com.mc.app.hotel.common.facealignment.util.DateUtils;
 import com.mc.app.hotel.common.util.Identity;
 import com.mc.app.hotel.common.util.StringUtil;
 
@@ -116,11 +117,15 @@ public class CustomerAdapter extends BaseAdapter {
             tvNation.setText(StringUtil.getString(info.getNation()));
             tvIdNumber.setText(StringUtil.getString(info.getIdCard()));
             tvAddress.setText(StringUtil.getString(info.getAddress()));
-            tvRoomPrice.setText(StringUtil.getString(info.getRoomPrice()));
+            if (StringUtil.isBlank(info.getRoomPrice()))
+                tvRoomPrice.setVisibility(View.GONE);
+            else
+                tvRoomPrice.setVisibility(View.VISIBLE);
+            tvRoomPrice.setText("￥" + StringUtil.getString(info.getRoomPrice()));
             tvBirthday.setText(Identity.getBirthday(info.getIdCard()));
-            tvArriveDay.setText("来期：" + info.getArriveDate());
+            tvArriveDay.setText("来期：" + DateUtils.string2stringNoS(info.getArriveDate()));
             String leaveDay = type == 1 ? "预离：" : "离期：";
-            tvLeaveDay.setText(leaveDay + info.getLeaveDate());
+            tvLeaveDay.setText(leaveDay + DateUtils.string2stringNoS(info.getLeaveDate()));
             btnCheck.setOnClickListener(new OnClickEvent(info));
             if (position % 2 == 0) {
                 rlBg.setBackgroundResource(R.color.custom_list_bg);

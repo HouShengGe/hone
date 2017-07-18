@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:tools="http://schemas.android.com/tools"
-              android:id="@+id/activity_main"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:orientation="horizontal"
-              tools:context="com.mc.app.hotel.common.facealignment.FaceAilgmentActivity">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    tools:context="com.mc.app.hotel.common.facealignment.FaceAilgmentActivity">
 
     <FrameLayout
         android:layout_width="0dp"
@@ -25,7 +25,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text="@string/PEOPLE_CARD_ALIGNMENT"/>
+                android:text="@string/PEOPLE_CARD_ALIGNMENT" />
 
 
             <FrameLayout
@@ -36,7 +36,7 @@
                 <TextureView
                     android:id="@+id/cameraTextureView"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"/>
+                    android:layout_height="match_parent" />
 
 
             </FrameLayout>
@@ -48,7 +48,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text="@string/put_the_face_into_the_box"/>
+                android:text="@string/put_the_face_into_the_box" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -59,7 +59,7 @@
                 <View
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="2"/>
+                    android:layout_weight="2" />
 
                 <Button
                     android:id="@+id/recordManagementBtn"
@@ -67,12 +67,12 @@
                     android:layout_width="100dp"
                     android:layout_height="20dp"
                     android:layout_marginTop="5dp"
-                    android:text="@string/recode_management"/>
+                    android:text="@string/recode_management" />
 
                 <View
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"/>
+                    android:layout_weight="1" />
 
                 <Button
                     android:id="@+id/commit"
@@ -80,18 +80,18 @@
                     android:layout_width="100dp"
                     android:layout_height="20dp"
                     android:layout_marginTop="5dp"
-                    android:text="提交"/>
+                    android:text="提交" />
 
                 <View
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="2"/>
+                    android:layout_weight="2" />
             </LinearLayout>
 
             <SurfaceView
                 android:id="@+id/invisibleSurfaceView"
                 android:layout_width="1px"
-                android:layout_height="1px"/>
+                android:layout_height="1px" />
 
         </LinearLayout>
 
@@ -109,7 +109,7 @@
                 android:layout_margin="10dp"
                 android:background="@android:color/transparent"
                 android:scaleType="fitCenter"
-                android:src="@drawable/voice"/>
+                android:src="@drawable/voice" />
 
             <ImageButton
                 android:id="@+id/settingIBtn"
@@ -118,10 +118,30 @@
                 android:layout_margin="10dp"
                 android:background="@android:color/transparent"
                 android:scaleType="fitCenter"
-                android:src="@drawable/set"/>
+                android:src="@drawable/set" />
 
 
         </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top|left"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/colse"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_margin="10dp"
+                android:background="@android:color/transparent"
+                android:scaleType="fitCenter"
+                android:src="@drawable/close_face" />
+
+
+        </LinearLayout>
+
 
     </FrameLayout>
 
@@ -158,7 +178,7 @@
                     android:layout_width="60dp"
                     android:layout_height="60dp"
                     android:layout_gravity="center_horizontal"
-                    android:src="@drawable/ic_face"/>
+                    android:src="@drawable/ic_face" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -168,11 +188,11 @@
 
                     <TextView
                         style="@style/LabelStyle"
-                        android:text="姓名:"/>
+                        android:text="姓名:" />
 
                     <TextView
                         android:id="@+id/nameTv"
-                        style="@style/ContentStyle"/>
+                        style="@style/ContentStyle" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -183,11 +203,11 @@
 
                     <TextView
                         style="@style/LabelStyle"
-                        android:text="性别:"/>
+                        android:text="性别:" />
 
                     <TextView
                         android:id="@+id/sexTv"
-                        style="@style/ContentStyle"/>
+                        style="@style/ContentStyle" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -198,11 +218,11 @@
 
                     <TextView
                         style="@style/LabelStyle"
-                        android:text="身份:"/>
+                        android:text="身份:" />
 
                     <TextView
                         android:id="@+id/idNumTv"
-                        style="@style/ContentStyle"/>
+                        style="@style/ContentStyle" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -213,11 +233,11 @@
 
                     <TextView
                         style="@style/LabelStyle"
-                        android:text="有效:"/>
+                        android:text="有效:" />
 
                     <TextView
                         android:id="@+id/termTv"
-                        style="@style/ContentStyle"/>
+                        style="@style/ContentStyle" />
                 </LinearLayout>
 
 
@@ -230,21 +250,23 @@
                     <TextView
                         style="@style/LabelStyle"
                         android:layout_height="match_parent"
-                        android:text="生日:"/>
+                        android:text="生日:" />
 
                     <TextView
                         android:id="@+id/birthdayTv"
-                        style="@style/ContentStyle"/>
+                        style="@style/ContentStyle" />
                 </LinearLayout>
 
 
             </LinearLayout>
 
         </LinearLayout>
+
         <View
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1"/>
+            android:layout_weight="1" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -266,7 +288,7 @@
                 <TextureView
                     android:id="@+id/captureTextureView"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"/>
+                    android:layout_height="match_parent" />
 
                 <ImageView
                     android:id="@+id/faceAlignmentResultIv"
@@ -275,13 +297,13 @@
                     android:layout_gravity="bottom|right"
                     android:layout_margin="5dp"
                     android:src="@drawable/ic_success_small"
-                    android:visibility="invisible"/>
+                    android:visibility="invisible" />
             </FrameLayout>
 
             <View
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"/>
+                android:layout_weight="1" />
 
             <ImageView
                 android:layout_width="80dp"
@@ -289,7 +311,7 @@
                 android:layout_marginBottom="5dp"
                 android:layout_marginTop="5dp"
                 android:scaleType="fitCenter"
-                android:src="@drawable/ic_jinghui"/>
+                android:src="@drawable/ic_jinghui" />
         </LinearLayout>
 
     </LinearLayout>
@@ -305,25 +327,25 @@
             android:id="@+id/startFaceDetectBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="抓人脸"/>
+            android:text="抓人脸" />
 
         <Button
             android:id="@+id/stopFaceDetectBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="停止抓人脸"/>
+            android:text="停止抓人脸" />
 
         <Button
             android:id="@+id/doFaceAlignmentBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="比对人脸"/>
+            android:text="比对人脸" />
 
         <Button
             android:id="@+id/resetBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="重置"/>
+            android:text="重置" />
 
     </LinearLayout>
 

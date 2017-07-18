@@ -54,7 +54,7 @@ public class MainActivity extends BaseActivity {
     private void initView() {
         getNation();
         buckButton(false);
-        leftTitle("民宿入住申报");
+        setTitle("民宿实名申报");
         roomStatus();
         declareIn();
         customerHistory();

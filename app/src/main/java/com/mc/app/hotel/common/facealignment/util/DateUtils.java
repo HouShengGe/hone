@@ -244,6 +244,28 @@ public class DateUtils {
     }
 
     /**
+     * 标准时间格式 yyyy-MM-dd HH:mm:ss
+     *
+     * @param string
+     * @return 时间戳
+     */
+    public static String string2stringNoS(String string) {
+        String dateStr = string;
+        Date date = new Date();
+        //注意format的格式要与日期String的格式相匹配
+        DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        try {
+            date = sdf.parse(dateStr);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "";
+        }
+        DateFormat sdfs = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        return sdfs.format(date);
+    }
+
+
+    /**
      * 自定义时间格式
      *
      * @param string

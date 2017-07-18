@@ -6,16 +6,11 @@ import android.content.pm.PackageManager;
 import android.os.Build;
 import android.text.TextUtils;
 
-import com.caihua.cloud.common.util.DeviceIdUtil;
-import com.umeng.analytics.MobclickAgent;
-
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.lang.reflect.Method;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Created by gaofeng on 2017-03-23.
@@ -32,32 +27,28 @@ public class UMengUtil {
     private UMengUtil() {
     }
 
-    public static void faceAlignmentSuccess(Context context) {
-        Map<String, String> map = new HashMap<>();
-        map.put(DEVICE_ID, DeviceIdUtil.generateDeviceId(context));
-        MobclickAgent.onEvent(context, EVENT_FACEALIGNMENT_SUCCESS, map);
-    }
-
-    public static void faceAlignemntFailed(Context context, String message) {
-        Map<String, String> map = new HashMap<>();
-        map.put(DEVICE_ID, DeviceIdUtil.generateDeviceId(context));
-        map.put(MESSAGE, message);
-        MobclickAgent.onEvent(context, EVENT_FACEALIGNMENT_FAILED, map);
-    }
-
-    public static void readIDCardSuccess(Context context) {
-        Map<String, String> map = new HashMap<>();
-        map.put(DEVICE_ID, DeviceIdUtil.generateDeviceId(context));
-        MobclickAgent.onEvent(context, EVENT_READIDCARD_SUCCESS, map);
-    }
-
-    public static void readIDCardFailed(Context context, String message) {
-        if (message.equals("未检测到身份证")) return;
-        Map<String, String> map = new HashMap<>();
-        map.put(DEVICE_ID, DeviceIdUtil.generateDeviceId(context));
-        map.put(MESSAGE, message);
-        MobclickAgent.onEvent(context, EVENT_READIDCARD_FAILED, map);
-    }
+//    public static void faceAlignmentSuccess(Context context) {
+//        Map<String, String> map = new HashMap<>();
+//        map.put(DEVICE_ID, DeviceIdUtil.generateDeviceId(context));
+//    }
+//
+//    public static void faceAlignemntFailed(Context context, String message) {
+//        Map<String, String> map = new HashMap<>();
+//        map.put(DEVICE_ID, DeviceIdUtil.generateDeviceId(context));
+//        map.put(MESSAGE, message);
+//    }
+//
+//    public static void readIDCardSuccess(Context context) {
+//        Map<String, String> map = new HashMap<>();
+//        map.put(DEVICE_ID, DeviceIdUtil.generateDeviceId(context));
+//    }
+//
+//    public static void readIDCardFailed(Context context, String message) {
+//        if (message.equals("未检测到身份证")) return;
+//        Map<String, String> map = new HashMap<>();
+//        map.put(DEVICE_ID, DeviceIdUtil.generateDeviceId(context));
+//        map.put(MESSAGE, message);
+//    }
 
     private static boolean checkPermission(Context context, String permission) {
         boolean result = false;

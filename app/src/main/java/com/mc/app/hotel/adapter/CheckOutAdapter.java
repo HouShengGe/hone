@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.mc.app.hotel.R;
 import com.mc.app.hotel.bean.CustomerInfo;
+import com.mc.app.hotel.common.facealignment.util.DateUtils;
 import com.mc.app.hotel.common.util.StringUtil;
 
 import java.util.ArrayList;
@@ -84,11 +85,15 @@ public class CheckOutAdapter extends BaseAdapter {
 
         public void setView(CustomerInfo info, int position) {
             tvName.setText("名字：" + StringUtil.getString(info.getCustomer()));
-            tvPhoneNo.setText("手机号：" + StringUtil.getString(info.getMobile()));
+            tvPhoneNo.setText("电话：" + StringUtil.getString(info.getMobile()));
             tvRoomNo.setText(StringUtil.getString(info.getRoomNo()));
-            tvIDCard.setText("身份证：" + StringUtil.getString(info.getIdCard()));
-            tvArriceDay.setText("居住日期：" + StringUtil.getString(info.getArriveDate()));
-            tvRoomPrice.setText(StringUtil.getString(info.getRoomPrice()));
+            tvIDCard.setText("身份证号：" + StringUtil.getString(info.getIdCard()));
+            tvArriceDay.setText("来期：" + StringUtil.getString(DateUtils.string2stringNoS(info.getArriveDate())));
+            if (StringUtil.isBlank(info.getRoomPrice()))
+                tvRoomPrice.setVisibility(View.GONE);
+            else
+                tvRoomPrice.setVisibility(View.VISIBLE);
+            tvRoomPrice.setText("￥" + StringUtil.getString(info.getRoomPrice()));
             if (position % 2 == 0) {
                 llBG.setBackgroundResource(R.color.custom_list_bg);
             } else {

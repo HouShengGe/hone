@@ -48,6 +48,7 @@ public class CameraFaceAlignmentFragment extends Fragment {
     public static final int PREFER_BMP_HEIGHT = 300;
 
     public enum PhotoType {IDCARD, FACE}
+
     private static final String STATE_KEY_IDCARD_PHOTO = "STATE_KEY_IDCARD_PHOTO";
     private static final String STATE_KEY_FACE_PHOTO = "STATE_KEY_FACE_PHOTO";
     private static final String STATE_KEY_IDCARD_PHOTO_READY = "STATE_KEY_IDCARD_PHOTO_READY";
@@ -170,7 +171,7 @@ public class CameraFaceAlignmentFragment extends Fragment {
     }
 
 
-    @OnClick({R.id.idCardPhotoIBtn, R.id.facePhotoIBtn, R.id.actionBtn, R.id.settingIBtn})
+    @OnClick({R.id.idCardPhotoIBtn, R.id.facePhotoIBtn, R.id.actionBtn, R.id.settingIBtn, R.id.close})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.idCardPhotoIBtn:
@@ -219,7 +220,7 @@ public class CameraFaceAlignmentFragment extends Fragment {
                                 faceAlignmentDialogFragment.showFragment(getChildFragmentManager(), FaceAlignmentDialogFragment.FAILED_FRAGMENT);
                             } else {
                                 hintTv.setText(getString(R.string.FACE_ALIGNMENT_SUCCESS) + "," + getString(R.string.SIMILARITY) + ":" + ((FaceRecord) o).getSimilarity());
-                                EventBus.getDefault().post(new EventDataSaveRequest((FaceRecord) o,2));
+                                EventBus.getDefault().post(new EventDataSaveRequest((FaceRecord) o, 2));
                                 faceAlignmentDialogFragment.showFragment(getChildFragmentManager(), FaceAlignmentDialogFragment.SUCCESS_FRAGMENT);
                             }
                             mainHandler.postDelayed(new Runnable() {
@@ -237,6 +238,9 @@ public class CameraFaceAlignmentFragment extends Fragment {
                 break;
             case R.id.settingIBtn:
                 getContext().startActivity(new Intent(getContext(), NewSettingActivity.class));
+                break;
+            case R.id.close:
+                getActivity().finish();
                 break;
         }
     }

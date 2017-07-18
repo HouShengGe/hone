@@ -86,13 +86,6 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="房价："
-                    android:textColor="#1a5597"
-                    android:textSize="14sp"/>
-
-                <TextView
                     android:id="@+id/tv_room_price"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -100,12 +93,6 @@
                     android:textColor="#1a5597"
                     android:textSize="14sp"/>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text=" 元"
-                    android:textColor="#1a5597"
-                    android:textSize="14sp"/>
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>

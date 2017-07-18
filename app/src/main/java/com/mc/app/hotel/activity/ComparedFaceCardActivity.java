@@ -41,7 +41,7 @@ public class ComparedFaceCardActivity extends BaseActivity {
     }
 
     private void init() {
-        setTitle("查询结果");
+        setTitle("人证查询");
         buckButton(true);
         if (getIntent() != null && getIntent().getExtras() != null) {
             masterId = getIntent().getIntExtra(Constants.MASTER_ID, 0);
