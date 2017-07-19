@@ -81,7 +81,7 @@
                 android:textColor="@color/colorGrey"
                 android:textSize="16sp"/>
 
-            <TextView
+            <EditText
                 android:id="@+id/et_room_sex"
                 android:layout_width="0dp"
                 android:layout_height="20dp"
@@ -103,7 +103,7 @@
                 android:textColor="@color/colorGrey"
                 android:textSize="16sp"/>
 
-            <TextView
+            <EditText
                 android:id="@+id/et_nation"
                 android:layout_width="0dp"
                 android:layout_height="20dp"

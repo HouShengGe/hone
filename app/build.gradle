@@ -50,7 +50,7 @@ dependencies {
     compile 'pl.droidsonroids.gif:android-gif-drawable:1.2.5'
 //    compile 'com.umeng.analytics:analytics:latest.integration'
 
-    compile 'com.feezu.liuli:timeselector:1.0.3'
+//    compile 'com.feezu.liuli:timeselector:1.0.3'
 
     compile 'com.github.Blincheng:EToast2:v2.0.1'
 }

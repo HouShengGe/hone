@@ -68,7 +68,7 @@ public class SearchCustomerActivity extends BaseActivity implements PullToRefres
         else if (roomType == 1)
             setTitle("在住列表");
         else
-            setTitle("历史住客");
+            setTitle("历史列表");
         loadData();
     }
 

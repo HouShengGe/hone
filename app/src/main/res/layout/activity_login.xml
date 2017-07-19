@@ -124,7 +124,7 @@
             android:layout_marginLeft="10dp"
             android:layout_weight="1"
             android:gravity="center_vertical"
-            android:hint="选择服务器"
+            android:hint="请选择区域"
             android:maxLength="11"
             android:maxLines="1"
             android:textColor="@color/text_color"

@@ -3,6 +3,7 @@ package com.mc.app.hotel.activity;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.Html;
 import android.text.TextWatcher;
 import android.util.Base64;
 import android.view.View;
@@ -26,9 +27,10 @@ import com.mc.app.hotel.common.http.RxSubscribeThread;
 import com.mc.app.hotel.common.util.Identity;
 import com.mc.app.hotel.common.util.SPerfUtil;
 import com.mc.app.hotel.common.util.StringUtil;
+import com.mc.app.hotel.common.util.WidgetUtils;
 import com.mc.app.hotel.common.view.DialogListView;
+import com.mc.app.hotel.common.view.MyTimeSelect;
 
-import org.feezu.liuli.timeselector.TimeSelector;
 
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
@@ -53,9 +55,9 @@ public class DeclareInActivity extends BaseActivity {
     EditText etRoomName;
 
     @BindView(R.id.et_room_sex)
-    TextView etRoomSex;
+    EditText etRoomSex;
     @BindView(R.id.et_nation)
-    TextView etNation;
+    EditText etNation;
 
     @BindView(R.id.et_id_card)
     EditText etIdCard;
@@ -114,6 +116,8 @@ public class DeclareInActivity extends BaseActivity {
     private void initView() {
         setTitle("申报入住");
         buckButton(true);
+        etRoomSex.setFocusable(false);
+        etNation.setFocusable(false);
         etRoomName.setText(StringUtil.getString(record.getName()));
         etRoomSex.setText(StringUtil.getString(record.getSex()));
         etIdCard.setText(StringUtil.getString(record.getIdNumber()));
@@ -160,73 +164,94 @@ public class DeclareInActivity extends BaseActivity {
         CheckInInfo info = new CheckInInfo();
         String roomNum = tvRoomNo.getText().toString().trim();
         if (roomNum == null || roomNum.equals("")) {
-            tvRoomNo.setError("请填写房间号");
+            tvRoomNo.requestFocus();
+            tvRoomNo.setError(Html.fromHtml("<font color=#000000>请填写房间号</font>"));
+            return null;
+        }
+        String name = etRoomName.getText().toString().trim();
+        if (name == null || name.equals("")) {
+            etRoomName.requestFocus();
+            etRoomName.setError(Html.fromHtml("<font color=#000000>请填写姓名</font>"));
+            return null;
+        }
+        String sex = etRoomSex.getText().toString().trim();
+        if (sex == null || sex.equals("")) {
+            etRoomSex.setFocusable(true);
+            etRoomSex.setFocusableInTouchMode(true);
+            WidgetUtils.hideKeyBoard(this,etRoomSex);
+            etRoomSex.requestFocus();
+            etRoomSex.setError(Html.fromHtml("<font color=#000000>请填写性别</font>"));
+            return null;
+        }
+        String nations = etNation.getText().toString().trim();
+        if (nations == null || nations.equals("")) {
+            etNation.setFocusable(true);
+            etNation.setFocusableInTouchMode(true);
+            WidgetUtils.hideKeyBoard(this,etNation);
+            etNation.requestFocus();
+            etNation.setError(Html.fromHtml("<font color=#000000>请填写民族</font>"));
             return null;
         }
         String roomPay = etRoomPrice.getText().toString().trim();
         String phoneNum = etPhoneNo.getText().toString().trim();
         String arriveDay = etArriveDay.getText().toString().trim();
         if (arriveDay == null || arriveDay.equals("")) {
-            etArriveDay.setError("请填写到店日期");
+            etArriveDay.requestFocus();
+            etArriveDay.setError(Html.fromHtml("<font color=#000000>请填写到店日期</font>"));
             return null;
         }
         String leaveDay = etLeaveDay.getText().toString().trim();
         if (leaveDay == null || leaveDay.equals("")) {
-            etLeaveDay.setError("请填写离店日期");
-            return null;
-        }
-
-        String name = etRoomName.getText().toString().trim();
-        if (name == null || name.equals("")) {
-            etRoomName.setError("请填写姓名");
+            etLeaveDay.requestFocus();
+            etLeaveDay.setError(Html.fromHtml("<font color=#000000>请填写离店日期</font>"));
             return null;
         }
         String idCard = etIdCard.getText().toString().trim();
         if (!Identity.checkIDCard(idCard)) {
-            etIdCard.setError("请填写正确身份证号码");
+            etIdCard.requestFocus();
+            etIdCard.setError(Html.fromHtml("<font color=#000000>请填写正确身份证号码</font>"));
             return null;
         }
         String birthday = etBirthday.getText().toString().trim();
         if (birthday == null || birthday.equals("")) {
-            etBirthday.setError("请填写生日");
+            etBirthday.requestFocus();
+            etBirthday.setError(Html.fromHtml("<font color=#000000>请填写生日</font>"));
             return null;
         } else if (!DateUtils.dateFormatRight(birthday)) {
-            etBirthday.setError("请填写正确生日");
+            etBirthday.requestFocus();
+            etBirthday.setError(Html.fromHtml("<font color=#000000>请填写正确生日</font>"));
             return null;
         }
         String address = etAddress.getText().toString().trim();
         if (address == null || address.equals("")) {
-            etAddress.setError("请填写地址");
+            etAddress.requestFocus();
+            etAddress.setError(Html.fromHtml("<font color=#000000>请填写地址</font>"));
             return null;
         }
         String exprFDate = etFromDay.getText().toString().trim();
         if (exprFDate == null || exprFDate.equals("")) {
-            etFromDay.setError("请填写身份证有效日期");
+            etFromDay.requestFocus();
+            etFromDay.setError(Html.fromHtml("<font color=#000000>请填写身份证有效日期</font>"));
             return null;
         } else if (!DateUtils.dateFormatRight(exprFDate)) {
-            etFromDay.setError("请填写正确身份证有效日期");
+            etFromDay.requestFocus();
+            etFromDay.setError(Html.fromHtml("<font color=#000000>请填写正确身份证有效日期</font>"));
             return null;
         }
         String exprTDate = etToDay.getText().toString().trim();
         if (exprTDate == null || exprTDate.equals("")) {
-            etToDay.setError("请填写身份证有效日期");
+            etToDay.requestFocus();
+            etToDay.setError(Html.fromHtml("<font color=#000000>请填写身份证有效日期</font>"));
             return null;
         } else if (!DateUtils.dateFormatRight(exprTDate) && !exprTDate.equals("永久")) {
-            etToDay.setError("请填写正确身份证有效日期");
+            etToDay.requestFocus();
+            etToDay.setError(Html.fromHtml("<font color=#000000>请填写正确身份证有效日期</font>"));
             return null;
         }
         String exprDate = exprFDate + "-" + exprTDate;
 
-        String nations = etNation.getText().toString().trim();
-        if (nations == null || nations.equals("")) {
-            etNation.setError("请填写民族");
-            return null;
-        }
-        String sex = etRoomSex.getText().toString().trim();
-        if (sex == null || sex.equals("")) {
-            etRoomSex.setError("请填写性别");
-            return null;
-        }
+
+
         info.setIdCard(idCard);
         info.setBirthDate(birthday);
         info.setCustomer(name);
@@ -266,6 +291,8 @@ public class DeclareInActivity extends BaseActivity {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
             etNation.setText(SPerfUtil.readNation().get(position));
+            etNation.setError(null);
+            etNation.setFocusable(false);
             if (dialog != null)
                 dialog.dismiss();
         }
@@ -288,6 +315,8 @@ public class DeclareInActivity extends BaseActivity {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
             etRoomSex.setText(Constants.getSexLset().get(position));
+            etRoomSex.setError(null);
+            etRoomSex.setFocusable(false);
             if (dialog != null)
                 dialog.dismiss();
         }
@@ -332,12 +361,12 @@ public class DeclareInActivity extends BaseActivity {
                     @Override
                     public void call(Void aVoid) {
 
-                        TimeSelector timeSelector = new TimeSelector(DeclareInActivity.this, new TimeSelector.ResultHandler() {
+                        MyTimeSelect timeSelector = new MyTimeSelect(DeclareInActivity.this, new MyTimeSelect.ResultHandler() {
                             @Override
                             public void handle(String time) {
                                 etArriveDay.setText(time);
                             }
-                        }, "2017-7-1 00:00", "2030-12-30 23:59");
+                        }, DateUtils.getCurrentFormateTime(), "2030-12-30 23:59");
                         timeSelector.show();
                     }
                 });
@@ -351,14 +380,16 @@ public class DeclareInActivity extends BaseActivity {
                     @Override
                     public void call(Void aVoid) {
 
-                        TimeSelector timeSelector = new TimeSelector(DeclareInActivity.this, new TimeSelector.ResultHandler() {
+                        MyTimeSelect timeSelector = new MyTimeSelect(DeclareInActivity.this, new MyTimeSelect.ResultHandler() {
                             @Override
                             public void handle(String time) {
                                 etLeaveDay.setText(time);
                             }
-                        }, "2017-7-1 00:00", "2030-12-30 23:59");
+                        }, DateUtils.getNextDay(), "2030-12-30 23:59");
                         timeSelector.show();
                     }
                 });
     }
+
+
 }
