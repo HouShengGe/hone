@@ -47,6 +47,7 @@ public class SPerfUtil {
     public static void reset() {
         setReqBaseInfo(DEFAULT_STRING, DEFAULT_STRING, DEFAULT_INT);
         setUserInfo(new UserInfo());
+        savePerson(new PersonBean());
     }
 
     public static void setReqBaseInfo(String token, String key, int userID) {

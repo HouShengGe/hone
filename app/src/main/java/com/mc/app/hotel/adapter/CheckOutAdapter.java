@@ -84,7 +84,7 @@ public class CheckOutAdapter extends BaseAdapter {
         }
 
         public void setView(CustomerInfo info, int position) {
-            tvName.setText("名字：" + StringUtil.getString(info.getCustomer()));
+            tvName.setText("姓名：" + StringUtil.getString(info.getCustomer()));
             tvPhoneNo.setText("电话：" + StringUtil.getString(info.getMobile()));
             tvRoomNo.setText(StringUtil.getString(info.getRoomNo()));
             tvIDCard.setText("身份证号：" + StringUtil.getString(info.getIdCard()));

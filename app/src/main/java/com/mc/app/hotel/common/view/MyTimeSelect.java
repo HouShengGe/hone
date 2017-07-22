@@ -215,17 +215,37 @@ public class MyTimeSelect {
             if ((scrollUnits & SCROLLTYPE.HOUR.value) != SCROLLTYPE.HOUR.value) {
                 hour.add(fomatTimeUnit(startHour));
             } else {
-                for (int i = startHour; i <= MAXHOUR; i++) {
-                    hour.add(fomatTimeUnit(i));
+                int hours = startHour;
+                for (int i = 1; i <= MAXHOUR; i++) {
+
+                    if (hours<=MAXHOUR) {
+                        hour.add(fomatTimeUnit(hours));
+                    }else{
+                        hour.add(fomatTimeUnit(hours-MAXHOUR));
+                    }
+                    hours++;
                 }
+//                for (int i = startHour; i <= MAXHOUR; i++) {
+//                    hour.add(fomatTimeUnit(i));
+//                }
             }
 
             if ((scrollUnits & SCROLLTYPE.MINUTE.value) != SCROLLTYPE.MINUTE.value) {
                 minute.add(fomatTimeUnit(startMininute));
             } else {
-                for (int i = startMininute; i <= MAXMINUTE; i++) {
-                    minute.add(fomatTimeUnit(i));
+                int mininute = startMininute;
+                for (int i = 1; i <= MAXMINUTE; i++) {
+
+                    if (mininute<=MAXMINUTE) {
+                        minute.add(fomatTimeUnit(mininute));
+                    }else{
+                        minute.add(fomatTimeUnit(mininute-MAXMINUTE));
+                    }
+                    mininute++;
                 }
+//                for (int i = startMininute; i <= MAXMINUTE; i++) {
+//                    minute.add(fomatTimeUnit(i));
+//                }
             }
 
         } else if (spanMon) {

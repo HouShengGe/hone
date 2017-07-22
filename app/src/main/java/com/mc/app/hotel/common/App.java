@@ -34,7 +34,7 @@ public class App extends Application {
         PrefUtil.init(this);
         SPerfUtil.init(this);
         StateUtil.init(this);
-        OCRUtil.init(this);
+//        OCRUtil.init(this);
         if (StateUtil.SupportNFC == false) {
             PrefUtil.setLinkType(ServiceUtil.OTG);
         }

@@ -157,6 +157,7 @@ public class DeclareInActivity extends BaseActivity {
         setLeaveDay();
         selectNation();
         selectSex();
+        cancel();
     }
 
 
@@ -178,7 +179,7 @@ public class DeclareInActivity extends BaseActivity {
         if (sex == null || sex.equals("")) {
             etRoomSex.setFocusable(true);
             etRoomSex.setFocusableInTouchMode(true);
-            WidgetUtils.hideKeyBoard(this,etRoomSex);
+            WidgetUtils.hideKeyBoard(this, etRoomSex);
             etRoomSex.requestFocus();
             etRoomSex.setError(Html.fromHtml("<font color=#000000>请填写性别</font>"));
             return null;
@@ -187,7 +188,7 @@ public class DeclareInActivity extends BaseActivity {
         if (nations == null || nations.equals("")) {
             etNation.setFocusable(true);
             etNation.setFocusableInTouchMode(true);
-            WidgetUtils.hideKeyBoard(this,etNation);
+            WidgetUtils.hideKeyBoard(this, etNation);
             etNation.requestFocus();
             etNation.setError(Html.fromHtml("<font color=#000000>请填写民族</font>"));
             return null;
@@ -249,7 +250,6 @@ public class DeclareInActivity extends BaseActivity {
             return null;
         }
         String exprDate = exprFDate + "-" + exprTDate;
-
 
 
         info.setIdCard(idCard);
@@ -349,6 +349,17 @@ public class DeclareInActivity extends BaseActivity {
                                         showToast(message);
                                     }
                                 });
+                    }
+                });
+    }
+
+    private void cancel() {
+        RxView.clicks(btnCancel)
+                .throttleFirst(2, TimeUnit.SECONDS)
+                .subscribe(new Action1<Void>() {
+                    @Override
+                    public void call(Void aVoid) {
+                        finish();
                     }
                 });
     }

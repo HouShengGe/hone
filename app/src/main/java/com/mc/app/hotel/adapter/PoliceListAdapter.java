@@ -14,6 +14,7 @@ import com.mc.app.hotel.R;
 import com.mc.app.hotel.activity.SearchCustomerActivity;
 import com.mc.app.hotel.bean.HotelInfo;
 import com.mc.app.hotel.common.Constants;
+import com.mc.app.hotel.common.util.ScreenUtil;
 
 import java.util.List;
 
@@ -66,6 +67,7 @@ public class PoliceListAdapter extends BaseAdapter {
         }
 
         public void setView(HotelInfo info) {
+            tvNameHotel.setWidth(ScreenUtil.getInstance(a).getScreenWidth()*2/5);
             tvNameHotel.setText(info.getStoreName());
             tvCustomerNo.setText(info.getCheckInNum() + "");
             tvDetial.setOnClickListener(new OnClickEvent(info));

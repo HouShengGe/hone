@@ -9,10 +9,12 @@ import com.mc.app.hotel.R;
 import com.mc.app.hotel.adapter.PoliceListAdapter;
 import com.mc.app.hotel.bean.HotelBean;
 import com.mc.app.hotel.bean.HotelInfo;
+import com.mc.app.hotel.bean.PersonBean;
 import com.mc.app.hotel.common.http.Api;
 import com.mc.app.hotel.common.http.Params;
 import com.mc.app.hotel.common.http.RxSubscribeProgress;
 import com.mc.app.hotel.common.http.RxSubscribeThread;
+import com.mc.app.hotel.common.util.SPerfUtil;
 import com.mc.app.hotel.common.view.pulltoreflushgrid.ILoadingLayout;
 import com.mc.app.hotel.common.view.pulltoreflushgrid.PullToRefreshBase;
 import com.mc.app.hotel.common.view.pulltoreflushgrid.PullToRefreshListView;
@@ -58,11 +60,11 @@ public class PoliceMainActivity extends BaseActivity implements PullToRefreshBas
     }
 
     private void init() {
-        setTitle("在住查询");
-        leftTitle("民宿实名申报");
+        setTitle("民宿现场查验");
         rightTitle(R.drawable.user);
         buckButton(false);
         getHotelList();
+        getPersonInfo();
         etSearch.addTextChangedListener(new EditChangedListener());
     }
 
@@ -153,5 +155,21 @@ public class PoliceMainActivity extends BaseActivity implements PullToRefreshBas
             this.finish();
             //   System.exit(0);
         }
+    }
+    private void getPersonInfo() {
+
+        Api.getInstance().mApiService.getPersonInfo(Params.getParams())
+                .compose(RxSubscribeThread.<PersonBean>ioAndMain()).
+                subscribe(new RxSubscribeProgress<PersonBean>(PoliceMainActivity.this) {
+                    @Override
+                    protected void onOverNext(PersonBean t) {
+                        SPerfUtil.savePerson(t);
+                    }
+
+                    @Override
+                    protected void onOverError(String message) {
+                    }
+
+                });
     }
 }

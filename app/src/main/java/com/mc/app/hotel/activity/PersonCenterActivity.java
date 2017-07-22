@@ -93,13 +93,12 @@ public class PersonCenterActivity extends BaseActivity {
     private void getPersonInfo() {
         PersonBean t = SPerfUtil.getPerson();
         setPersonInfo(t);
-
-
         Api.getInstance().mApiService.getPersonInfo(Params.getParams())
                 .compose(RxSubscribeThread.<PersonBean>ioAndMain()).
                 subscribe(new RxSubscribeProgress<PersonBean>(PersonCenterActivity.this, false) {
                     @Override
                     protected void onOverNext(PersonBean t) {
+                        SPerfUtil.savePerson(t);
                         setPersonInfo(t);
                     }
 
@@ -121,7 +120,7 @@ public class PersonCenterActivity extends BaseActivity {
         } else {
             llPolice.setVisibility(View.VISIBLE);
             tvName.setText(t.getPoliceMan());
-            tvAera.setText(ArrayListUtils.toStrings(t.getStoresList()));
+            tvAera.setText(ArrayListUtils.toStringln(t.getStoresList()));
         }
     }
 }

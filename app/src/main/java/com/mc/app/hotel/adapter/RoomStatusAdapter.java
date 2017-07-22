@@ -82,12 +82,6 @@ public class RoomStatusAdapter extends BaseAdapter {
         vh.tvRoomNum.setText(bean.getRoomNo());
         vh.tvRoomrvType.setText(bean.getRoomTypeName());
         vh.tvRoomrvCust.setText(bean.getCustName_1() + "\n" + bean.getCustName_2());
-        if (bean.getCustName_1().length()>=4){
-            vh.tvRoomrvCust.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18);
-        }
-        if (!StringUtil.isBlank(bean.getCustName_2())) {
-            vh.tvRoomrvCust.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16);
-        }
         return convertView;
     }
 }

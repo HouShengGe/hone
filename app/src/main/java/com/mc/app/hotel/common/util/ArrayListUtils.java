@@ -17,4 +17,11 @@ public class ArrayListUtils {
         }
         return sb.toString();
     }
+    public static String toStringln(@NonNull List<String> list) {
+        StringBuffer sb = new StringBuffer();
+        for (String s : list) {
+            sb.append(s + "\n");
+        }
+        return sb.toString();
+    }
 }

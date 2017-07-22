@@ -37,7 +37,7 @@
             android:layout_below="@+id/tv_room_num"
             android:layout_centerInParent="true"
             android:textColor="#333333"
-            android:textSize="24sp"
+            android:textSize="16sp"
             tool:text="张三" />
 
     </RelativeLayout>

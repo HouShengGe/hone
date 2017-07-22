@@ -1,5 +1,6 @@
 package com.mc.app.hotel.common.util;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.pm.ApplicationInfo;
@@ -9,6 +10,7 @@ import android.content.pm.PackageManager.NameNotFoundException;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.provider.Settings.Secure;
+import android.support.v4.app.ActivityCompat;
 import android.telephony.TelephonyManager;
 
 import com.mc.app.hotel.common.App;
@@ -143,7 +145,9 @@ public class DeviceUtil {
 
         TelephonyManager tm = (TelephonyManager) App.getAppContext().getSystemService(App.getAppContext().TELEPHONY_SERVICE);
         try {
-            return tm.getDeviceId();
+            if (ActivityCompat.checkSelfPermission(App.getAppContext(), Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
+                return tm.getDeviceId();
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
