@@ -53,10 +53,11 @@ public class PoliceMainActivity extends BaseActivity implements PullToRefreshBas
         ButterKnife.bind(this);
         // 初始化数据和数据源
         init();
-        initIndicator();
         adapter = new PoliceListAdapter(this, hotelList);
         mPullRefreshListView.setAdapter(adapter);
         mPullRefreshListView.setOnRefreshListener(this);
+        mPullRefreshListView.setMode(PullToRefreshBase.Mode.BOTH);
+        initIndicator();
     }
 
     private void init() {
@@ -81,11 +82,19 @@ public class PoliceMainActivity extends BaseActivity implements PullToRefreshBas
         endLabels.setPullLabel("上拉加载更多...");
         endLabels.setRefreshingLabel("正在加载...");
         endLabels.setReleaseLabel("放手加载更多...");
+        ILoadingLayout startLabels = mPullRefreshListView
+                .getLoadingLayoutProxy(true, false);
+        startLabels.setPullLabel("下拉刷新...");// 刚下拉时，显示的提示
+        startLabels.setRefreshingLabel("正在刷新...");// 刷新时
+        startLabels.setReleaseLabel("放手刷新数据...");// 下来达到一定距离时，显示的提示
     }
 
     @Override
     public void onPullDownToRefresh(PullToRefreshBase refreshView) {
-
+        hotelName = "";
+        pageNo = 1;
+        getHotelList();
+        hotelList.clear();
     }
 
     @Override
@@ -103,9 +112,9 @@ public class PoliceMainActivity extends BaseActivity implements PullToRefreshBas
                         pageNo++;
                         hotelList.addAll(t.getStores());
                         if (t.getRecordNums() == hotelList.size())
-                            mPullRefreshListView.setMode(PullToRefreshBase.Mode.DISABLED);
+                            mPullRefreshListView.setMode(PullToRefreshBase.Mode.PULL_FROM_START);
                         else
-                            mPullRefreshListView.setMode(PullToRefreshBase.Mode.PULL_FROM_END);
+                            mPullRefreshListView.setMode(PullToRefreshBase.Mode.BOTH);
                         mPullRefreshListView.onRefreshComplete();
                         adapter.setData(hotelList);
                     }

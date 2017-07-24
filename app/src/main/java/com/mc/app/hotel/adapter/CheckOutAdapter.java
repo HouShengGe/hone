@@ -89,10 +89,10 @@ public class CheckOutAdapter extends BaseAdapter {
             tvRoomNo.setText(StringUtil.getString(info.getRoomNo()));
             tvIDCard.setText("身份证号：" + StringUtil.getString(info.getIdCard()));
             tvArriceDay.setText("来期：" + StringUtil.getString(DateUtils.string2stringNoS(info.getArriveDate())));
-            if (StringUtil.isBlank(info.getRoomPrice()))
-                tvRoomPrice.setVisibility(View.GONE);
-            else
+            if (!StringUtil.isBlank(info.getRoomPrice()) && !info.getRoomPrice().equals("0"))
                 tvRoomPrice.setVisibility(View.VISIBLE);
+            else
+                tvRoomPrice.setVisibility(View.GONE);
             tvRoomPrice.setText("￥" + StringUtil.getString(info.getRoomPrice()));
             if (position % 2 == 0) {
                 llBG.setBackgroundResource(R.color.custom_list_bg);

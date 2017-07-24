@@ -117,10 +117,10 @@ public class CustomerAdapter extends BaseAdapter {
             tvNation.setText(StringUtil.getString(info.getNation()));
             tvIdNumber.setText(StringUtil.getString(info.getIdCard()));
             tvAddress.setText(StringUtil.getString(info.getAddress()));
-            if (StringUtil.isBlank(info.getRoomPrice()))
-                tvRoomPrice.setVisibility(View.GONE);
-            else
+            if (!StringUtil.isBlank(info.getRoomPrice())&&!info.getRoomPrice().equals("0"))
                 tvRoomPrice.setVisibility(View.VISIBLE);
+            else
+                tvRoomPrice.setVisibility(View.GONE);
             tvRoomPrice.setText("￥" + StringUtil.getString(info.getRoomPrice()));
             tvBirthday.setText(Identity.getBirthday(info.getIdCard()));
             tvArriveDay.setText("来期：" + DateUtils.string2stringNoS(info.getArriveDate()));

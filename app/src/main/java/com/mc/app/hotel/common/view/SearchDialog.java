@@ -25,13 +25,13 @@ public class SearchDialog {
             if (a != null && !a.isFinishing()) {
                 this.a = a;
                 View view = LayoutInflater.from(a).inflate(R.layout.dialog_search_cust, null);
-                dialog = new AlertDialog.Builder(a).setView(view).create();
+                dialog =  new TransparentDialog.Builder(a).setView(view).create();
                 dialog.setCancelable(true);
                 dialog.setCanceledOnTouchOutside(true);
                 dialog.show();
                 Window window = dialog.getWindow();
                 window.setContentView(R.layout.dialog_search_cust);
-                window.setBackgroundDrawable(null);
+//                window.setBackgroundDrawable(null);
                 etName = (EditText) window.findViewById(R.id.et_name);
                 etIDCard = (EditText) window.findViewById(R.id.et_id_card);
                 etRoomNO = (EditText) window.findViewById(R.id.et_room_no);
