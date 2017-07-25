@@ -107,9 +107,12 @@ public class DeclareInActivity extends BaseActivity {
         initView();
     }
 
+    String roomNo = "";
+
     private void initData() {
         if (getIntent() != null && getIntent().getExtras() != null) {
             record = (FaceRecord) getIntent().getSerializableExtra(Constants.READ_ID_CARD);
+            roomNo = (getIntent().getStringExtra(Constants.ROOM_NO));
         }
     }
 
@@ -118,6 +121,7 @@ public class DeclareInActivity extends BaseActivity {
         buckButton(true);
         etRoomSex.setFocusable(false);
         etNation.setFocusable(false);
+        tvRoomNo.setText(StringUtil.getString(roomNo));
         etRoomName.setText(StringUtil.getString(record.getName()));
         etRoomSex.setText(StringUtil.getString(record.getSex()));
         etIdCard.setText(StringUtil.getString(record.getIdNumber()));

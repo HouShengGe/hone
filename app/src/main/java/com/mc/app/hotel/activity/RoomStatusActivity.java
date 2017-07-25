@@ -1,5 +1,6 @@
 package com.mc.app.hotel.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.format.DateUtils;
 import android.view.View;
@@ -9,6 +10,7 @@ import com.mc.app.hotel.R;
 import com.mc.app.hotel.adapter.RoomStatusAdapter;
 import com.mc.app.hotel.bean.RoomDetialBean;
 import com.mc.app.hotel.bean.RoomStatusBean;
+import com.mc.app.hotel.common.Constants;
 import com.mc.app.hotel.common.facealignment.FaceAilgmentActivity;
 import com.mc.app.hotel.common.http.Api;
 import com.mc.app.hotel.common.http.Params;
@@ -98,7 +100,7 @@ public class RoomStatusActivity extends BaseActivity implements PullToRefreshBas
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        String roomNO = statusBean.getRooms().get(position).getRoomNo();
+        final String roomNO = statusBean.getRooms().get(position).getRoomNo();
         int storeId = statusBean.getRooms().get(position).getStoreId();
         final String roomStr = statusBean.getRooms().get(position).getRoomSta();
 
@@ -107,8 +109,10 @@ public class RoomStatusActivity extends BaseActivity implements PullToRefreshBas
                 subscribe(new RxSubscribeProgress<RoomDetialBean>(RoomStatusActivity.this, false) {
                     @Override
                     protected void onOverNext(RoomDetialBean t) {
-                        if (roomStr.equals("VC")||roomStr.equals("VD")) {
-                            toNextActivity(FaceAilgmentActivity.class);
+                        if (roomStr.equals("VC") || roomStr.equals("VD")) {
+                            Bundle b = new Bundle();
+                            b.putString(Constants.ROOM_NO, roomNO);
+                            toNextActivity(FaceAilgmentActivity.class, b);
                         } else {
                             showRoomDetialDialog(t);
                         }

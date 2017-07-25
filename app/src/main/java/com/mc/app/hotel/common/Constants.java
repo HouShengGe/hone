@@ -17,6 +17,7 @@ public class Constants {
     public static final String FROM = "from";
     public static final String STORE_ID = "storeid";
     public static final String LONG_OUT = "longOut";
+    public static final String ROOM_NO = "roomNo";
     public static final int LONG_OUT_FLAG = 3;
 
     public static List<String> getSexLset() {
