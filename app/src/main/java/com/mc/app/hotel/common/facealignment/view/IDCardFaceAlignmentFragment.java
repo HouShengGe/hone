@@ -31,8 +31,8 @@ import android.widget.TextView;
 import com.caihua.cloud.common.entity.PersonInfo;
 import com.caihua.cloud.common.service.ReadCardService;
 import com.mc.app.hotel.R;
-import com.mc.app.hotel.common.facealignment.NewSettingActivity;
 import com.mc.app.hotel.common.facealignment.RecordManageActivity;
+import com.mc.app.hotel.common.facealignment.SettingActivity;
 import com.mc.app.hotel.common.facealignment.event.EventDataSaveRequest;
 import com.mc.app.hotel.common.facealignment.event.EventReceiveNFCTag;
 import com.mc.app.hotel.common.facealignment.model.FaceRecord;
@@ -566,7 +566,7 @@ public class IDCardFaceAlignmentFragment extends Fragment implements Camera.Prev
                 faceAlignmentDialogFragment.dismiss();
                 break;
             case R.id.settingIBtn:
-                getContext().startActivity(new Intent(getContext(), NewSettingActivity.class));
+                getContext().startActivity(new Intent(getContext(), SettingActivity.class));
                 break;
             case R.id.recordManagementBtn:
                 getContext().startActivity(new Intent(getContext(), RecordManageActivity.class));

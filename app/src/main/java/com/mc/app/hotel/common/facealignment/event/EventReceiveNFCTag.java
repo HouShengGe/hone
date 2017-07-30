@@ -8,7 +8,6 @@ import android.nfc.Tag;
 
 public class EventReceiveNFCTag {
     Tag tag;
-
     public EventReceiveNFCTag(Tag tag) {
         this.tag = tag;
     }

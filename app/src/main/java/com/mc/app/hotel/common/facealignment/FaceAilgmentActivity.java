@@ -7,6 +7,9 @@ import android.content.IntentFilter;
 import android.graphics.Bitmap;
 import android.nfc.NfcAdapter;
 import android.nfc.Tag;
+import android.nfc.tech.IsoDep;
+import android.nfc.tech.NfcB;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -16,6 +19,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.WindowManager;
+import android.widget.Toast;
 
 import com.mc.app.hotel.R;
 import com.mc.app.hotel.activity.DeclareInActivity;
@@ -27,6 +31,7 @@ import com.mc.app.hotel.common.facealignment.event.EventTakePhotoResponse;
 import com.mc.app.hotel.common.facealignment.util.PermissionUtil;
 import com.mc.app.hotel.common.facealignment.util.PrefUtil;
 import com.mc.app.hotel.common.facealignment.util.ServiceUtil;
+import com.mc.app.hotel.common.facealignment.util.StateUtil;
 import com.mc.app.hotel.common.facealignment.view.CameraFaceAlignmentFragment;
 import com.mc.app.hotel.common.facealignment.view.IDCardFaceAlignmentFragment;
 
@@ -45,6 +50,7 @@ public class FaceAilgmentActivity extends AppCompatActivity {
     private static final String TAG = FaceAilgmentActivity.class.getSimpleName();
     private static final int IDCARD_PHOTO_CAMEAR_REQUEST = 0x01;
     private static final int FACE_PHOTO_CAMEAR_REQUEST = 0x02;
+    NfcAdapter nfcAdapter = null;
     PendingIntent nfcPi = null;
     IntentFilter[] nfcIfs = null;
     String[][] techLists = null;
@@ -63,9 +69,22 @@ public class FaceAilgmentActivity extends AppCompatActivity {
         idCardFaceAlignmentFragment = IDCardFaceAlignmentFragment.newInstance();
         cameraFaceAlignmentFragment = CameraFaceAlignmentFragment.newInstance();
         mainHandler = new Handler(Looper.getMainLooper());
+        if (StateUtil.SupportNFC) {
+            initNFC();
+        } else {
+            Toast.makeText(this, R.string.DO_NOT_SUPPORT_NFC, Toast.LENGTH_SHORT).show();
+        }
 
     }
-
+    private void initNFC() {
+        nfcAdapter = NfcAdapter.getDefaultAdapter(this);
+        if (PrefUtil.getLinkType().equals(ServiceUtil.NFC) && nfcAdapter.isEnabled() == false) {
+            Toast.makeText(this, R.string.NFC_NOT_OPEN, Toast.LENGTH_SHORT).show();
+        }
+        nfcPi = PendingIntent.getActivity(this, 0, new Intent(this, getClass()).addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP), PendingIntent.FLAG_UPDATE_CURRENT);
+        nfcIfs = new IntentFilter[]{new IntentFilter(NfcAdapter.ACTION_TECH_DISCOVERED)};
+        techLists = new String[][]{new String[]{NfcB.class.getName()}, new String[]{IsoDep.class.getName()}};
+    }
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         switch (requestCode) {
@@ -94,9 +113,12 @@ public class FaceAilgmentActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         EventBus.getDefault().register(this);
-//        if (StateUtil.SupportNFC) {
-//            nfcAdapter.enableForegroundDispatch(this, nfcPi, nfcIfs, techLists);
-//        }
+        if (StateUtil.SupportNFC) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                checkSelfPermission(Manifest.permission.NFC);
+                nfcAdapter.enableForegroundDispatch(this, nfcPi, nfcIfs, techLists);
+            }
+        }
         if (currentLinkType.equals(PrefUtil.getLinkType()) == false && PermissionUtil.requestPermission(this, new String[]{Manifest.permission.CAMERA, Manifest.permission.NFC, Manifest.permission.READ_PHONE_STATE})) {
             switch (PrefUtil.getLinkType()) {
                 case ServiceUtil.CAMERA:
@@ -124,9 +146,9 @@ public class FaceAilgmentActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         EventBus.getDefault().unregister(this);
-//        if (StateUtil.SupportNFC) {
-//            nfcAdapter.disableForegroundDispatch(this);
-//        }
+        if (StateUtil.SupportNFC) {
+            nfcAdapter.disableForegroundDispatch(this);
+        }
         super.onPause();
     }
 
