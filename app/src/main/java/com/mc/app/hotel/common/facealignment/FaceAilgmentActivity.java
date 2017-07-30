@@ -9,7 +9,6 @@ import android.nfc.NfcAdapter;
 import android.nfc.Tag;
 import android.nfc.tech.IsoDep;
 import android.nfc.tech.NfcB;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -68,14 +67,14 @@ public class FaceAilgmentActivity extends AppCompatActivity {
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         idCardFaceAlignmentFragment = IDCardFaceAlignmentFragment.newInstance();
         cameraFaceAlignmentFragment = CameraFaceAlignmentFragment.newInstance();
-        mainHandler = new Handler(Looper.getMainLooper());
         if (StateUtil.SupportNFC) {
-            initNFC();
+        initNFC();
         } else {
             Toast.makeText(this, R.string.DO_NOT_SUPPORT_NFC, Toast.LENGTH_SHORT).show();
         }
-
+        mainHandler = new Handler(Looper.getMainLooper());
     }
+
     private void initNFC() {
         nfcAdapter = NfcAdapter.getDefaultAdapter(this);
         if (PrefUtil.getLinkType().equals(ServiceUtil.NFC) && nfcAdapter.isEnabled() == false) {
@@ -85,6 +84,7 @@ public class FaceAilgmentActivity extends AppCompatActivity {
         nfcIfs = new IntentFilter[]{new IntentFilter(NfcAdapter.ACTION_TECH_DISCOVERED)};
         techLists = new String[][]{new String[]{NfcB.class.getName()}, new String[]{IsoDep.class.getName()}};
     }
+
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         switch (requestCode) {
@@ -114,10 +114,7 @@ public class FaceAilgmentActivity extends AppCompatActivity {
         super.onResume();
         EventBus.getDefault().register(this);
         if (StateUtil.SupportNFC) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                checkSelfPermission(Manifest.permission.NFC);
-                nfcAdapter.enableForegroundDispatch(this, nfcPi, nfcIfs, techLists);
-            }
+        nfcAdapter.enableForegroundDispatch(this, nfcPi, nfcIfs, techLists);
         }
         if (currentLinkType.equals(PrefUtil.getLinkType()) == false && PermissionUtil.requestPermission(this, new String[]{Manifest.permission.CAMERA, Manifest.permission.NFC, Manifest.permission.READ_PHONE_STATE})) {
             switch (PrefUtil.getLinkType()) {
@@ -158,6 +155,7 @@ public class FaceAilgmentActivity extends AppCompatActivity {
         try {
             EventBus.getDefault().post(new EventReceiveNFCTag((Tag) intent.getParcelableExtra(NfcAdapter.EXTRA_TAG)));
         } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 

@@ -21,7 +21,9 @@
     <uses-feature
         android:name="android.hardware.camera.autofocus"
         android:required="false" />
-
+    <uses-feature
+        android:name="android.hardware.nfc"
+        android:required="true" />
     <application
         android:name=".common.App"
         android:allowBackup="true"
@@ -48,7 +50,6 @@
             android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -86,7 +87,6 @@
             android:screenOrientation="landscape">
             <intent-filter>
                 <action android:name="android.nfc.action.TECH_DISCOVERED" />
-                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
             <meta-data
                 android:name="android.nfc.action.TECH_DISCOVERED"
@@ -102,7 +102,14 @@
         <activity
             android:name=".common.facealignment.NewSettingActivity"
             android:screenOrientation="landscape" />
-
+        <receiver
+            android:name=".common.facealignment.MyReceiver"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
 
     </application>
 
