@@ -1,5 +1,6 @@
 package com.mc.app.hotel.common.facealignment.view;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -170,7 +171,9 @@ public class CameraFaceAlignmentFragment extends Fragment {
         }
     }
 
+    int contrasttimes = 0;
 
+    @SuppressLint("StaticFieldLeak")
     @OnClick({R.id.idCardPhotoIBtn, R.id.facePhotoIBtn, R.id.actionBtn, R.id.settingIBtn, R.id.close})
     public void onViewClicked(View view) {
         switch (view.getId()) {
@@ -198,6 +201,15 @@ public class CameraFaceAlignmentFragment extends Fragment {
                                 byte[] facePhotoBuffer = BitmapUtil.compress(BitmapUtil.resize(params[1], PREFER_BMP_WIDTH, PREFER_BMP_HEIGHT), Bitmap.CompressFormat.JPEG, 80);
                                 confidence = FaceAlignmentUtil.doFaceAlignment(new Photo(idCardPhotoBuffer, FaceAlignmentUtil.PhotoType.JPG), new Photo(facePhotoBuffer, FaceAlignmentUtil.PhotoType.JPG));
                                 if (confidence < PrefUtil.getMinConfidence()) {
+                                    contrasttimes++;
+                                    if (contrasttimes == 3) {
+                                        FaceRecord faceRecord = new FaceRecord();
+                                        faceRecord.setRecordTime(System.currentTimeMillis());
+                                        faceRecord.setSimilarity(confidence);
+                                        faceRecord.setIdPhoto(idCardPhotoBuffer);
+                                        faceRecord.setCamPhoto(facePhotoBuffer);
+                                        return faceRecord;
+                                    }
                                     return new Exception(getString(R.string.CONFIDENCE_TOO_LOW) + confidence);
                                 } else {
                                     FaceRecord faceRecord = new FaceRecord();
@@ -219,7 +231,9 @@ public class CameraFaceAlignmentFragment extends Fragment {
                                 hintTv.setText(((Exception) o).getMessage());
                                 faceAlignmentDialogFragment.showFragment(getChildFragmentManager(), FaceAlignmentDialogFragment.FAILED_FRAGMENT);
                             } else {
-                                hintTv.setText(getString(R.string.FACE_ALIGNMENT_SUCCESS) + "," + getString(R.string.SIMILARITY) + ":" + ((FaceRecord) o).getSimilarity());
+
+                                String res = ((FaceRecord) o).getSimilarity() < PrefUtil.getMinConfidence() ? "对比失败" : "对比成功";
+                                hintTv.setText(res + "," + getString(R.string.SIMILARITY) + ":" + ((FaceRecord) o).getSimilarity());
                                 EventBus.getDefault().post(new EventDataSaveRequest((FaceRecord) o, 2));
                                 faceAlignmentDialogFragment.showFragment(getChildFragmentManager(), FaceAlignmentDialogFragment.SUCCESS_FRAGMENT);
                             }

@@ -155,7 +155,9 @@ public class DeclareInActivity extends BaseActivity {
                 }
             }
         });
-        tvEnd.setText("通过");
+
+        tvEnd.setText(record.getSimilarity() > PrefUtil.getMinConfidence() ? "通过" : "未通过");
+        tvEnd.setTextColor(getResources().getColor(record.getSimilarity() > PrefUtil.getMinConfidence() ? R.color.pass : R.color.red));
         commit();
         setArriveDay();
         setLeaveDay();

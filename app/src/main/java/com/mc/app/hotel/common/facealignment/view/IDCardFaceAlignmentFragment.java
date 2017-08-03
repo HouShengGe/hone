@@ -110,7 +110,7 @@ public class IDCardFaceAlignmentFragment extends Fragment implements Camera.Prev
     volatile boolean faceAlignmentHasSucceed = false;
     Handler mainHandler;
     VolumePopupWindow volumePopupWindow;
-
+    int contrastTimes = 0;
     public IDCardFaceAlignmentFragment() {
         faceAlignmentSubject
                 .onBackpressureLatest()
@@ -133,6 +133,15 @@ public class IDCardFaceAlignmentFragment extends Fragment implements Camera.Prev
                             confidence = FaceAlignmentUtil.doFaceAlignment(photoPair.first, photoPair.second);
                             if (confidence < PrefUtil.getMinConfidence()) {
                                 faceAlignmentFailed(getString(R.string.CONFIDENCE_TOO_LOW) + confidence);
+                                contrastTimes ++;
+                                if(contrastTimes==3){
+                                    FaceRecord faceRecord = new FaceRecord();
+                                    faceRecord.setSimilarity(confidence);
+                                    faceRecord.setIdPhoto(photoPair.second.photoBytes);
+                                    faceRecord.setCamPhoto(photoPair.first.photoBytes);
+                                    EventBus.getDefault().post(new EventDataSaveRequest(faceRecord, 1));
+                                }
+
                             } else {
                                 FaceRecord faceRecord = new FaceRecord();
                                 faceRecord.setRecordTime(System.currentTimeMillis());

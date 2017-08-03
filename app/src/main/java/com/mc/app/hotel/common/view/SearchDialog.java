@@ -31,7 +31,7 @@ public class SearchDialog {
                 dialog.show();
                 Window window = dialog.getWindow();
                 window.setContentView(R.layout.dialog_search_cust);
-                window.setBackgroundDrawable(null);
+                window.setBackgroundDrawable(a.getResources().getDrawable(R.drawable.tr));
                 etName = (EditText) window.findViewById(R.id.et_name);
                 etIDCard = (EditText) window.findViewById(R.id.et_id_card);
                 etRoomNO = (EditText) window.findViewById(R.id.et_room_no);
