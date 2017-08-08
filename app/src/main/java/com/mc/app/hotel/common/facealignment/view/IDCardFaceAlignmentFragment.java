@@ -135,6 +135,7 @@ public class IDCardFaceAlignmentFragment extends Fragment implements Camera.Prev
                                 faceAlignmentFailed(getString(R.string.CONFIDENCE_TOO_LOW) + confidence);
                                 contrastTimes ++;
                                 if(contrastTimes==3){
+                                    contrastTimes=0;
                                     FaceRecord faceRecord = new FaceRecord();
                                     faceRecord.setSimilarity(confidence);
                                     faceRecord.setIdPhoto(photoPair.second.photoBytes);
@@ -163,6 +164,15 @@ public class IDCardFaceAlignmentFragment extends Fragment implements Camera.Prev
                             }
                         } catch (Exception e) {
                             faceAlignmentFailed(getString(R.string.EXCEPTION_OCCURRED) + e.getMessage());
+                            contrastTimes ++;
+                            if(contrastTimes==3){
+                                contrastTimes=0;
+                                FaceRecord faceRecord = new FaceRecord();
+                                faceRecord.setSimilarity(0);
+                                faceRecord.setIdPhoto(photoPair.second.photoBytes);
+                                faceRecord.setCamPhoto(photoPair.first.photoBytes);
+                                EventBus.getDefault().post(new EventDataSaveRequest(faceRecord, 1));
+                            }
                         }
                     }
                 });

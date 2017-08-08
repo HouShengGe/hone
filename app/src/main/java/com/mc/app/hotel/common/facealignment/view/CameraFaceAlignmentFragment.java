@@ -196,9 +196,9 @@ public class CameraFaceAlignmentFragment extends Fragment {
                         @Override
                         protected Object doInBackground(Bitmap... params) {
                             double confidence;
+                            byte[] idCardPhotoBuffer = BitmapUtil.compress(BitmapUtil.resize(params[0], PREFER_BMP_WIDTH, PREFER_BMP_HEIGHT), Bitmap.CompressFormat.PNG, 80);
+                            byte[] facePhotoBuffer = BitmapUtil.compress(BitmapUtil.resize(params[1], PREFER_BMP_WIDTH, PREFER_BMP_HEIGHT), Bitmap.CompressFormat.JPEG, 80);
                             try {
-                                byte[] idCardPhotoBuffer = BitmapUtil.compress(BitmapUtil.resize(params[0], PREFER_BMP_WIDTH, PREFER_BMP_HEIGHT), Bitmap.CompressFormat.PNG, 80);
-                                byte[] facePhotoBuffer = BitmapUtil.compress(BitmapUtil.resize(params[1], PREFER_BMP_WIDTH, PREFER_BMP_HEIGHT), Bitmap.CompressFormat.JPEG, 80);
                                 confidence = FaceAlignmentUtil.doFaceAlignment(new Photo(idCardPhotoBuffer, FaceAlignmentUtil.PhotoType.JPG), new Photo(facePhotoBuffer, FaceAlignmentUtil.PhotoType.JPG));
                                 if (confidence < PrefUtil.getMinConfidence()) {
                                     contrasttimes++;
@@ -220,8 +220,18 @@ public class CameraFaceAlignmentFragment extends Fragment {
                                     return faceRecord;
                                 }
                             } catch (Exception e) {
-                                Timber.e("doInBackground:" + Log.getStackTraceString(e));
-                                return e;
+                                contrasttimes++;
+                                if (contrasttimes == 3) {
+                                    FaceRecord faceRecord = new FaceRecord();
+                                    faceRecord.setRecordTime(System.currentTimeMillis());
+                                    faceRecord.setSimilarity(0);
+                                    faceRecord.setIdPhoto(idCardPhotoBuffer);
+                                    faceRecord.setCamPhoto(facePhotoBuffer);
+                                    return faceRecord;
+                                }else{
+                                    Timber.e("doInBackground:" + Log.getStackTraceString(e));
+                                    return e;
+                                }
                             }
                         }
 
