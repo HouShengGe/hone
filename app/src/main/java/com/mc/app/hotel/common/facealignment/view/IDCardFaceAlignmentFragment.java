@@ -111,6 +111,7 @@ public class IDCardFaceAlignmentFragment extends Fragment implements Camera.Prev
     Handler mainHandler;
     VolumePopupWindow volumePopupWindow;
     int contrastTimes = 0;
+
     public IDCardFaceAlignmentFragment() {
         faceAlignmentSubject
                 .onBackpressureLatest()
@@ -133,50 +134,45 @@ public class IDCardFaceAlignmentFragment extends Fragment implements Camera.Prev
                             confidence = FaceAlignmentUtil.doFaceAlignment(photoPair.first, photoPair.second);
                             if (confidence < PrefUtil.getMinConfidence()) {
                                 faceAlignmentFailed(getString(R.string.CONFIDENCE_TOO_LOW) + confidence);
-                                contrastTimes ++;
-                                if(contrastTimes==3){
-                                    contrastTimes=0;
-                                    FaceRecord faceRecord = new FaceRecord();
-                                    faceRecord.setSimilarity(confidence);
-                                    faceRecord.setIdPhoto(photoPair.second.photoBytes);
-                                    faceRecord.setCamPhoto(photoPair.first.photoBytes);
-                                    EventBus.getDefault().post(new EventDataSaveRequest(faceRecord, 1));
+                                contrastTimes++;
+                                if (contrastTimes == 3) {
+                                    contrastTimes = 0;
+                                    jumpEvent(confidence, photoPair);
                                 }
                             } else {
-                                FaceRecord faceRecord = new FaceRecord();
-                                faceRecord.setRecordTime(System.currentTimeMillis());
-                                faceRecord.setName(personInfo.getName());
-                                faceRecord.setSex(personInfo.getSex());
-                                faceRecord.setNation(personInfo.getNation());
-                                faceRecord.setBirthday(personInfo.getBirthday());
-                                faceRecord.setIdNumber(personInfo.getIdNumber());
-                                faceRecord.setAddress(personInfo.getAddress());
-                                faceRecord.setTermBegin(personInfo.getTermBegin());
-                                faceRecord.setTermEnd(personInfo.getTermEnd());
-                                faceRecord.setIssueAuthority(personInfo.getIssueAuthority());
-                                faceRecord.setGuid(personInfo.getGuid());
-                                faceRecord.setSimilarity(confidence);
-                                faceRecord.setIdPhoto(photoPair.second.photoBytes);
-                                faceRecord.setCamPhoto(photoPair.first.photoBytes);
-                                EventBus.getDefault().post(new EventDataSaveRequest(faceRecord, 1));
+                                jumpEvent(confidence, photoPair);
                                 faceAlignmentSuccess(confidence);
                             }
                         } catch (Exception e) {
                             faceAlignmentFailed(getString(R.string.EXCEPTION_OCCURRED) + e.getMessage());
-                            contrastTimes ++;
-                            if(contrastTimes==3){
-                                contrastTimes=0;
-                                FaceRecord faceRecord = new FaceRecord();
-                                faceRecord.setSimilarity(0);
-                                faceRecord.setIdPhoto(photoPair.second.photoBytes);
-                                faceRecord.setCamPhoto(photoPair.first.photoBytes);
-                                EventBus.getDefault().post(new EventDataSaveRequest(faceRecord, 1));
+                            contrastTimes++;
+                            if (contrastTimes == 3) {
+                                contrastTimes = 0;
+                                jumpEvent(0, photoPair);
                             }
                         }
                     }
                 });
     }
 
+    private void jumpEvent(double confidence, Pair<Photo, Photo> photoPair) {
+        FaceRecord faceRecord = new FaceRecord();
+        faceRecord.setRecordTime(System.currentTimeMillis());
+        faceRecord.setName(personInfo.getName());
+        faceRecord.setSex(personInfo.getSex());
+        faceRecord.setNation(personInfo.getNation());
+        faceRecord.setBirthday(personInfo.getBirthday());
+        faceRecord.setIdNumber(personInfo.getIdNumber());
+        faceRecord.setAddress(personInfo.getAddress());
+        faceRecord.setTermBegin(personInfo.getTermBegin());
+        faceRecord.setTermEnd(personInfo.getTermEnd());
+        faceRecord.setIssueAuthority(personInfo.getIssueAuthority());
+        faceRecord.setGuid(personInfo.getGuid());
+        faceRecord.setSimilarity(confidence);
+        faceRecord.setIdPhoto(photoPair.second.photoBytes);
+        faceRecord.setCamPhoto(photoPair.first.photoBytes);
+        EventBus.getDefault().post(new EventDataSaveRequest(faceRecord, 1));
+    }
 
     public static IDCardFaceAlignmentFragment newInstance() {
         IDCardFaceAlignmentFragment fragment = new IDCardFaceAlignmentFragment();

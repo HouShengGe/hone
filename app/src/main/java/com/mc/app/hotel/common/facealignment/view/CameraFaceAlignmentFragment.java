@@ -203,6 +203,7 @@ public class CameraFaceAlignmentFragment extends Fragment {
                                 if (confidence < PrefUtil.getMinConfidence()) {
                                     contrasttimes++;
                                     if (contrasttimes == 3) {
+                                        contrasttimes = 0;
                                         FaceRecord faceRecord = new FaceRecord();
                                         faceRecord.setRecordTime(System.currentTimeMillis());
                                         faceRecord.setSimilarity(confidence);
@@ -222,13 +223,14 @@ public class CameraFaceAlignmentFragment extends Fragment {
                             } catch (Exception e) {
                                 contrasttimes++;
                                 if (contrasttimes == 3) {
+                                    contrasttimes = 0;
                                     FaceRecord faceRecord = new FaceRecord();
                                     faceRecord.setRecordTime(System.currentTimeMillis());
                                     faceRecord.setSimilarity(0);
                                     faceRecord.setIdPhoto(idCardPhotoBuffer);
                                     faceRecord.setCamPhoto(facePhotoBuffer);
                                     return faceRecord;
-                                }else{
+                                } else {
                                     Timber.e("doInBackground:" + Log.getStackTraceString(e));
                                     return e;
                                 }
