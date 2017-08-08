@@ -142,7 +142,6 @@ public class IDCardFaceAlignmentFragment extends Fragment implements Camera.Prev
                                     faceRecord.setCamPhoto(photoPair.first.photoBytes);
                                     EventBus.getDefault().post(new EventDataSaveRequest(faceRecord, 1));
                                 }
-
                             } else {
                                 FaceRecord faceRecord = new FaceRecord();
                                 faceRecord.setRecordTime(System.currentTimeMillis());
