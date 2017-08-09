@@ -31,7 +31,6 @@ import com.mc.app.hotel.common.util.WidgetUtils;
 import com.mc.app.hotel.common.view.DialogListView;
 import com.mc.app.hotel.common.view.MyTimeSelect;
 
-
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
@@ -144,7 +143,7 @@ public class DeclareInActivity extends BaseActivity {
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 etIdCard.removeTextChangedListener(this);//解除文字改变事件
                 etIdCard.setText(s.toString().toUpperCase());//转换
-                etIdCard.setSelection(s.toString().length());//重新设置光标位置
+                etIdCard.setSelection(start + 1 - before);//重新设置光标位置
                 etIdCard.addTextChangedListener(this);//重新绑
             }
 
@@ -166,6 +165,7 @@ public class DeclareInActivity extends BaseActivity {
         cancel();
     }
 
+    private static final String TAG = "DeclareInActivity";
 
     private CheckInInfo getInfo() {
         CheckInInfo info = new CheckInInfo();
