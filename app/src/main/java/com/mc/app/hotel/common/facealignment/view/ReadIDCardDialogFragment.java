@@ -104,10 +104,12 @@ public class ReadIDCardDialogFragment extends DialogFragment {
         if (getDialog() != null && getDialog().isShowing()) {
             showFragment(fragment);
         } else {
-            Bundle args = new Bundle();
-            args.putInt(CURRENT_FRAGMENT_INDEX_KEY, fragmentIndex);
-            setArguments(args);
-            show(fm, "");
+            if (fragment == null) {
+                Bundle args = new Bundle();
+                args.putInt(CURRENT_FRAGMENT_INDEX_KEY, fragmentIndex);
+                setArguments(args);
+                show(fm, "");
+            }
         }
     }
 
