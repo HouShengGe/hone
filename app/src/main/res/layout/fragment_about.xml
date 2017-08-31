@@ -47,19 +47,19 @@
     </LinearLayout>
 
 
-    <TextView
-        android:id="@+id/deviceIDTv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="15dp"
-        android:text="@string/DEVICE_ID"
-        android:textColor="@android:color/black"
-        android:textSize="10sp" />
+    <!--<TextView-->
+        <!--android:id="@+id/deviceIDTv"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginBottom="15dp"-->
+        <!--android:text="@string/DEVICE_ID"-->
+        <!--android:textColor="@android:color/black"-->
+        <!--android:textSize="10sp" />-->
 
-    <Button
-        android:id="@+id/checkUpdateBtn"
-        style="@style/RecordManagementButtonStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/CHECK_UPDATE_IMMEDIATELY" />
+    <!--<Button-->
+        <!--android:id="@+id/checkUpdateBtn"-->
+        <!--style="@style/RecordManagementButtonStyle"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="@string/CHECK_UPDATE_IMMEDIATELY" />-->
 </LinearLayout>

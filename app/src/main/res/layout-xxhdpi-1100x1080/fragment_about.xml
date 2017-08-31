@@ -47,7 +47,7 @@
     </LinearLayout>
 
 
-    <TextView
+   <!-- <TextView
         android:id="@+id/deviceIDTv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -61,5 +61,5 @@
         style="@style/RecordManagementButtonStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/CHECK_UPDATE_IMMEDIATELY" />
+        android:text="@string/CHECK_UPDATE_IMMEDIATELY" />-->
 </LinearLayout>
