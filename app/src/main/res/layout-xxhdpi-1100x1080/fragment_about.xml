@@ -35,31 +35,31 @@
             android:layout_height="wrap_content"
             android:text="@string/current_version"
             android:textColor="@android:color/black"
-            android:textSize="30sp" />
+            android:textSize="20sp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/versionName"
             android:textColor="@android:color/black"
-            android:textSize="30sp" />
+            android:textSize="20sp" />
 
     </LinearLayout>
 
 
-   <!-- <TextView
+    <TextView
         android:id="@+id/deviceIDTv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="15dp"
-        android:text="@string/DEVICE_ID"
+        android:text="@string/call_me"
         android:textColor="@android:color/black"
-        android:textSize="10sp" />
+        android:textSize="12sp" />
 
-    <Button
-        android:id="@+id/checkUpdateBtn"
-        style="@style/RecordManagementButtonStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/CHECK_UPDATE_IMMEDIATELY" />-->
+    <!--  <Button
+          android:id="@+id/checkUpdateBtn"
+          style="@style/RecordManagementButtonStyle"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="@string/CHECK_UPDATE_IMMEDIATELY" />-->
 </LinearLayout>

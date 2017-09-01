@@ -18,9 +18,9 @@
     <string name="please_shot_facial">请拍摄脸部\n以确保本人操作</string>
     <string name="put_the_face_into_the_box">请将脸部对准框内，保持光线充足</string>
     <string name="recode_management">记录管理</string>
-    <string name="current_version">当前版本</string>
-    <string name="versionName">V1.0</string>
-    <string name="versionCode">V1.0</string>
+    <string name="current_version">版本号:</string>
+    <string name="versionName">20170821</string>
+    <string name="versionCode">20170821</string>
     <string name="check_update">检查更新</string>
     <string name="hello_world">Hello world!</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -119,6 +119,7 @@
     <string name="SIMILARITY">相似度</string>
     <string name="RECORD_TIME">记录时间</string>
     <string name="DEVICE_ID">设备ID:</string>
+    <string name="call_me">客服热线:4008-060-888（24小时服务）</string>
     <string name="JUMP_PAGE">跳转</string>
     <string name="INPUT_PAGE_INDEX">输页号</string>
     <string name="DO_FACE_ALIGNMENT">进行人脸对比</string>
