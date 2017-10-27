@@ -274,6 +274,7 @@ public class DeclareInActivity extends BaseActivity {
         info.setRoomPrice(roomPay);
         info.setIdCardPhoto(Base64.encodeToString(record.getIdPhoto(), Base64.DEFAULT));
         info.setScanPhoto(Base64.encodeToString(record.getCamPhoto(), Base64.DEFAULT));
+        info.setGuid(record.getGuid());
         return info;
     }
 

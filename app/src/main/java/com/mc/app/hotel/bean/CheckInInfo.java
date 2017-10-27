@@ -21,6 +21,15 @@ public class CheckInInfo {
     String faceResult;
     String faceDegree;
     String idCard;
+    String guid;
+
+    public String getGuid() {
+        return guid;
+    }
+
+    public void setGuid(String guid) {
+        this.guid = guid;
+    }
 
     public String getRoomNo() {
         return roomNo;

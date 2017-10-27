@@ -67,6 +67,7 @@ public class Params {
         map.put("faceResult", info.getFaceResult());
         map.put("faceDegree", info.getFaceDegree());
         map.put("idCard", info.getIdCard());
+        map.put("GUID", info.getGuid());
         return getParams(map);
     }
 
